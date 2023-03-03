@@ -25,6 +25,7 @@ class Confirm extends BuildForm {
     $template = $this->twig->load('/page/confirm.html.twig');
     $data = [
       'data' => $this->formData,
+      'state' => 'confirm',
       'form_settings' => $this->initial_settings,
     ];
     return $template->render($data);

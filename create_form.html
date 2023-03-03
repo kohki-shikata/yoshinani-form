@@ -112,6 +112,7 @@
           recipientAddress: '',
           recipientName: '',
           autoreply: true,
+          stepNavigation: false,
         },
         formElements: []
       }
@@ -138,7 +139,7 @@
                     <legend>Use SMTP Auth</legend>
                     <input type="hidden" value="0" name="is-smtp-auth" />
                     <label>
-                      <input type="checkbox" value="1" name="is-smtp-auth" checked x-model="formData.initialSetting.smtpAuth" />
+                      <input type="checkbox" value="1" name="is-smtp-auth" x-model="formData.initialSetting.smtpAuth" />
                       Enable
                     </label>
                 </fieldset>
@@ -146,7 +147,7 @@
                     <legend>Use SMTP Encryption</legend>
                     <input type="hidden" value="0" name="is-smtp-encryption" />
                     <label>
-                      <input type="checkbox" value="1" name="is-smtp-encryption" x-model="formData.initialSetting.smtpHost" />
+                      <input type="checkbox" value="1" name="is-smtp-encryption" x-model="formData.initialSetting.smtpEncryption" />
                       Enable
                     </label>
                 </fieldset>
@@ -162,9 +163,17 @@
                     <legend>Send reply automatically to input user</legend>
                     <input type="hidden" value="0" name="is-auto-reply" />
                     <label>
-                    <input type="checkbox" value="1" name="is-auto-reply" />
-                    Enable
-                  </label>
+                      <input type="checkbox" value="1" name="is-auto-reply" x-model="formData.initialSetting.autoreply" />
+                      Enable
+                    </label>
+                </fieldset>
+                <fieldset id="step-navigation">
+                    <legend>Step navigation</legend>
+                    <input type="hidden" value="0" name="step-navigation" />
+                    <label>
+                      <input type="checkbox" value="1" name="step-navigation" x-model="formData.initialSetting.stepNavigation" />
+                      Enable
+                    </label>
                 </fieldset>
             </div>
             <div id="addElement">
