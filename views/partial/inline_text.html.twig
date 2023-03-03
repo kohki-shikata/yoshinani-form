@@ -8,11 +8,22 @@
       {{(name ? "name=\"#{name}\"" : null) | raw}}
       {{(value ? "value=\"#{value}\"" : null) | raw}}
       {{(placeholder ? "placeholder=\"#{placeholder}\"" : null) | raw}}
+      {{(inputmode ? "placeholder=\"#{inputmode}\"" : null) | raw}}
+      {{(pattern ? "pattern=\"#{pattern}\"" : null) | raw}}
+      {{(size ? "size=\"#{size}\"" : null) | raw}}
       {{(required ? "required" : null) | raw}}
       {{(readonly ? "readonly" : null) | raw}}
       {{(disabled ? "disabled" : null) | raw}}
+
+      {% if type == 'number' %}
+      {{(min ? "min=\"#{min}\"" : null) | raw}}
+      {{(max ? "max=\"#{max}\"" : null) | raw}}
+      {% elseif type == 'text' or type == 'password' or type == 'email' or type == 'url' or type == 'tel' %}
+      {{(minlength ? "minlength=\"#{minlength}\"" : null) | raw}}
+      {{(maxlength ? "maxlength=\"#{maxlength}\"" : null) | raw}}
+      {% endif %}
   />
-  {% if label %}
-    <input type="hidden" name="{{name}}-label" value="{{label}}" />
-  {% endif %}
+  {# {% if label %}
+    <input type="hidden" name="label[{{name}}]" value="{{label}}" />
+  {% endif %} #}
 </div>
