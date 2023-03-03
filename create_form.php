@@ -14,6 +14,7 @@ $env_data['RECIPIENT_NAME'] = $data['initialSetting']['recipientName'];
 $env_text;
 
 foreach($env_data as $key => $value) {
+  global $env_text;
   $env_text .= "${key}=\"${value}\"\n";
 }
 
