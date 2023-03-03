@@ -1,6 +1,7 @@
 {% extends '/page/template.html.twig' %}
 {% block content %}
 <h1>確認画面</h1>
+{{ include('/partial/step_navigation.html.twig') }}
 <pre>
 {{ dump(data) }}
 {{ dump(form_settings) }}
