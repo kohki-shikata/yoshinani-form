@@ -3,7 +3,18 @@
 <h1>確認画面</h1>
 <pre>
 {{ dump(data) }}
+{{ dump(form_settings) }}
 </pre>
+<table>
+  <tbody>
+    {% for key, item in data %}
+    <tr>
+      <th>{{ key }}</th>
+      <td>{{ item }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {# <pre>
 {{ dump(form_settings) }}
 </pre> #}

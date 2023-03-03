@@ -1,25 +1,23 @@
 <?php
 
-namespace App;
+namespace App\Utilities;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 class BuildForm {
   
-  private $initial_settings;
-  private $form_elements;
+  protected $initial_settings;
+  protected $form_elements;
   private $loader;
-  private $twig;
+  protected $twig;
 
   function __construct() {
-    $form_data = file_get_contents(__DIR__ . '/../form_data.json');
+    $form_data = file_get_contents(__DIR__ . '/../../form_data.json');
     $form_data_array = json_decode($form_data);
-    $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views');
-    $twig = new \Twig\Environment($loader);
-    $this->initial_setting = $form_data_array->initialSetting;
+    $this->initial_settings = $form_data_array->initialSetting;
     $this->form_elements = $form_data_array->formElements;
-    $this->loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views');
-    $this->twig = new \Twig\Environment($loader);
+    $this->loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../../views');
+    $this->twig = new \Twig\Environment($this->loader);
   }
 
   public function inline_text_box($data) {
@@ -57,12 +55,13 @@ class BuildForm {
   }
 
   public function loop_out() {
-    // var_dump($this->form_elements);
+    $form_data = null;
     foreach($this->form_elements as $element) {
-      echo $this->inline_text_box($element);
-      echo $this->check_radio($element);
+      global $form_data;
+      $form_data .= $this->inline_text_box($element);
+      $form_data .= $this->check_radio($element);
     }
-    // return 'loop out';
+    return $form_data;
   }
 }
 
