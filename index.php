@@ -36,5 +36,10 @@ $router->post('/send', function() {
   $mail->sendMail();
 });
 
+$router->get('/complete', function() {
+  $mail = new \App\Utilities\SendMail;
+  echo $mail->render_complete();
+});
+
 // Run Router
 $router->run();

@@ -1,9 +1,6 @@
 {% extends '/page/template.html.twig' %}
 {% block content %}
-<h1>入力画面</h1>
+<h1>完了画面</h1>
 {{ include('/partial/step_navigation.html.twig') }}
-<form action="./confirm" method="POST">
-{{ form | raw }}
-<button type="submit">確認</button>
-</form>
+<p>Your message was sent.</p>
 {% endblock %}

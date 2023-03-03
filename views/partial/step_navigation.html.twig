@@ -1,0 +1,19 @@
+<nav id="yoshinani-step">
+  <ol id="yoshinani-step-list">
+    {% if state == "input" %}
+      <li id="yoshinani-step-input" class="yoshinani-current">Input</li>
+      <li id="yoshinani-step-confirm" class="yoshinani-notyet">Confirm</li>
+      <li id="yoshinani-step-complete" class="yoshinani-notyet">Complete</li>
+    {% endif %}
+    {% if state == "confirm" %}
+      <li id="yoshinani-step-input" class="yoshinani-finished">Input</li>
+      <li id="yoshinani-step-confirm" class="yoshinani-current">Confirm</li>
+      <li id="yoshinani-step-complete" class="yoshinani-notyet">Complete</li>
+    {% endif %}
+    {% if state == "complete" %}
+      <li id="yoshinani-step-input" class="yoshinani-finished">Input</li>
+      <li id="yoshinani-step-confirm" class="yoshinani-finished">Confirm</li>
+      <li id="yoshinani-step-complete" class="yoshinani-current">Complete</li>
+    {% endif %}
+  </ol>
+</nav>
