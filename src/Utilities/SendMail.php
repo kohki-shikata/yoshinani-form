@@ -18,11 +18,14 @@ $dotenv->load();
 mb_language('japanese');
 mb_internal_encoding('UTF-8');
 
-class SendMail {
+use App\Utilities\BuildForm as BuildForm;
+
+class SendMail extends BuildForm {
   protected $formData;
   private $mail;
 
   public function __construct() {
+    parent::__construct();
     $this->formData = $_POST; // TODO: Need validation.
     
     $this->mail = new PHPMailer(true);
@@ -30,6 +33,16 @@ class SendMail {
     $this->mail->CharSet = "iso-2022-jp";
     $this->mail->Encoding = "7bit";
     $this->mail->setLanguage('ja', 'vendor/phpmailer/phpmailer/language/');
+  }
+
+  public function render_complete() {
+    $template = $this->twig->load('/page/complete.html.twig');
+    $data = [
+      // 'data' => $this->formData,
+      'state' => 'complete',
+      // 'form_settings' => $this->initial_settings,
+    ];
+    return $template->render($data);
   }
 
   public function sendMail() {
@@ -70,7 +83,9 @@ class SendMail {
       // echo $body;
       $this->mail->send(); // Send this message!
     
-      echo 'Message has been sent';
+      // redirect to complete screen
+      header("Location:/complete");
+      // $this->render_complete();
     
     } catch (Exception $e) {
       echo 'Message could not be send. Mailer Error: {$mail->ErrorInfo}';
