@@ -1,6 +1,6 @@
 {
     "name": "kohki-shiakta/yoshinani-form",
-    "version": "0.0.1",
+    "version": "0.1.1",
     "autoload": {
         "psr-4": {
             "App\\": "src"
