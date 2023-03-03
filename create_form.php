@@ -1,7 +1,6 @@
 <?php
 // $data = $_POST;
 $data = json_decode(file_get_contents('php://input'), true);
-$json = json_encode($data);
 
 $env_data = [];
 $env_data['SMTP_HOST'] = $data['initialSetting']['smtpHost'];
@@ -14,10 +13,20 @@ $env_data['RECIPIENT_NAME'] = $data['initialSetting']['recipientName'];
 $env_text;
 
 foreach($env_data as $key => $value) {
+  global $env_text;
   $env_text .= "${key}=\"${value}\"\n";
 }
 
 file_put_contents('.env', $env_text);
+
+unset($data['initialSetting']['smtpHost']);
+unset($data['initialSetting']['smtpUsername']);
+unset($data['initialSetting']['smtpPassword']);
+unset($data['initialSetting']['smtpPort']);
+unset($data['initialSetting']['recipientAddress']);
+unset($data['initialSetting']['recipientName']);
+
+$json = json_encode($data);
 
 // echo '<pre>';
 // echo $json->formElements;
