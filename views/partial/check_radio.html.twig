@@ -1,0 +1,20 @@
+<fieldset id="{{id}}">
+  {% if title %}
+  <legend>{{title}}</legend>
+  {% endif %}
+
+  {% for choice in choices %}
+  <label>
+  <input
+    type="{{type}}"
+    {{(choice.value ? "value=\"#{choice.value}\"" : null) | raw}}
+    {{(name ? "name=\"#{name}\"" : null) | raw}}
+  />
+  {{ choice.label }}
+  </label>
+  <input type="hidden" name="{{name}}-label" value="{{ choice.label }}" />
+  {% endfor %}
+  {% if title %}
+  <input type="hidden" name="{{name}}-title" value="{{title}}" />
+  {% endif %}
+</fieldset>

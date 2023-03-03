@@ -1,0 +1,18 @@
+<div class="form-group">
+  {% if label %}
+  <label for="{{id}}">{{label}}</label>
+  {% endif %}
+  <input
+      type="{{type}}"
+      {{(id ? "id=\"#{id}\"" : null) | raw}}
+      {{(name ? "name=\"#{name}\"" : null) | raw}}
+      {{(value ? "value=\"#{value}\"" : null) | raw}}
+      {{(placeholder ? "placeholder=\"#{placeholder}\"" : null) | raw}}
+      {{(required ? "required" : null) | raw}}
+      {{(readonly ? "readonly" : null) | raw}}
+      {{(disabled ? "disabled" : null) | raw}}
+  />
+  {% if label %}
+    <input type="hidden" name="{{name}}-label" value="{{label}}" />
+  {% endif %}
+</div>
