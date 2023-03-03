@@ -5,6 +5,7 @@
 {{ dump(data) }}
 {{ dump(form_settings) }}
 </pre>
+<form method="POST" action="/send">
 <table>
   <tbody>
     {% for key, item in data %}
@@ -15,7 +16,9 @@
     {% endfor %}
   </tbody>
 </table>
-{# <pre>
-{{ dump(form_settings) }}
-</pre> #}
+{% for key, item in data %}
+<input type="hidden" name="{{ key }}" value="{{ item }}" />
+{% endfor %}
+<button type="submit">送信</button>
+</form>
 {% endblock %}

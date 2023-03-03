@@ -30,5 +30,11 @@ $router->post('/confirm', function() {
   echo $confirm->render();
 
 });
+
+$router->post('/send', function() {
+  $mail = new \App\Utilities\SendMail;
+  $mail->sendMail();
+});
+
 // Run Router
 $router->run();
