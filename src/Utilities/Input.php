@@ -19,6 +19,7 @@ class Input extends BuildForm {
     $template = $this->twig->load('/page/input.html.twig');
     $data = [
       'data' => $this->formData,
+      'state' => 'input',
       'form_settings' => $this->initial_settings,
       'form' => $this->loop_out(),
     ];
