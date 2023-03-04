@@ -1,1 +1,1 @@
-{"initialSetting":{"smtpAuth":true,"smtpEncryption":false,"autoreply":false,"stepNavigation":true},"formElements":[{"type":"hidden","name":"name","id":"name","value":"url","isHidden":true}]}
+{"initialSetting":{"smtpAuth":true,"smtpEncryption":false,"autoreply":false,"stepNavigation":true},"formElements":[{"type":"text","name":"postalcode","label":"\u90f5\u4fbf\u756a\u53f7","id":"postalcode","placeholder":"565-0804","value":"","minlength":"","maxlength":"","pattern":"^\\d{3}-d{4}$","required":true,"readonly":false,"disabled":false,"isInline":true}]}

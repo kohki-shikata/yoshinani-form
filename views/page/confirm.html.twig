@@ -2,17 +2,25 @@
 {% block content %}
 <h1>確認画面</h1>
 {{ include('/partial/step_navigation.html.twig') }}
-<pre>
+{# <pre>
 {{ dump(data) }}
 {{ dump(form_settings) }}
-</pre>
+</pre> #}
 <form method="POST" action="/send">
 <table>
   <tbody>
     {% for key, item in data %}
     <tr>
       <th>{{ key }}</th>
-      <td>{{ item }}</td>
+      {% if item.error %}
+      <td>
+        {{ item.value }}
+        <p class="error-message">{{ item.error | raw }}</p>
+      </td>
+      {% else %}
+      <td>{{ item | raw }}</td>
+      {% endif %}
+
     </tr>
     {% endfor %}
   </tbody>
@@ -21,6 +29,12 @@
 <input type="hidden" name="{{ key }}" value="{{ item }}" />
 {% endfor %}
 <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
+{% if has_error %}
+{{ dump(has_error )}}
+<button type="button" onclick="history.back()">Back</button>
+{% else %}
+<button type="button" onclick="history.back()">Back</button>
 <button type="submit">送信</button>
+{% endif %}
 </form>
 {% endblock %}
