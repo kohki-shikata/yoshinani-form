@@ -73,19 +73,17 @@ class SendMail extends BuildForm {
       // Content settings
       $this->mail->isHTML(true); // Use HTML mail or not.
       $this->mail->Subject = mb_encode_mimeheader('The mail subject'); // The subject for the mail.
-    
-      $body = '';
-      foreach($this->formData as $key => $value) {
-        if($key && $value) {
-          $body .= <<<EOF
-          ◆{$key}
-          {$value}
-          \n
-          EOF;
-        }
-      };
-      $this->mail->Body = mb_convert_encoding($body, "JIS", "UTF-8"); // The body message for the mail.
-      $this->mail->AltBody = mb_convert_encoding($body, "JIS", "UTF-8"); // The body message text for the mail.
+      
+      // Build text
+      $main_recipient_template = $this->twig->load('/mail/recipient.twig');
+      $data = [
+        'recipient_name' => $_ENV['RECIPIENT_NAME'] ? $_ENV['RECIPIENT_NAME'] : null,
+        'data' => $this->formData,
+      ];
+
+      // var_dump($main_recipient_template->render($data));
+      $this->mail->Body = mb_convert_encoding($main_recipient_template->render($data), "JIS", "UTF-8"); // The body message for the mail.
+      $this->mail->AltBody = mb_convert_encoding($main_recipient_template->render($data), "JIS", "UTF-8"); // The body message text for the mail.
     
       // echo $body;
       $this->mail->send(); // Send this message!
