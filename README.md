@@ -51,7 +51,7 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | :------------ | :-------------: |
 | Frontend validation | ✅ [^2] |
 | Frontend realtime validation | coming soon |
-| Backend validation | coming 0.3.0 |
+| Backend validation | ✅ [^2b] |
 | Validation rule - required | ✅ |
 | Validation rule - email | ✅ |
 | Validation rule - url | ✅ |
@@ -66,6 +66,7 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | Preset regex pattern - Katakana, Hiragana, Zenkaku, Hankaku | coming soon |
 
 [^2]: Currently, HTML standard validate function is implemented.
+[^2b]: Currently, partialy support.
 [^3]: Backend only.
 [^4]: input type number only.
 
@@ -106,7 +107,7 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 ### Security and internal behabior
 | Feature  | Status |
 | :------------ | :-------------: |
-| CSRF token | coming 0.2.0 |
+| CSRF token | ✅ |
 | Avoid duplicate submit | coming soon |
 | Store sensitive data to .env | ✅ |
 | Limit upload filesize | coming soon |
@@ -153,11 +154,11 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | input type url  | ✅  |
 | input type password  | ✅  |
 | input type tel  | ✅  |
-| input type checkbox  | WIP  |
+| input type checkbox  | coming 0.3.0  |
 | input type radio  | ✅  |
-| select | WIP  |
+| select | ✅  |
 | textarea | ✅  |
-| input hidden | coming 0.2.0  |
+| input hidden | ✅  |
 | input type datetime-local | coming 0.3.0  |
 | input time | coming 0.3.0  |
 | input week | coming 0.3.0  |
