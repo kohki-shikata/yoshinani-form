@@ -5,6 +5,7 @@ namespace App\Utilities;
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use App\Utilities\BuildForm as BuildForm;
+use EasyCSRF\Exceptions\InvalidCsrfTokenException as InvalidCsrfTokenException;
 
 class Confirm extends BuildForm {
 
@@ -22,13 +23,24 @@ class Confirm extends BuildForm {
   }
 
   public function render() {
-    $template = $this->twig->load('/page/confirm.html.twig');
-    $data = [
-      'data' => $this->formData,
-      'state' => 'confirm',
-      'form_settings' => $this->initial_settings,
-    ];
-    return $template->render($data);
+    try {
+      session_start();
+      $this->csrf->check('my_token', $this->formData['csrf_token']);
+      unset($this->formData['csrf_token']);
+      $template = $this->twig->load('/page/confirm.html.twig');
+      $data = [
+        'data' => $this->formData,
+        'state' => 'confirm',
+        'form_settings' => $this->initial_settings,
+        'csrf_token' => $this->csrf->generate('new_token'),
+      ];
+      return $template->render($data);
+
+    } catch(InvalidCsrfTokenException $e) {
+      echo $e->getMessage();
+    }
+
+    
   }
 
   

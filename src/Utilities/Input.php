@@ -20,6 +20,7 @@ class Input extends BuildForm {
     $data = [
       'data' => $this->formData,
       'state' => 'input',
+      'csrf_token' => $this->output_csrf_token(),
       'form_settings' => $this->initial_settings,
       'form' => $this->loop_out(),
     ];
