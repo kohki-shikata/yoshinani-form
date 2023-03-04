@@ -2,8 +2,9 @@
 {% block content %}
 <h1>入力画面</h1>
 {{ include('/partial/step_navigation.html.twig') }}
-<form action="./confirm" method="POST">
+<form action="./confirm" method="POST" novalidate>
 {{ form | raw }}
+<input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
 <button type="submit">確認</button>
 </form>
 {% endblock %}

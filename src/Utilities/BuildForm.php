@@ -10,6 +10,7 @@ class BuildForm {
   protected $form_elements;
   private $loader;
   protected $twig;
+  protected $csrf;
 
   function __construct() {
     $form_data = file_get_contents(__DIR__ . '/../../form_data.json');
@@ -18,6 +19,17 @@ class BuildForm {
     $this->form_elements = $form_data_array->formElements;
     $this->loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../../views');
     $this->twig = new \Twig\Environment($this->loader);
+    $session_provider = new \EasyCSRF\NativeSessionProvider();
+    $this->csrf = new \EasyCSRF\EasyCSRF($session_provider);
+  }
+
+  public function output_csrf_token() {
+
+    session_start();
+    $token = $this->csrf->generate('my_token');
+    
+    return $token;
+
   }
 
   public function inline_text_box($data) {
@@ -31,6 +43,7 @@ class BuildForm {
         'id' => $data->id,
         'value' => $data->value,
         'placeholder' => $data->placeholder,
+        'pattern' => $data->pattern,
         'required' => $data->required,
         'readonly' => $data->readonly,
         'disabled' => $data->disabled,
