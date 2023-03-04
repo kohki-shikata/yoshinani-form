@@ -54,12 +54,39 @@ class BuildForm {
     }
   }
 
+  public function textarea($data) {
+    $type = $data->type;
+    if($type === 'textarea') {
+      $template = $this->twig->load('/partial/textarea.html.twig');
+      $data = [
+        'type' => $type,
+        'label' => $data->label,
+        'name' => $data->name,
+        'id' => $data->id,
+        'inputmode' => $data->inputmode,
+        'value' => $data->value,
+        'rows' => $data->rows,
+        'cols' => $data->cols,
+        'spellcheck' => $data->spellcheck,
+        'wrap' => $data->wrap,
+        'minlength' => $data->minlength,
+        'maxlength' => $data->maxlength,
+        'placeholder' => $data->placeholder,
+        'required' => $data->required,
+        'readonly' => $data->readonly,
+        'disabled' => $data->disabled,
+      ];
+      return $template->render($data);
+    }
+  }
+
   public function loop_out() {
     $form_data = null;
     foreach($this->form_elements as $element) {
       global $form_data;
       $form_data .= $this->inline_text_box($element);
       $form_data .= $this->check_radio($element);
+      $form_data .= $this->textarea($element);
     }
     return $form_data;
   }

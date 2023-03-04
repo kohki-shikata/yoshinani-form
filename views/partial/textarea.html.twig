@@ -1,0 +1,25 @@
+<div class="form-group">
+  {% if label %}
+  <label for="{{id}}">{{label}}</label>
+  {% endif %}
+  <textarea
+      {{(id ? "id=\"#{id}\"" : null) | raw}}
+      {{(name ? "name=\"#{name}\"" : null) | raw}}
+      {{(placeholder ? "placeholder=\"#{placeholder}\"" : null) | raw}}
+      {{(inputmode ? "inputmode=\"#{inputmode}\"" : null) | raw}}
+      {{(rows ? "rows=\"#{rows}\"" : null) | raw}}
+      {{(cols ? "cols=\"#{cols}\"" : null) | raw}}
+      {{(spellcheck ? "spellcheck=\"#{spellcheck}\"" : null) | raw}}
+      {{(wrap ? "wrap=\"#{wrap}\"" : null) | raw}}
+      {{(required ? "required" : null) | raw}}
+      {{(readonly ? "readonly" : null) | raw}}
+      {{(disabled ? "disabled" : null) | raw}}
+      {{(minlength ? "minlength=\"#{minlength}\"" : null) | raw}}
+      {{(maxlength ? "maxlength=\"#{maxlength}\"" : null) | raw}}
+  />
+  {{(value ? value : null) | raw}}
+  </textarea>
+  {# {% if label %}
+    <input type="hidden" name="label[{{name}}]" value="{{label}}" />
+  {% endif %} #}
+</div>
