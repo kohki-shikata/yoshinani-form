@@ -20,6 +20,7 @@
 {% for key, item in data %}
 <input type="hidden" name="{{ key }}" value="{{ item }}" />
 {% endfor %}
+<input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
 <button type="submit">送信</button>
 </form>
 {% endblock %}

@@ -10,6 +10,7 @@ class BuildForm {
   protected $form_elements;
   private $loader;
   protected $twig;
+  protected $csrf;
 
   function __construct() {
     $form_data = file_get_contents(__DIR__ . '/../../form_data.json');
@@ -18,6 +19,17 @@ class BuildForm {
     $this->form_elements = $form_data_array->formElements;
     $this->loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../../views');
     $this->twig = new \Twig\Environment($this->loader);
+    $session_provider = new \EasyCSRF\NativeSessionProvider();
+    $this->csrf = new \EasyCSRF\EasyCSRF($session_provider);
+  }
+
+  public function output_csrf_token() {
+
+    session_start();
+    $token = $this->csrf->generate('my_token');
+    
+    return $token;
+
   }
 
   public function inline_text_box($data) {
@@ -39,6 +51,20 @@ class BuildForm {
     }
   }
 
+  public function hidden($data) {
+    $type = $data->type;
+    if($type === 'hidden') {
+      $template = $this->twig->load('/partial/hidden.html.twig');
+      $data = [
+        'type' => $type,
+        'name' => $data->name,
+        'id' => $data->id,
+        'value' => $data->value,
+      ];
+      return $template->render($data);
+    }
+  }
+
   public function check_radio($data) {
     $type = $data->type;
     if($type === 'checkbox' || $type === 'radio') {
@@ -46,6 +72,21 @@ class BuildForm {
       $data = [
         'type' => $type,
         'title' => $data->title,
+        'name' => $data->name,
+        'id' => $data->id,
+        'choices' => $data->choices,
+      ];
+      return $template->render($data);
+    }
+  }
+
+  public function select($data) {
+    $type = $data->type;
+    if($type === 'select') {
+      $template = $this->twig->load('/partial/select.html.twig');
+      $data = [
+        'type' => $type,
+        'label' => $data->label,
         'name' => $data->name,
         'id' => $data->id,
         'choices' => $data->choices,
@@ -87,6 +128,8 @@ class BuildForm {
       $form_data .= $this->inline_text_box($element);
       $form_data .= $this->check_radio($element);
       $form_data .= $this->textarea($element);
+      $form_data .= $this->select($element);
+      $form_data .= $this->hidden($element);
     }
     return $form_data;
   }

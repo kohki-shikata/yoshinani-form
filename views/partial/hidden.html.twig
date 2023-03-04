@@ -1,0 +1,11 @@
+<div class="form-group">
+  <input
+      type="{{type}}"
+      {{(id ? "id=\"#{id}\"" : null) | raw}}
+      {{(name ? "name=\"#{name}\"" : null) | raw}}
+      {{(value ? "value=\"#{value}\"" : null) | raw}}
+  />
+  {# {% if label %}
+    <input type="hidden" name="label[{{name}}]" value="{{label}}" />
+  {% endif %} #}
+</div>

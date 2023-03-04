@@ -45,6 +45,14 @@
           text: 'input checkbox'
         },
         {
+          value: 'hidden',
+          text: 'input hidden'
+        },
+        {
+          value: 'select',
+          text: 'select'
+        },
+        {
           value: 'textarea',
           text: 'textarea'
         },
@@ -55,6 +63,8 @@
         const singleSelect = /^radio$/
         const number = /^number$/
         const textarea = /^textarea$/
+        const select = /^select$/
+        const hidden = /^hidden$/
 
         if(inline.test(type)) {
           this.formData.formElements.push({
@@ -117,6 +127,30 @@
                 disabled: false,
                 isTextarea: true,
             })
+        } else if(select.test(type)) {
+          this.formData.formElements.push({
+                type: this.setType,
+                name: '',
+                id: '',
+                label: '',
+                choices: [
+                  {
+                    text: '',
+                    value: '',    
+                    selected: false,
+                  }
+                ],
+                required: false,
+                isSelect: true,
+            })
+        } else if(hidden.test(type)) {
+          this.formData.formElements.push({
+                type: this.setType,
+                name: '',
+                id: '',
+                value: '',
+                isHidden: true,
+            })
         }
             
         },
@@ -124,10 +158,18 @@
         this.formData.formElements.splice(i, 1)
       },
       addChoice(element) {
-        element.choices.push({
+        if(element.type === 'select') {
+          element.choices.push({
+            text: '',
+            value: '',
+            selected: false,
+          })  
+        } else {
+          element.choices.push({
           label: '',
           value: ''
         })
+        }
       },
       removeChoice(element, i) {
         element.choices.splice(i, 1)
@@ -284,6 +326,28 @@
                       <button type="button" @click="removeElement(index)">Remove</button>
                       <span x-text="index + 1"></span>
                     </div>
+                    <div class="formElement formInline" :id="'form-element-' + (index + 1)" x-show="element.isHidden">
+                      <div class="form-type">
+                        <dl>
+                          <dt>type:</dt>
+                          <dd x-text="types.find(item => item.value === element.type).text"></dd>
+                        </dl>
+                      </div>
+                      <div class="form-group">
+                        <label :for="'name-' + (index + 1)">name</label>
+                        <input type="text" :name="'name-' + (index + 1)" :id="'name-' + (index + 1)" x-model="element.name"/>
+                      </div>
+                      <div class="form-group">
+                        <label :for="'id-' + (index + 1)">id</label>
+                        <input type="text" :name="'id-' + (index + 1)" :id="'id-' + (index + 1)" x-model="element.id"/>
+                      </div>
+                      <div class="form-group">
+                        <label :for="'id-' + (index + 1)">value</label>
+                        <input type="text" :name="'value-' + (index + 1)" :id="'value-' + (index + 1)" x-model="element.value"/>
+                      </div>
+                      <button type="button" @click="removeElement(index)">Remove</button>
+                      <span x-text="index + 1"></span>
+                    </div>
                     <div class="formElement formTextarea" :id="'form-element-' + (index + 1)" x-show="element.isTextarea">
                       <div class="form-type">
                         <dl>
@@ -385,6 +449,40 @@
                           <div class="choice-group">
                             <label :for="'value-choice-' + (index + 1)">value</label>
                             <input type="text" :name="'value-choice-' + (index + 1)" :id="'value-choice-' + (index + 1)" x-model="choice.value"/>
+                          </div>
+                          <button type="button" @click="addChoice(element)">Add choice</button>
+                          <button type="button" @click="removeChoice(element, index)" x-show="element.choices.length === 1 ? false : true">Remove choice</button>
+                        </div>
+                      </template>
+    </div>
+    <div class="formElement formMultiSelect" :id="'form-element-' + (index + 1)" x-show="element.isSelect">
+        <div class="form-type">
+            <dl>
+                <dt>type:</dt>
+                <dd x-text="types.find(item => item.value === element.type).text"></dd>
+            </dl>
+        </div>
+        <div class="form-group">
+            <label :for="'name-' + (index + 1)">name</label>
+            <input type="text" :name="'name-' + (index + 1)" :id="'name-' + (index + 1)" x-model="element.name" />
+        </div>
+        <div class="form-group">
+            <label :for="'label-' + (index + 1)">label</label>
+            <input type="text" :name="'title-' + (index + 1)" :id="'label-' + (index + 1)" x-model="element.label" />
+        </div>
+        <div class="form-group">
+            <label :for="'id-' + (index + 1)">id</label>
+            <input type="text" :name="'id-' + (index + 1)" :id="'id-' + (index + 1)" x-model="element.id" />
+        </div>
+        <template x-for="(choice, index) in element.choices">
+                        <div>
+                          <div class="choice-group">
+                            <label :for="'text-choice-' + (index + 1)">text</label>
+                            <input type="text" :name="'text-choice-' + (index + 1)" :id="'text-choice-' + (index + 1)" x-model="choice.text"/>
+                          </div>
+                          <div class="choice-group">
+                            <label :for="'value-choice-' + (index + 1)">value</label>
+                            <input type="text" :name="'text-choice-' + (index + 1)" :id="'text-choice-' + (index + 1)" x-model="choice.value"/>
                           </div>
                           <button type="button" @click="addChoice(element)">Add choice</button>
                           <button type="button" @click="removeChoice(element, index)" x-show="element.choices.length === 1 ? false : true">Remove choice</button>

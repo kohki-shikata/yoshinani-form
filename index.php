@@ -13,6 +13,7 @@ $router = new \Bramus\Router\Router();
 // Routing
 $router->get('/', function() {
   $input = new \App\Utilities\Input;
+  
   echo $input->render();
   // Initialize BuildForm
 //   $bf = new \App\Utilities\BuildForm;
