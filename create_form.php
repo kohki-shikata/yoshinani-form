@@ -10,6 +10,12 @@ $env_data['SMTP_PORT'] = $data['initialSetting']['smtpPort'];
 $env_data['RECIPIENT_ADDRESS'] = $data['initialSetting']['recipientAddress'];
 $env_data['RECIPIENT_NAME'] = $data['initialSetting']['recipientName'];
 
+// ob_start();
+// var_dump($data);
+// $result = ob_get_clean();
+
+// file_put_contents('hoge.txt', $result);
+
 $env_text;
 
 foreach($env_data as $key => $value) {

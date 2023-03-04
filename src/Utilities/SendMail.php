@@ -48,13 +48,20 @@ class SendMail extends BuildForm {
   public function sendMail() {
     try {
       // Mail server settings
-      // $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Enable debug mode, if you do not want to use this, please comment out this line.
+      // $this->mail->SMTPDebug = SMTP::DEBUG_SERVER; // Enable debug mode, if you do not want to use this, please comment out this line.
       $this->mail->isSMTP(); // Use SMTP
+      // $this->mail->isMail(); // Use PHP Mail Function
       $this->mail->Host = $_ENV['SMTP_HOST']; // Hostname of SMTP server
-      $this->mail->SMTPAuth = true; // Enable SMTP Authentication
+      if($this->initial_settings->smtpAuth) {
+        $this->mail->SMTPAuth = true; // Enable SMTP Authentication
+      } else {
+        $this->mail->SMTPAuth = false;
+      }
       $this->mail->Username = $_ENV['SMTP_USERNAME']; // SMTP Username
       $this->mail->Password = $_ENV['SMTP_PASSWORD']; // SMTP Password
-      // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Enable encryption
+      if($this->initial_settings->smtpEncryption) {
+        $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Enable encryption
+      }
       $this->mail->Port = $_ENV['SMTP_PORT']; // Set the port for SMTP
     
       // Recipient settings
