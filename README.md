@@ -28,37 +28,37 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 
 ## Features
 
-* All configuration is set up by one single JSON file.
-* Automatically generated frontend and backend by JSON file.
-* Multiple screens
-  * Input - default
-  * Confirm - optional
-  * Complete - optional
-* Various validation patterns - frontend and backend
-  * Required field
-  * Email field, valid email address or not.
-  * Regex pattern and presets
-    * Japanese telephone number regex
-    * Japanese postal code regex
-    * Hiragana and Katakana regex
-    * alphanumeric regex
-  * minLength and maxLength
-  * min value and max value for number field
-  * compare two field and match both values
-* Various common required form field
-  * Japanese 47 prefecture select
-  * Japanese 47 prefectures select, grouped by 8 regions as optgroup.
-* UX enhancement
-  * Required label and optional label
-  * Assist messages - optional
-  * Error messages - optional
-  * Text length counter - optional
-  * Text length meter - optional
-  * Auto-complete address from Japanese postal code - optional
-  * Step navigation - optional
-  * Embed term of use - optional
-  * Avoid duplicate submit
-  * Drag and drop File uploader
+* [x] All configuration is set up by one single JSON file.
+* [x] Automatically generated frontend and backend by JSON file.
+* [ ] Multiple screens
+  * [ ] Input - default
+  * [ ] Confirm - optional
+  * [ ] Complete - optional
+* [ ] Various validation patterns - frontend and backend
+  * [ ] Required field
+  * [ ]Email field, valid email address or not.
+  * [ ] Regex pattern and presets
+    * [ ] Japanese telephone number regex
+    * [ ] Japanese postal code regex
+    * [ ] Hiragana and Katakana regex
+    * [ ] alphanumeric regex
+  * [ ] minLength and maxLength
+  * [ ] min value and max value for number field
+  * [ ] compare two field and match both values
+* [ ] Various common required form field
+  * [ ] Japanese 47 prefecture select
+  * [ ] Japanese 47 prefectures select, grouped by 8 regions as optgroup.
+* [ ] UX enhancement
+  * [ ] Required label and optional label
+  * [ ] Assist messages - optional
+  * [ ] Error messages - optional
+  * [ ] Text length counter - optional
+  * [ ] Text length meter - optional
+  * [ ] Auto-complete address from Japanese postal code - optional
+  * [ ] Step navigation - optional
+  * [ ] Embed term of use - optional
+  * [ ] Avoid duplicate submit
+  * [ ] Drag and drop File uploader
 
 ## Why PHP?
 In Japanese web production field, still often use shared servers. Almost typically these servers are installed PHP. In Japan, PHP is commonly middleware for web servers.
