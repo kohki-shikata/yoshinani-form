@@ -14,7 +14,8 @@
       types: [
         {
           value: 'text',
-          text: 'input text'
+          text: 'input text',
+          selected: true,
         },
         {
           value: 'number',
@@ -41,7 +42,7 @@
           text: 'input radio'
         }
       ],
-      setType: {},
+      setType: 'text',
       addElement(type) {
         const inline = /^.*(text|email|password|tel|url).*$/
         const singleSelect = /^.*radio.*$/
@@ -179,7 +180,7 @@
             <div id="addElement">
                 <select x-model="setType">
               <template x-for="type in types">
-                <option x-text="type.text" :value="type.value"></option>
+                <option x-text="type.text" :value="type.value" :selected="type.selected === true"></option>
               </template>
               </select>
                 <button type="button" @click="addElement(setType)">Add Form Element</button>
