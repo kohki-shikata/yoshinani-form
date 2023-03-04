@@ -45,6 +45,7 @@
       setType: 'text',
       addElement(type) {
         const inline = /^.*(text|email|password|tel|url).*$/
+        const number = /^number$/
         const singleSelect = /^.*radio.*$/
         if(inline.test(type)) {
           this.formData.formElements.push({
@@ -76,6 +77,22 @@
                 ],
                 required: false,
                 isMultiple: true,
+            })
+        } else if(number.test(type)) {
+          this.formData.formElements.push({
+                type: this.setType,
+                name: '',
+                label: '',
+                id: '',
+                placeholder: '',
+                value: '',
+                min: '',
+                max: '',
+                pattern: '',
+                required: false,
+                readonly: false,
+                disabled: false,
+                isInline: true,
             })
         }
             
