@@ -49,11 +49,13 @@
           text: 'textarea'
         },
       ],
-      setType: {},
+      setType: 'text',
       addElement(type) {
         const inline = /^(text|email|password|tel|url)$/
         const singleSelect = /^radio$/
+        const number = /^number$/
         const textarea = /^textarea$/
+
         if(inline.test(type)) {
           this.formData.formElements.push({
                 type: this.setType,
@@ -85,13 +87,24 @@
                 required: false,
                 isMultiple: true,
             })
-        } else if(textarea.test(type)) {
+        } else if(number.test(type)) {
           this.formData.formElements.push({
-            type: this.setType,
+                type: this.setType,
                 name: '',
                 label: '',
                 id: '',
                 placeholder: '',
+                value: '',
+                min: '',
+                max: '',
+                pattern: '',
+                required: false,
+                readonly: false,
+                disabled: false,
+                isInline: true,
+        } else if(textarea.test(type)) {
+          this.formData.formElements.push({
+            type: this.setType,
                 inputmode: '',
                 value: '',
                 minlength: '',
@@ -206,7 +219,7 @@
             <div id="addElement">
                 <select x-model="setType">
               <template x-for="type in types">
-                <option x-text="type.text" :value="type.value"></option>
+                <option x-text="type.text" :value="type.value" :selected="type.selected === true"></option>
               </template>
               </select>
                 <button type="button" @click="addElement(setType)">Add Form Element</button>
@@ -246,7 +259,7 @@
                       </div>
                       <div class="form-group">
                         <label :for="'maxlength-' + (index + 1)">max length</label>
-                        <input type="number" :name="'minlength-' + (index + 1)" :id="'minlength-' + (index + 1)" x-model="element.minlength"/>
+                        <input type="number" :name="'maxlength-' + (index + 1)" :id="'maxlength-' + (index + 1)" x-model="element.maxlength"/>
                       </div>
                       <div class="form-group">
                         <label :for="'pattern-' + (index + 1)">validation regex pattern</label>
