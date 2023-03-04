@@ -43,6 +43,7 @@ class BuildForm {
         'id' => $data->id,
         'value' => $data->value,
         'placeholder' => $data->placeholder,
+        'pattern' => $data->pattern,
         'required' => $data->required,
         'readonly' => $data->readonly,
         'disabled' => $data->disabled,

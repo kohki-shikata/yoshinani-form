@@ -43,14 +43,14 @@ class Confirm extends BuildForm {
         if($key === "type" && $value === "email") {
           $val->rule('email', $element->name)->message('{field} value is not collect address pattern.');
         }
-        if($key === "maxlength") {
+        if($key === "maxlength" && $value) {
           $val->rule('lengthMax', $element->name, $value)->message("Please write within {$value} characters.");
         }
-        if($key === "minlength") {
+        if($key === "minlength" && $value) {
           $val->rule('lengthMin', $element->name, $value)->message("Please write at least {$value} characters.");
         }
-        if($key === "pattern") {
-          $val->rule('regex', $element->name, "/" . $value . "/")->message("Please write at least {$value} characters.");
+        if($key === "pattern" && $value) {
+          $val->rule('regex', $element->name, "/{$value}/")->message("Invalid syntax.");;
         }
       }
     }
@@ -59,10 +59,11 @@ class Confirm extends BuildForm {
         foreach($element as $key => $value) {
           if($key === "name" && isset($val->errors()[$value])) {
             // var_dump($this->formData[$element->name]);
-            $this->formData[$element->name] = [
-              'value' => $this->formData[$element->name],
-              'error' =>  $val->errors()[$value][0],
-            ];
+            // $this->formData[$element->name] = [
+            //   'value' => $this->formData[$element->name],
+            //   'error' =>  $val->errors()[$value][0],
+            // ];
+            $this->formData[$element->name] .= '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
           }
         }
       }
@@ -73,19 +74,13 @@ class Confirm extends BuildForm {
 
     $check_errors = [];
     foreach($this->formData as $key => $value) {
-      if(gettype($value) === "array") {
-        // print_r($value);
-        foreach($value as $k => $v) {
-          if($k === 'error') {
-            array_push($check_errors, true);
-          };
-        }
-      }
+      $flag = preg_match('/"error-message"/', $value);
+      array_push($check_errors, $flag);
     }
 
-    echo '<pre>';
-    var_dump($check_errors);
-    echo '</pre>';
+    // echo '<pre>';
+    // var_dump($check_errors);
+    // echo '</pre>';
 
     // print_r($val->validate());
     return [$this->formData, in_array(true, $check_errors) ? true : false ];
@@ -95,10 +90,10 @@ class Confirm extends BuildForm {
     try {
       session_start();
       $this->csrf->check('my_token', $this->formData['csrf_token']);
-      unset($this->formData['csrf_token']);
+      unset($this->formDataWithError['csrf_token']);
       $template = $this->twig->load('/page/confirm.html.twig');
       $data = [
-        'data' => $this->formData,
+        'data' => $this->formDataWithError,
         'state' => 'confirm',
         'form_settings' => $this->initial_settings,
         'csrf_token' => $this->csrf->generate('new_token'),
