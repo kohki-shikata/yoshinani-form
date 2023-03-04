@@ -54,6 +54,21 @@ class BuildForm {
     }
   }
 
+  public function select($data) {
+    $type = $data->type;
+    if($type === 'select') {
+      $template = $this->twig->load('/partial/select.html.twig');
+      $data = [
+        'type' => $type,
+        'label' => $data->label,
+        'name' => $data->name,
+        'id' => $data->id,
+        'choices' => $data->choices,
+      ];
+      return $template->render($data);
+    }
+  }
+
   public function textarea($data) {
     $type = $data->type;
     if($type === 'textarea') {
@@ -87,6 +102,7 @@ class BuildForm {
       $form_data .= $this->inline_text_box($element);
       $form_data .= $this->check_radio($element);
       $form_data .= $this->textarea($element);
+      $form_data .= $this->select($element);
     }
     return $form_data;
   }

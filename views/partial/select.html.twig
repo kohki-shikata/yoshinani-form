@@ -1,0 +1,19 @@
+<div class="form-group">
+  {% if label %}
+  <label for="{{id}}">{{label}}</label>
+  {% endif %}
+
+  <select {{(name ? "name=\"#{name}\"" : null) | raw}} {{( id ? "id=\"#{id}\"" : null) | raw}}>
+  {% for choice in choices %}
+  <option
+    {{(choice.value ? "value=\"#{choice.value}\"" : null) | raw}}
+    {{(choice.selected ? "selected" : null) | raw }}
+  >
+  {{ choice.text }}
+  </option>
+  {% endfor %}
+  </select>
+  {# {% if title %}
+  <input type="hidden" name="label[{{name}}]" value="{{title}}" />
+  {% endif %} #}
+</div>
