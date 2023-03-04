@@ -1,0 +1,17 @@
+{% if data.name %}
+Dear {{ data.name }}
+
+{% endif %}
+We apriciate your inquiry.
+Our sales stuff will contact you in few days.
+
+Your entered information below:
+
+{% for key, item in data %}
+> {{ key }}
+{{ item }}
+
+{% endfor %}
+---
+John Doe.
+john@example.com
