@@ -39,6 +39,20 @@ class BuildForm {
     }
   }
 
+  public function hidden($data) {
+    $type = $data->type;
+    if($type === 'hidden') {
+      $template = $this->twig->load('/partial/hidden.html.twig');
+      $data = [
+        'type' => $type,
+        'name' => $data->name,
+        'id' => $data->id,
+        'value' => $data->value,
+      ];
+      return $template->render($data);
+    }
+  }
+
   public function check_radio($data) {
     $type = $data->type;
     if($type === 'checkbox' || $type === 'radio') {
@@ -103,6 +117,7 @@ class BuildForm {
       $form_data .= $this->check_radio($element);
       $form_data .= $this->textarea($element);
       $form_data .= $this->select($element);
+      $form_data .= $this->hidden($element);
     }
     return $form_data;
   }
