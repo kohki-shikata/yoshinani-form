@@ -51,6 +51,7 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | :------------ | :-------------: |
 | Frontend validation | ✅ [^2] |
 | Frontend realtime validation | coming soon |
+| Omit frontend validation (not recommended, for dev use) | coming soon |
 | Backend validation | ✅ [^2b] |
 | Validation rule - required | ✅ |
 | Validation rule - email | ✅ |
@@ -159,14 +160,14 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | select | ✅  |
 | textarea | ✅  |
 | input hidden | ✅  |
-| input type datetime-local | coming 0.3.0  |
-| input time | coming 0.3.0  |
-| input week | coming 0.3.0  |
-| input month | coming 0.3.0  |
+| input type datetime-local | coming 0.4.0  |
+| input time | coming 0.4.0  |
+| input week | coming 0.4.0  |
+| input month | coming 0.4.0  |
 | input color | coming 0.3.0  |
-| input file | coming 0.3.0  |
+| input file | coming 0.4.0  |
 | input range | coming 0.3.0  |
-| fieldset | coming 0.3.0  |
+| fieldset | coming 0.4.0  |
 
 ### Customized element
 | Type  | Status |
