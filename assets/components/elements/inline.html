@@ -52,6 +52,6 @@
         <input type="checkbox" :name="'disabled-' + (index + 1)" :id="'disabled-' + (index + 1)" x-model="element.disabled" value="1" />
         <input type="hidden" :name="'disabled-' + (index + 1)" :id="'disabled-' + (index + 1)" x-model="element.disabled" value="0" />
     </div>
-    <button type="button" @click="removeElement(index)">Remove</button>
+    <button type="button" @click="removeElement(index, formData)">Remove</button>
     <span x-text="index + 1"></span>
 </div>

@@ -17,6 +17,6 @@
         <label :for="'id-' + (index + 1)">value</label>
         <input type="text" :name="'value-' + (index + 1)" :id="'value-' + (index + 1)" x-model="element.value" />
     </div>
-    <button type="button" @click="removeElement(index)">Remove</button>
+    <button type="button" @click="removeElement(index, formData)">Remove</button>
     <span x-text="index + 1"></span>
 </div>

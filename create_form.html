@@ -13,7 +13,7 @@
 <body>
     <div x-data="alpineCodebehind">
         <x-component-wrapper x-component url="assets/components/header.html"></x-component-wrapper>
-        <form id="formData" action="./create_form.php" method="POST" @submit.prevent="postData()">
+        <form id="formData" action="./create_form.php" method="POST" @submit.prevent="postData(formData)">
             <x-component-wrapper x-component url="assets/components/common_settings.html"></x-component-wrapper>
             <x-component-wrapper x-component url="assets/components/add_element.html"></x-component-wrapper>
             <template x-for="(element, index) in formData.formElements">
