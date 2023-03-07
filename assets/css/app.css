@@ -1,1 +1,53 @@
 @import "./lib/normalize.css";
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;400;600;800&display=swap');
+
+/* Import partial css files */
+@import "./partials/switch-group.css";
+@import "./partials/form.css";
+
+* {
+  box-sizing: border-box;
+  font-family: 'Fira Sans', sans-serif;
+  color: #555;
+  letter-spacing: .075em;
+}
+
+*>*:first-child {
+  margin-top: 0;
+}
+
+*>*:last-child {
+  margin-bottom: 0;
+}
+
+legend {
+  background: #777;
+  color: #fff;
+  padding: .5em 1em;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+fieldset {
+  border: 0;
+  background: #f9f9f9;
+  padding: .5em 1em;
+}
+
+#form-creator {
+  background: #fefefe;
+  padding: 50px;
+}
+
+.setting-title {
+  font-size: 22px;
+}
+
+.tip {
+  display: inline-block;
+  font-size: 9px;
+  color: #000;
+  background: #ffda6b;
+  padding: .25em .5em;
+  margin-left: 1em;
+}
