@@ -1,0 +1,73 @@
+<div class="formElement formTextarea" :id="'form-element-' + (index + 1)" x-show="element.isTextarea">
+    <div class="form-type">
+        <dl>
+            <dt>type:</dt>
+            <dd x-text="types.find(item => item.value === element.type).text"></dd>
+        </dl>
+    </div>
+    <div class="form-group">
+        <label :for="'name-' + (index + 1)">name</label>
+        <input type="text" :name="'name-' + (index + 1)" :id="'name-' + (index + 1)" x-model="element.name" />
+    </div>
+    <div class="form-group">
+        <label :for="'label-' + (index + 1)">label</label>
+        <input type="text" :name="'label-' + (index + 1)" :id="'label-' + (index + 1)" x-model="element.label" />
+    </div>
+    <div class="form-group">
+        <label :for="'id-' + (index + 1)">id</label>
+        <input type="text" :name="'id-' + (index + 1)" :id="'id-' + (index + 1)" x-model="element.id" />
+    </div>
+    <div class="form-group">
+        <label :for="'placeholder-' + (index + 1)">placeholder</label>
+        <textarea :name="'placeholder-' + (index + 1)" :id="'placeholder-' + (index + 1)" x-model="element.placeholder"></textarea>
+    </div>
+    <div class="form-group">
+        <label :for="'value-' + (index + 1)">value</label>
+        <textarea type="text" :name="'value-' + (index + 1)" :id="'value-' + (index + 1)" x-model="element.value"></textarea>
+    </div>
+    <div class="form-group">
+        <label :for="'minlength-' + (index + 1)">min length</label>
+        <input type="number" :name="'minlength-' + (index + 1)" :id="'minlength-' + (index + 1)" x-model="element.minlength" />
+    </div>
+    <div class="form-group">
+        <label :for="'maxlength-' + (index + 1)">max length</label>
+        <input type="number" :name="'maxlength-' + (index + 1)" :id="'maxlength-' + (index + 1)" x-model="element.maxlength" />
+    </div>
+    <div class="form-group">
+        <label :for="'inputmode-' + (index + 1)">inputmode</label>
+        <input type="text" :name="'inputmode-' + (index + 1)" :id="'inputmode-' + (index + 1)" x-model="element.inputmode" />
+    </div>
+    <div class="form-group">
+        <label :for="'rows-' + (index + 1)">rows</label>
+        <input type="number" :name="'rows-' + (index + 1)" :id="'rows-' + (index + 1)" x-model="element.rows" />
+    </div>
+    <div class="form-group">
+        <label :for="'cols-' + (index + 1)">cols</label>
+        <input type="number" :name="'cols-' + (index + 1)" :id="'cols-' + (index + 1)" x-model="element.rows" />
+    </div>
+    <div class="form-group">
+        <label :for="'spellcheck-' + (index + 1)">spellcheck</label>
+        <input type="text" :name="'spellcheck-' + (index + 1)" :id="'spellcheck-' + (index + 1)" x-model="element.spellcheck" />
+    </div>
+    <div class="form-group">
+        <label :for="'wrap-' + (index + 1)">wrap</label>
+        <input type="text" :name="'wrap-' + (index + 1)" :id="'wrap-' + (index + 1)" x-model="element.wrap" />
+    </div>
+    <div class="form-group">
+        <label :for="'required-' + (index + 1)">is required</label>
+        <input type="checkbox" :name="'required-' + (index + 1)" :id="'required-' + (index + 1)" x-model="element.required" value="1" />
+        <input type="hidden" :name="'required-' + (index + 1)" :id="'required-' + (index + 1)" x-model="element.required" value="0" />
+    </div>
+    <div class="form-group">
+        <label :for="'readonly-' + (index + 1)">is readonly</label>
+        <input type="checkbox" :name="'readonly-' + (index + 1)" :id="'readonly-' + (index + 1)" x-model="element.readonly" value="1" />
+        <input type="hidden" :name="'readonly-' + (index + 1)" :id="'readonly-' + (index + 1)" x-model="element.readonly" value="0" />
+    </div>
+    <div class="form-group">
+        <label :for="'disabled-' + (index + 1)">is disabled</label>
+        <input type="checkbox" :name="'disabled-' + (index + 1)" :id="'disabled-' + (index + 1)" x-model="element.disabled" value="1" />
+        <input type="hidden" :name="'disabled-' + (index + 1)" :id="'disabled-' + (index + 1)" x-model="element.disabled" value="0" />
+    </div>
+    <button type="button" @click="removeElement(index)">Remove</button>
+    <span x-text="index + 1"></span>
+</div>
