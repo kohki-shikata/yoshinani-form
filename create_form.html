@@ -6,11 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create form :: Form vendor</title>
-    <script type="module" defer src="assets/js/app.js"></script>
+    <link rel="stylesheet" href="assets/css/app.css" />
+    <script type="module" src="assets/js/app.js"></script>
 </head>
 
 <body>
     <div x-data="alpineCodebehind">
+        <x-component-wrapper x-component url="assets/components/header.html"></x-component-wrapper>
         <form id="formData" action="./create_form.php" method="POST" @submit.prevent="postData()">
             <div id="formInitialSetting">
                 <div class="form-group">

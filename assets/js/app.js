@@ -1,4 +1,5 @@
 import Alpine from "https://cdn.skypack.dev/alpinejs@3.10.5";
+import component from "https://unpkg.com/alpinejs-component@latest/dist/component.esm.js"
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('alpineCodebehind', () => ({
@@ -188,4 +189,5 @@ document.addEventListener('alpine:init', () => {
 
     }))
 })
+Alpine.plugin(component)
 Alpine.start()
