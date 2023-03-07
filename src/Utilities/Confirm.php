@@ -100,7 +100,7 @@ class Confirm extends BuildForm {
         'has_error' => $this->validate()[1],
       ];
 
-      // $this->validate();
+      $this->validate();
 
       return $template->render($data);
 
