@@ -14,72 +14,9 @@
     <div x-data="alpineCodebehind">
         <x-component-wrapper x-component url="assets/components/header.html"></x-component-wrapper>
         <form id="formData" action="./create_form.php" method="POST" @submit.prevent="postData()">
-            <div id="formInitialSetting">
-                <div class="form-group">
-                    <label for="smtp-host">SMTP Host</label>
-                    <input type="text" name="smtp-host" id="smtp-host" required x-model="formData.initialSetting.smtpHost" />
-                </div>
-                <div class="form-group">
-                    <label for="smtp-username">SMTP Username</label>
-                    <input type="text" name="smtp-username" id="smtp-username" required x-model="formData.initialSetting.smtpUsername" />
-                </div>
-                <div class="form-group">
-                    <label for="smtp-password">SMTP Password</label>
-                    <input type="password" name="smtp-password" id="smtp-password" required x-model="formData.initialSetting.smtpPassword" />
-                </div>
-                <div class="form-group">
-                    <label for="smtp-port">SMTP Port</label>
-                    <input type="number" name="smtp-port" id="smtp-port" required x-model="formData.initialSetting.smtpPort" min="1" max="65536" />
-                </div>
-                <fieldset id="is-smtp-auth">
-                    <legend>Use SMTP Auth</legend>
-                    <input type="hidden" value="0" name="is-smtp-auth" />
-                    <label>
-                      <input type="checkbox" value="1" name="is-smtp-auth" x-model="formData.initialSetting.smtpAuth" />
-                      Enable
-                    </label>
-                </fieldset>
-                <fieldset id="is-smtp-encryption">
-                    <legend>Use SMTP Encryption</legend>
-                    <input type="hidden" value="0" name="is-smtp-encryption" />
-                    <label>
-                      <input type="checkbox" value="1" name="is-smtp-encryption" x-model="formData.initialSetting.smtpEncryption" />
-                      Enable
-                    </label>
-                </fieldset>
-                <div class="form-group">
-                    <label for="recipient-address">Recipient mail address</label>
-                    <input type="email" name="recipient-address" id="recipient-address" required x-model="formData.initialSetting.recipientAddress" />
-                </div>
-                <div class="form-group">
-                    <label for="recipient">Recipient name</label>
-                    <input type="text" name="recipient-name" id="recipient-name" x-model="formData.initialSetting.recipientName" />
-                </div>
-                <fieldset id="is-auto-reply">
-                    <legend>Send reply automatically to input user</legend>
-                    <input type="hidden" value="0" name="is-auto-reply" />
-                    <label>
-                      <input type="checkbox" value="1" name="is-auto-reply" x-model="formData.initialSetting.autoreply" />
-                      Enable
-                    </label>
-                </fieldset>
-                <fieldset id="step-navigation">
-                    <legend>Step navigation</legend>
-                    <input type="hidden" value="0" name="step-navigation" />
-                    <label>
-                      <input type="checkbox" value="1" name="step-navigation" x-model="formData.initialSetting.stepNavigation" />
-                      Enable
-                    </label>
-                </fieldset>
-            </div>
-            <div id="addElement">
-                <select x-model="setType">
-              <template x-for="type in types">
-                <option x-text="type.text" :value="type.value" :selected="type.selected === true"></option>
-              </template>
-              </select>
-                <button type="button" @click="addElement(setType)">Add Form Element</button>
-            </div>
+            <x-component-wrapper x-component url="assets/components/common_settings.html"></x-component-wrapper>
+            <x-component-wrapper x-component url="assets/components/add_element.html"></x-component-wrapper>
+
             <template x-for="(element, index) in formData.formElements">
                   <div>
                     <div class="formElement formInline" :id="'form-element-' + (index + 1)" x-show="element.isInline">
