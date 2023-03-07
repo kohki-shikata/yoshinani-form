@@ -1,0 +1,8 @@
+<div id="addElement">
+    <select x-model="setType">
+    <template x-for="type in types">
+      <option x-text="type.text" :value="type.value" :selected="type.selected === true"></option>
+    </template>
+    </select>
+    <button type="button" @click="addElement(setType)">Add Form Element</button>
+</div>
