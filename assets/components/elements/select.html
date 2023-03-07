@@ -1,0 +1,34 @@
+<div class="formElement formMultiSelect" :id="'form-element-' + (index + 1)" x-show="element.isSelect">
+    <div class="form-type">
+        <dl>
+            <dt>type:</dt>
+            <dd x-text="types.find(item => item.value === element.type).text"></dd>
+        </dl>
+    </div>
+    <div class="form-group">
+        <label :for="'name-' + (index + 1)">name</label>
+        <input type="text" :name="'name-' + (index + 1)" :id="'name-' + (index + 1)" x-model="element.name" />
+    </div>
+    <div class="form-group">
+        <label :for="'label-' + (index + 1)">label</label>
+        <input type="text" :name="'title-' + (index + 1)" :id="'label-' + (index + 1)" x-model="element.label" />
+    </div>
+    <div class="form-group">
+        <label :for="'id-' + (index + 1)">id</label>
+        <input type="text" :name="'id-' + (index + 1)" :id="'id-' + (index + 1)" x-model="element.id" />
+    </div>
+    <template x-for="(choice, index) in element.choices">
+      <div>
+        <div class="choice-group">
+          <label :for="'text-choice-' + (index + 1)">text</label>
+          <input type="text" :name="'text-choice-' + (index + 1)" :id="'text-choice-' + (index + 1)" x-model="choice.text"/>
+        </div>
+        <div class="choice-group">
+          <label :for="'value-choice-' + (index + 1)">value</label>
+          <input type="text" :name="'text-choice-' + (index + 1)" :id="'text-choice-' + (index + 1)" x-model="choice.value"/>
+        </div>
+        <button type="button" @click="addChoice(element)">Add choice</button>
+        <button type="button" @click="removeChoice(element, index)" x-show="element.choices.length === 1 ? false : true">Remove choice</button>
+      </div>
+    </template>
+</div>

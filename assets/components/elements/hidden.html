@@ -1,0 +1,22 @@
+<div class="formElement formInline" :id="'form-element-' + (index + 1)" x-show="element.isHidden">
+    <div class="form-type">
+        <dl>
+            <dt>type:</dt>
+            <dd x-text="types.find(item => item.value === element.type).text"></dd>
+        </dl>
+    </div>
+    <div class="form-group">
+        <label :for="'name-' + (index + 1)">name</label>
+        <input type="text" :name="'name-' + (index + 1)" :id="'name-' + (index + 1)" x-model="element.name" />
+    </div>
+    <div class="form-group">
+        <label :for="'id-' + (index + 1)">id</label>
+        <input type="text" :name="'id-' + (index + 1)" :id="'id-' + (index + 1)" x-model="element.id" />
+    </div>
+    <div class="form-group">
+        <label :for="'id-' + (index + 1)">value</label>
+        <input type="text" :name="'value-' + (index + 1)" :id="'value-' + (index + 1)" x-model="element.value" />
+    </div>
+    <button type="button" @click="removeElement(index, formData)">Remove</button>
+    <span x-text="index + 1"></span>
+</div>
