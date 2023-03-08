@@ -1,0 +1,48 @@
+.os-button {
+  background: var(--main-bg-color);
+  color: #fff;
+
+  font-size: 90%;
+  padding: 1em 2em;
+  border: 0;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.os-button:hover {
+  background: var(--main-bg-highlight);
+}
+
+.os-button-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(4em, 1fr));
+  grid-template-rows: 1fr;
+}
+
+.os-button-group .os-button {
+  border-radius: 0;
+  border-right: #ddd 1px solid;
+}
+
+.os-button-group .os-button:last-child {
+  border-right: 0;
+}
+
+
+.os-button.os-button-negative {
+  background: #fff;
+  color: #c82424;
+}
+
+.os-button.os-button-negative:hover {
+  background: #ffd5d5;
+}
+
+.os-button.os-button-affirmative {
+  background: #fff;
+  color: #3e931a;
+}
+
+.os-button.os-button-affirmative:hover {
+  background: #e5ffd3;
+}

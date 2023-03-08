@@ -15,6 +15,10 @@
         .form-table {
             margin-bottom: 30px;
         }
+        
+        #formInitialSetting {
+            padding: 50px;
+        }
     </style>
     <div id="formInitialSetting">
         <h2 class="setting-title">General Settings:</h2>
@@ -88,7 +92,7 @@
                 </div>
             </fieldset>
             <fieldset>
-                <legend>Auto reply</legend>
+                <legend>Miscellaneous</legend>
                 <fieldset class="toggle-switch">
                     <legend>
                         <span>Send mail to input user</span>
@@ -99,22 +103,19 @@
                         <label for="auto-reply"></label>
                     </div>
                 </fieldset>
-            </fieldset>
+
+                <fieldset id="step-navigation" class="toggle-switch">
+                    <legend>
+                        <span>
+                        Step navigation
+                    </span>
+                    </legend>
+                    <div class="form-group">
+                        <input type="hidden" value="0" name="step-navigation" />
+                        <input type="checkbox" value="1" id="step-navi" name="step-navigation" x-model="formData.initialSetting.stepNavigation" />
+                        <label for="step-navi"></label>
+                    </div>
+                </fieldset>
         </div>
-
-
-
-        <fieldset id="step-navigation" class="toggle-switch">
-            <legend>
-                <span>
-                    Step navigation
-                </span>
-            </legend>
-            <div class="form-group">
-                <input type="hidden" value="0" name="step-navigation" />
-                <input type="checkbox" value="1" id="step-navi" name="step-navigation" x-model="formData.initialSetting.stepNavigation" />
-                <label for="step-navi"></label>
-            </div>
-        </fieldset>
     </div>
 </div>

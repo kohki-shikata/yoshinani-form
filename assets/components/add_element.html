@@ -1,8 +1,16 @@
-<div id="addElement">
-    <select x-model="setType">
-    <template x-for="type in types">
-      <option x-text="type.text" :value="type.value" :selected="type.selected === true"></option>
-    </template>
-    </select>
-    <button type="button" @click="addElement(setType, formData)">Add Form Element</button>
+<div>
+    <style>
+        @import "assets/css/app.css";
+    </style>
+    <div id="addElement">
+        <div class="os-select-wrap">
+            <select x-model="setType" class="os-select">
+            <template x-for="type in types">
+              <option x-text="type.text" :value="type.value" :selected="type.selected === true"></option>
+            </template>
+          </select>
+        </div>
+        <button type="button" @click="addElement(setType, 0, formData)" class="os-button">Add element</button>
+
+    </div>
 </div>

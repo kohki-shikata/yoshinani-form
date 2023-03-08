@@ -49,7 +49,7 @@
 }
 
 .switch input[type="radio"]:checked+label {
-  background: #489bf8;
+  background: var(--main-bg-color);
   color: #fff;
 }
 

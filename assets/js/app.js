@@ -17,7 +17,6 @@ import addElement from "./helpers/add_element.mjs"
 import removeElement from "./helpers/remove_element.mjs"
 import addChoice from "./helpers/add_choise.mjs"
 import removeChoice from "./helpers/remove_choice.mjs"
-import postData from "./helpers/remove_choice.mjs"
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('alpineCodebehind', () => ({
@@ -33,9 +32,23 @@ document.addEventListener('alpine:init', () => {
         removeElement,
         addChoice,
         removeChoice,
-        postData,
-
     }))
+
+    Alpine.store('send', {
+        response: '',
+        async postData(data) {
+            const resData = await fetch('./create_form.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            const res = await resData.json()
+            console.log(res)
+            this.response = res
+        }
+    })
 
     // i18n
     Alpine.data('lang', () => ({

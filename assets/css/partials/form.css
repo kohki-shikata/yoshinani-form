@@ -25,6 +25,15 @@ input[type="radio"] {
   cursor: pointer;
 }
 
+input::placeholder,
+textarea::placeholder {
+  color: #c8c8c8;
+}
+
+input {
+  width: 100%;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -131,6 +140,10 @@ fieldset.toggle-switch input[type="checkbox"]:before {
   border-radius: 999px;
 }
 
+fieldset.toggle-switch input[type="checkbox"]:checked:before {
+  background: #ffffac;
+}
+
 fieldset.toggle-switch input[type="checkbox"]:after {
   content: "";
   display: block;
@@ -154,9 +167,11 @@ fieldset.toggle-switch input[type="checkbox"] + label:after {
 }
 
 fieldset.toggle-switch input[type="checkbox"]:checked + label:before {
+  color: #204e20;
   content: "Enable"
 }
 
 :lang(ja) fieldset.toggle-switch input[type="checkbox"]:checked + label:before {
+  color: #204e20;
   content: "有効"
 }

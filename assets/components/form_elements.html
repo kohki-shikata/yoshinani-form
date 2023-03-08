@@ -1,0 +1,39 @@
+<div>
+    <style>
+        #element-screen {
+            display: grid;
+            grid-template-columns: 20% 20% 60%;
+        }
+        
+        #element-list {
+            background: #f4f4f4;
+        }
+        
+        .grid-col {
+            padding: 15px;
+        }
+        
+        #element-detail {
+            background: #fff4e8;
+        }
+    </style>
+    <div id="element-screen" x-data="{ adding: false, removing: false }">
+        <div id="element-list" class="grid-col" x-dnd="{nodes: '.draggable', group: 'dnd-elements'}">
+            <template x-for="(element, index) in formData.formElements">
+              <x-component-wrapper x-component url="assets/components/elements/tip.html"></x-component-wrapper>
+            </template>
+            <x-component-wrapper x-component url="assets/components/add_element.html"></x-component-wrapper>
+        </div>
+        <div id="element-detail" class="grid-col">
+            <template x-for="(element, index) in [formData.formElements[formData.formElementSelect - 1]]">
+                <x-component-wrapper x-component url="assets/components/elements/element_detail.html"></x-component-wrapper>
+            </template>
+        </div>
+        <div id="preview" class="grid-col">
+
+        </div>
+    </div>
+
+
+
+</div>

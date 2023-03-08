@@ -1,4 +1,4 @@
-const addElement = (type, formData) => {
+const addElement = (type, currentIndex, formData) => {
     const inline = /^(text|email|password|tel|url)$/
     const singleSelect = /^radio$/
     const multiSelect = /^checkbox$/
@@ -8,7 +8,7 @@ const addElement = (type, formData) => {
     const hidden = /^hidden$/
 
     if (inline.test(type)) {
-        formData.formElements.push({
+        formData.formElements.splice(currentIndex + 1, 0, {
             type,
             name: '',
             label: '',
