@@ -1,4 +1,4 @@
-<div x-show="element.isInline">
+<div x-show="formData.formElements.length > 0 && formData.formElements[formData.formElementSelect - 1]">
     <style>
         @import "assets/css/app.css";
         .form-type {
@@ -19,66 +19,64 @@
             gap: 15px;
         }
     </style>
-    <div class="formElement formInline" :id="'form-element-' + (index + 1)">
+    <div class="formElement formInline" id="inline-detail-view">
         <div class="form-type">
             <dl>
                 <div>
                     <dt>type:</dt>
-                    <dd x-text="types.find(item => item.value === element.type).text"></dd>
+                    <dd x-text="formData.formElements[formData.formElementSelect - 1].type"></dd>
                 </div>
             </dl>
         </div>
         <div class="os-layout-fit">
             <div class="form-group vertical">
-                <label :for="'name-' + (index + 1)">name</label>
-                <input type="text" :name="'name-' + (index + 1)" :id="'name-' + (index + 1)" x-model="element.name" autocomplete="off" required />
+                <label for="inline-detail-view-name">name</label>
+                <input type="text" id="inline-detail-view-name" x-model="formData.formElements[formData.formElementSelect - 1].name" autocomplete="off" required />
             </div>
             <div class="form-group vertical">
-                <label :for="'label-' + (index + 1)">label</label>
-                <input type="text" :name="'label-' + (index + 1)" :id="'label-' + (index + 1)" x-model="element.label" autocomplete="off" />
+                <label for="inline-detail-view-label">label</label>
+                <input type="text" id="inline-detail-view-label" x-model="formData.formElements[formData.formElementSelect - 1].label" autocomplete="off" />
             </div>
         </div>
 
         <div class="form-group vertical">
-            <label :for="'id-' + (index + 1)">id</label>
-            <input type="text" :name="'id-' + (index + 1)" :id="'id-' + (index + 1)" x-model="element.id" autocomplete="off" />
+            <label for="inline-detail-view-id">id</label>
+            <input type="text" id="inline-detail-view-id" x-model="formData.formElements[formData.formElementSelect - 1].id" autocomplete="off" />
         </div>
         <div class="form-group vertical">
-            <label :for="'placeholder-' + (index + 1)">placeholder</label>
-            <input type="text" :name="'placeholder-' + (index + 1)" :id="'placeholder-' + (index + 1)" x-model="element.placeholder" autocomplete="off" />
+            <label for="inline-detail-view-placeholder">placeholder</label>
+            <input type="text" id="inline-detail-view-placeholder" x-model="formData.formElements[formData.formElementSelect - 1].placeholder" autocomplete="off" />
         </div>
         <div class="form-group vertical">
-            <label :for="'id-' + (index + 1)">value</label>
-            <input type="text" :name="'value-' + (index + 1)" :id="'value-' + (index + 1)" x-model="element.value" autocomplete="off" />
+            <label for="inline-detail-view-value">value</label>
+            <input type="text" id="inline-detail-view-value" x-model="formData.formElements[formData.formElementSelect - 1].value" autocomplete="off" />
         </div>
         <div class="form-group vertical">
-            <label :for="'minlength-' + (index + 1)">min length</label>
-            <input type="number" :name="'minlength-' + (index + 1)" :id="'minlength-' + (index + 1)" x-model="element.minlength" autocomplete="off" />
+            <label for="inline-detail-view-min-length">min length</label>
+            <input type="number" id="inline-detail-view-minlength" x-model="formData.formElements[formData.formElementSelect - 1].minlength" autocomplete="off" />
         </div>
         <div class="form-group vertical">
-            <label :for="'maxlength-' + (index + 1)">max length</label>
-            <input type="number" :name="'maxlength-' + (index + 1)" :id="'maxlength-' + (index + 1)" x-model="element.maxlength" autocomplete="off" />
+            <label for="inline-detail-view-max-length">max length</label>
+            <input type="number" id="inline-detail-view-maxlength" x-model="formData.formElements[formData.formElementSelect - 1].maxlength" autocomplete="off" />
         </div>
         <div class="form-group vertical">
-            <label :for="'pattern-' + (index + 1)">validation regex pattern</label>
-            <input type="text" :name="'pattern-' + (index + 1)" :id="'pattern-' + (index + 1)" x-model="element.pattern" autocomplete="off" />
+            <label for="inline-detail-view-pattern">validation regex pattern</label>
+            <input type="text" id="inline-detail-view-pattern" x-model="formData.formElements[formData.formElementSelect - 1].pattern" autocomplete="off" />
         </div>
         <div class="form-group vertical">
-            <label :for="'required-' + (index + 1)">is required</label>
-            <input type="checkbox" :name="'required-' + (index + 1)" :id="'required-' + (index + 1)" x-model="element.required" value="1" autocomplete="off" />
-            <input type="hidden" :name="'required-' + (index + 1)" :id="'required-' + (index + 1)" x-model="element.required" value="0" />
+            <label for="inline-detail-view-required-true">Is required</label>
+            <input type="checkbox" id="inline-detail-view-required-true" x-model="formData.formElements[formData.formElementSelect - 1].required" value="1" autocomplete="off" />
+            <input type="hidden" id="inline-detail-view-required" x-model="formData.formElements[formData.formElementSelect - 1].required" value="0" />
         </div>
         <div class="form-group vertical">
-            <label :for="'required-' + (index + 1)">is readonly</label>
-            <input type="checkbox" :name="'readonly-' + (index + 1)" :id="'readonly-' + (index + 1)" x-model="element.readonly" value="1" autocomplete="off" />
-            <input type="hidden" :name="'readonly-' + (index + 1)" :id="'readonly-' + (index + 1)" x-model="element.readonly" value="0" />
+            <label for="inline-detail-view-readonly-true">Is readonly</label>
+            <input type="checkbox" id="inline-detail-view-readonly-true" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="1" autocomplete="off" />
+            <input type="hidden" id="inline-detail-view-readonly-false" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="0" />
         </div>
         <div class="form-group vertical">
-            <label :for="'required-' + (index + 1)">is disabled</label>
-            <input type="checkbox" :name="'disabled-' + (index + 1)" :id="'disabled-' + (index + 1)" x-model="element.disabled" value="1" autocomplete="off" />
-            <input type="hidden" :name="'disabled-' + (index + 1)" :id="'disabled-' + (index + 1)" x-model="element.disabled" value="0" />
+            <label for="inline-detail-disabled-true">Is disabled</label>
+            <input type="checkbox" id="inline-detail-disabled-true" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="1" autocomplete="off" />
+            <input type="hidden" id="inline-detail-disabled-false" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="0" />
         </div>
-        <button type="button" @click="removeElement(index, formData)">Remove</button>
-        <span x-text="index + 1"></span>
     </div>
 </div>

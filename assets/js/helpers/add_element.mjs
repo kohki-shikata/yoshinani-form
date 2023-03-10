@@ -23,6 +23,7 @@ const addElement = (type, currentIndex, formData) => {
             disabled: false,
             isInline: true,
         })
+        formData.formElementSelect = currentIndex + 1
     } else if (singleSelect.test(type)) {
         formData.formElements.push({
             type,
@@ -36,6 +37,7 @@ const addElement = (type, currentIndex, formData) => {
             required: false,
             isMultiple: true,
         })
+        formData.formElementSelect = currentIndex + 1
     } else if (number.test(type)) {
         formData.formElements.push({
             type,
@@ -52,6 +54,7 @@ const addElement = (type, currentIndex, formData) => {
             disabled: false,
             isInline: true,
         })
+        formData.formElementSelect = currentIndex + 1
     } else if (textarea.test(type)) {
         formData.formElements.push({
             type,
@@ -66,6 +69,7 @@ const addElement = (type, currentIndex, formData) => {
             disabled: false,
             isTextarea: true,
         })
+        formData.formElementSelect = currentIndex + 1
     } else if (select.test(type)) {
         formData.formElements.push({
             type,
@@ -80,6 +84,7 @@ const addElement = (type, currentIndex, formData) => {
             required: false,
             isSelect: true,
         })
+        formData.formElementSelect = currentIndex + 1
     } else if (hidden.test(type)) {
         formData.formElements.push({
             type,
@@ -88,6 +93,7 @@ const addElement = (type, currentIndex, formData) => {
             value: '',
             isHidden: true,
         })
+        formData.formElementSelect = currentIndex + 1
     } else if (multiSelect.test(type)) {
         formData.formElements.push({
             type,
@@ -102,6 +108,7 @@ const addElement = (type, currentIndex, formData) => {
             required: false,
             isMultiSelect: true,
         })
+        formData.formElementSelect = currentIndex + 1
     }
 
 }

@@ -56,7 +56,7 @@
         <div class="element-tip">
             <div class="element-tip-content">
                 <div class="meta">
-                    <input type="radio" :value="formData.formElements.length" name="tip-select" x-model="formData.formElementSelect" />
+                    <input type="radio" :value="index + 1" name="tip-select" x-model="formData.formElementSelect" />
                     <p class="element-number" x-text="'#' + (index + 1)"></p>
                 </div>
                 <dl>
@@ -78,7 +78,7 @@
                             <div class="os-select-wrap">
                                 <select x-model="element.type" class="os-select">
                                     <template x-for="type in types">
-                                        <option x-text="type.text" :value="type.value" :selected="type.selected === true"></option>
+                                        <option x-text="type.text" :value="type.value" :selected="type.value === element.type ? true : false"></option>
                                     </template>
                                 </select>
                             </div>
