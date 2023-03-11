@@ -1,8 +1,13 @@
 <div>
-    <template x-if="formData.formElements.length > 0 ? true : false">
-        <x-component-wrapper x-component url="assets/components/elements/inline.html"></x-component-wrapper>
-    </template>
-    <template x-if="formData.formElements.length > 0 ? true : false">
-        <x-component-wrapper x-component url="assets/components/elements/select.html"></x-component-wrapper>
-    </template>
+    <style>
+        @import "assets/css/app.css";
+    </style>
+    <div>
+        <template x-if="formData.formElements.length > 0 ? true : false">
+            <x-component-wrapper x-component url="assets/components/elements/inline.html"></x-component-wrapper>
+        </template>
+        <template x-if="formData.formElements.length > 0 ? true : false">
+            <x-component-wrapper x-component url="assets/components/elements/select.html"></x-component-wrapper>
+        </template>
+    </div>
 </div>

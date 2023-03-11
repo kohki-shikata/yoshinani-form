@@ -1,4 +1,7 @@
 <div id="select-detail-view" x-show="(formData.formElements[formData.formElementSelect - 1].type === 'select') ? true : false">
+    <style>
+        @import "assets/css/app.css";
+    </style>
     <div class="formElement formMultiSelect">
         <div class="form-type">
             <dl>
@@ -6,38 +9,11 @@
                 <dd x-text="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].type : ''"></dd>
             </dl>
         </div>
-        <div class="form-group">
-            <label for="select-detail-view-name">name</label>
-            <input type="text" id="select-detail-view-name" x-model="formData.formElements[formData.formElementSelect - 1].name" />
+        <div class="os-layout-fit">
+            <x-component-wrapper x-component url="assets/components/elements/attributes/name.html"></x-component-wrapper>
+            <x-component-wrapper x-component url="assets/components/elements/attributes/label.html"></x-component-wrapper>
         </div>
-        <div class="form-group">
-            <label for="select-detail-view-label">label</label>
-            <input type="text" id="select-detail-view-label" x-model="formData.formElements[formData.formElementSelect - 1].label" />
-        </div>
-        <div class="form-group">
-            <label for="select-detail-view-id">id</label>
-            <input type="text" id="select-detail-view-id" x-model="formData.formElements[formData.formElementSelect - 1].id" />
-        </div>
-        <template x-init="$watch('formData',
-        (newValue, oldValue) => {
-          return (newValue.formElements[formData.formElementSelect - 1].type === 'select' && newValue.formElements[formData.formElementSelect - 1].choices === undefined) ? newValue.formElements[formData.formElementSelect - 1].choices = [{ text: '', value: '', selected: false }] : ''
-        }
-          )" x-if="(formData.formElements[formData.formElementSelect - 1].choices?.length > 0)">
-          <template x-for="(choice, index) in formData.formElements[formData.formElementSelect - 1].choices">
-            <div class="choices-group">
-              <div class="choice-group">
-                <label :for="'text-choice-' + (index + 1)">text</label>
-                <input type="text" :id="'text-choice-' + (index + 1)" x-model="choice.text"/>
-              </div>
-              <div class="choice-group">
-                <label :for="'value-choice-' + (index + 1)">value</label>
-                <input type="text" :id="'value-choice-' + (index + 1)" x-model="choice.value"/>
-              </div>
-              <button type="button" @click="addChoice(formData.formElements[formData.formElementSelect - 1].choices, index)">Add choice</button>
-              <button type="button" @click="removeChoice(formData.formElements[formData.formElementSelect - 1].choices, index)">Remove choice</button>
-            </div>
-            
-          </template>
-        </template>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/id.html"></x-component-wrapper>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/options.html"></x-component-wrapper>
     </div>
 </div>

@@ -17,6 +17,7 @@ import addElement from "./helpers/add_element.mjs"
 import removeElement from "./helpers/remove_element.mjs"
 import addChoice from "./helpers/add_choise.mjs"
 import removeChoice from "./helpers/remove_choice.mjs"
+import selectOneOnly from "./helpers/select_one_only.mjs";
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('alpineCodebehind', () => ({
@@ -32,6 +33,7 @@ document.addEventListener('alpine:init', () => {
         removeElement,
         addChoice,
         removeChoice,
+        selectOneOnly
     }))
 
     Alpine.store('send', {

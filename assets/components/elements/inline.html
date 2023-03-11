@@ -29,15 +29,10 @@
             </dl>
         </div>
         <div class="os-layout-fit">
-            <div class="form-group vertical">
-                <label for="inline-detail-view-name">name</label>
-                <input type="text" id="inline-detail-view-name" x-model="formData.formElements[formData.formElementSelect - 1].name" autocomplete="off" required />
-            </div>
-            <div class="form-group vertical">
-                <label for="inline-detail-view-label">label</label>
-                <input type="text" id="inline-detail-view-label" x-model="formData.formElements[formData.formElementSelect - 1].label" autocomplete="off" />
-            </div>
+            <x-component-wrapper x-component url="assets/components/elements/attributes/name.html"></x-component-wrapper>
+            <x-component-wrapper x-component url="assets/components/elements/attributes/label.html"></x-component-wrapper>
         </div>
+
 
         <div class="form-group vertical">
             <label for="inline-detail-view-id">id</label>
