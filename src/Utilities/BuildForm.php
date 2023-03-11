@@ -114,7 +114,7 @@ class BuildForm {
         'minlength' => isset($data->minlength) ? $data->minlength : null,
         'maxlength' => isset($data->maxlength) ? $data->maxlength : null,
         'placeholder' => isset($data->placeholder) ? $data->placeholder : null,
-        'required' => isset($data->required) ? $data->placeholder : null,
+        'required' => isset($data->required) ? $data->required : null,
         'readonly' => isset($data->readonly) ? $data->readonly : null,
         'disabled' => isset($data->disabled) ? $data->disabled : null,
       ];
@@ -168,21 +168,21 @@ function parse_tag($data) {
   }
 
   // Build error messages
-  $error_messages = "";
-  if(isset($data->errorMessages)) {
-    $error_inner_message = "";
-    foreach($data->errorMessages as $m) { 
-      $messageType = isset($m->type) ? $m->type : "";
-      $messageText = isset($m->message) ? $m->message : "";
-      $error_inner_message .= "<li data-error-type=\"{$messageType}\">{$messageText}</li>\n";
-      // print_r($m);
-    }
-    $error_messages = <<<EOF
-    <ul class="error-messages">
-      {$error_inner_message}
-    </ul>
-    EOF;
-  }
+  // $error_messages = "";
+  // if(isset($data->errorMessages)) {
+  //   $error_inner_message = "";
+  //   foreach($data->errorMessages as $m) { 
+  //     $messageType = isset($m->type) ? $m->type : "";
+  //     $messageText = isset($m->message) ? $m->message : "";
+  //     $error_inner_message .= "<li data-error-type=\"{$messageType}\">{$messageText}</li>\n";
+  //     // print_r($m);
+  //   }
+  //   $error_messages = <<<EOF
+  //   <ul class="error-messages">
+  //     {$error_inner_message}
+  //   </ul>
+  //   EOF;
+  // }
 
   // Build up checkbox and radio buttons
   if(isset($data->elements)) {
