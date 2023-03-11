@@ -1,1 +1,74 @@
 @import "./lib/normalize.css";
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;400;600;800&display=swap');
+
+/* Import partial css files */
+@import "./partials/layout.css";
+@import "./partials/switch-group.css";
+@import "./partials/form.css";
+@import "./partials/notice.css";
+@import "./partials/button.css";
+@import "./partials/select.css";
+@import "./partials/tip.css";
+
+:root {
+  --main-bg-color: #489bf8;
+  --main-bg-highlight: #6fb2ff;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Fira Sans', sans-serif;
+  color: #555;
+  letter-spacing: .075em;
+}
+
+*>*:first-child {
+  margin-top: 0;
+}
+
+*>*:last-child {
+  margin-bottom: 0;
+}
+
+dl {
+  margin-top: 0;
+}
+
+dd {
+  margin-left: 0;
+}
+
+dl > div {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: .5em;
+}
+
+legend {
+  background: #777;
+  color: #fff;
+  padding: .5em 1em;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+fieldset {
+  border: 0;
+  background: #f9f9f9;
+  padding: .5em 1em;
+}
+
+.setting-title {
+  font-size: 22px;
+}
+
+.tip {
+  display: inline-block;
+  font-size: 9px;
+  color: #000;
+  background: #ffda6b;
+  padding: .25em .5em;
+  margin-left: 1em;
+}

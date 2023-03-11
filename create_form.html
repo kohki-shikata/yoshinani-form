@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html x-data="lang" :lang="langCode">
 
 <head>
     <meta charset="UTF-8">
@@ -8,24 +8,29 @@
     <title>Create form :: Form vendor</title>
     <link rel="stylesheet" href="assets/css/app.css" />
     <script type="module" src="assets/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/tvdr/alpine-draganddrop@0.x.x/dist/index.min.js" defer></script>
 </head>
 
 <body>
     <div x-data="alpineCodebehind">
         <x-component-wrapper x-component url="assets/components/header.html"></x-component-wrapper>
-        <form id="formData" action="./create_form.php" method="POST" @submit.prevent="postData(formData)">
-            <x-component-wrapper x-component url="assets/components/common_settings.html"></x-component-wrapper>
-            <x-component-wrapper x-component url="assets/components/add_element.html"></x-component-wrapper>
-            <template x-for="(element, index) in formData.formElements">
+        <form id="form-creator" action="./create_form.php" method="POST" @submit.prevent="$store.send.postData(formData)">
+            <template x-if="inputScreenSwitch === 'general'">
+              <x-component-wrapper x-component url="assets/components/common_settings.html"></x-component-wrapper>
+            </template>
+            <template x-if="inputScreenSwitch === 'formElements'">
+              <x-component-wrapper x-component url="assets/components/form_elements.html"></x-component-wrapper>
+            </template>
+            <template x-if="inputScreenSwitch === 'preview'">
+              <h2>Preview</h2>
+            </template>
+            <template x-if="inputScreenSwitch === 'export'">
               <div>
-                <x-component-wrapper x-component url="assets/components/elements/inline.html"></x-component-wrapper>
-                <x-component-wrapper x-component url="assets/components/elements/hidden.html"></x-component-wrapper>
-                <x-component-wrapper x-component url="assets/components/elements/textarea.html"></x-component-wrapper>
-                <x-component-wrapper x-component url="assets/components/elements/checkbox_radio.html"></x-component-wrapper>
-                <x-component-wrapper x-component url="assets/components/elements/select.html"></x-component-wrapper>
+                <h2>Is it ok to export form?</h2>
+                <button type="submit" class="os-button">Build JSON</button>
+                <p class="os-notice os-info" x-show="$store.send.response.message" x-text="$store.send.response.message"></p>
               </div>
             </template>
-            <button type="submit">Build JSON</button>
         </form>
         <x-component-wrapper x-component url="assets/components/debug.html"></x-component-wrapper>
     </div>

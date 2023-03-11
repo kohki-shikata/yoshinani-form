@@ -1,22 +1,20 @@
-<div class="formElement formInline" :id="'form-element-' + (index + 1)" x-show="element.isHidden">
+<div class="formElement formInline" id="hidden-detail-view" x-show="formData.formElements.length > 0 && formData.formElements[formData.formElementSelect - 1].isHidden === true">
     <div class="form-type">
         <dl>
             <dt>type:</dt>
-            <dd x-text="types.find(item => item.value === element.type).text"></dd>
+            <dd x-text="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].type : ''"></dd>
         </dl>
     </div>
     <div class="form-group">
-        <label :for="'name-' + (index + 1)">name</label>
-        <input type="text" :name="'name-' + (index + 1)" :id="'name-' + (index + 1)" x-model="element.name" />
+        <label for="hidden-detail-view-name">name</label>
+        <input type="text" id="hidden-detail-view-id" x-model="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].name : ''" />
     </div>
     <div class="form-group">
-        <label :for="'id-' + (index + 1)">id</label>
-        <input type="text" :name="'id-' + (index + 1)" :id="'id-' + (index + 1)" x-model="element.id" />
+        <label for="hidden-detail-view-id">id</label>
+        <input type="text" id="hidden-detail-view-id" x-model="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].id : ''" />
     </div>
     <div class="form-group">
-        <label :for="'id-' + (index + 1)">value</label>
-        <input type="text" :name="'value-' + (index + 1)" :id="'value-' + (index + 1)" x-model="element.value" />
+        <label for="hidden-detail-view-value">value</label>
+        <input type="text" id="hidden-detail-view-value" x-model="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].value : ''" />
     </div>
-    <button type="button" @click="removeElement(index, formData)">Remove</button>
-    <span x-text="index + 1"></span>
 </div>

@@ -1,0 +1,95 @@
+<div class="draggable">
+    <style>
+        @import "assets/css/app.css";
+        .element-tip {
+            background: #edeafd;
+            border-radius: 3px;
+            margin-bottom: 1em;
+            overflow: hidden;
+            border: #c69bc6 1px solid;
+        }
+        
+        .element-tip-content {
+            padding: 15px;
+            display: grid;
+            grid-template-columns: 20px 1fr;
+            gap: 10px;
+            align-items: start;
+        }
+        
+        .element-tip:has(input[type="radio"]:checked) {
+            border: #a71212 1px solid;
+            box-shadow: 0 0 4px 0 #d71010;
+            background: #fff4e8;
+        }
+        
+        label {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .meta {
+            position: relative;
+        }
+        
+        .element-number {
+            font-size: 150%;
+            font-weight: bold;
+            font-style: italic;
+            color: #b3afc7;
+            position: absolute;
+            top: -.125em;
+            left: -.25em;
+        }
+        
+        input[type="text"] {
+            font-size: 90%;
+        }
+        
+        .os-select {
+            font-size: 80%;
+            padding: .5em
+        }
+    </style>
+    <label>
+        <div class="element-tip">
+            <div class="element-tip-content">
+                <div class="meta">
+                    <input type="radio" :value="index + 1" name="tip-select" x-model="formData.formElementSelect" />
+                    <p class="element-number" x-text="'#' + (index + 1)"></p>
+                </div>
+                <dl>
+                    <div class="tip-name">
+                        <dt class="os-tip">name</dt>
+                        <dd>
+                            <input type="text" x-model="element.name" placeholder="Untitled">
+                        </dd>
+                    </div>
+                    <div class="tip-label" x-if="element.label">
+                        <dt class="os-tip">label</dt>
+                        <dd>
+                            <input type="text" x-model="element.label" placeholder="Untitled">
+                        </dd>
+                    </div>
+                    <div class="tip-type">
+                        <dt class="os-tip">type</dt>
+                        <dd>
+                            <div class="os-select-wrap">
+                                <select x-model="element.type" class="os-select">
+                                    <template x-for="type in types">
+                                        <option x-text="type.text" :value="type.value" :selected="type.value === element.type ? true : false"></option>
+                                    </template>
+                                </select>
+                            </div>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="os-button-group">
+                <button type="button" class="os-button os-button-negative" @click="removeElement(index, formData)">Remove</button>
+                <button type="button" class="os-button os-button-affirmative" @click="addElement('text', index, formData)">Add</button>
+            </div>
+        </div>
+    </label>
+</div>

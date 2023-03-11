@@ -1,0 +1,15 @@
+<div>
+    <style>
+        @import "assets/css/app.css";
+    </style>
+    <nav class="switch-group">
+        <h2 class="switch-title" x-text="langSet[langCode]['Preferences']"></h2>
+        <ul class="switch-group-wrapper">
+            <li class="switch"><input type="radio" name="inputScreenSwitch" value="general" x-model="inputScreenSwitch" id="switch-general" checked /><label for="switch-general" x-text="langSet[langCode]['General']"></label></li>
+            <li class="switch"><input type="radio" name="inputScreenSwitch" value="formElements" x-model="inputScreenSwitch" id="switch-elements" /><label for="switch-elements" x-text="langSet[langCode]['Elements']">Elements</label></li>
+            <li class="switch"><input type="radio" name="inputScreenSwitch" value="templates" x-model="inputScreenSwitch" id="switch-tempaltes" /><label for="switch-templates" x-text="langSet[langCode]['Templates']">Templates</label></li>
+            <li class="switch"><input type="radio" name="inputScreenSwitch" value="preview" x-model="inputScreenSwitch" id="switch-preview" /><label for="switch-preview" x-text="langSet[langCode]['Preview']">Preview</label></li>
+            <li class="switch"><input type="radio" name="inputScreenSwitch" value="export" x-model="inputScreenSwitch" id="switch-export" /><label for="switch-export" x-text="langSet[langCode]['Export']">Export</label></li>
+        </ul>
+    </nav>
+</div>

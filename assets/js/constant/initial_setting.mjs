@@ -9,6 +9,7 @@ const initialSetting = {
     recipientName: '',
     autoreply: false,
     stepNavigation: false,
+    formElementSelect: 0,
 }
 
 export default initialSetting
