@@ -2,7 +2,7 @@
     <style>
         @import "assets/css/app.css";
         .form-type {
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
         
         .form-type dd {
@@ -17,6 +17,15 @@
         
         .os-layout-fit {
             gap: 15px;
+        }
+        
+        .os-layout-fit input[type="checkbox"] {
+            margin-right: -.5em;
+        }
+        
+        .os-layout-fit input[type="checkbox"]+label {
+            font-size: 75%;
+            letter-spacing: -.05em;
         }
     </style>
     <div class="formElement formInline">
@@ -34,44 +43,30 @@
         </div>
 
 
-        <div class="form-group vertical">
-            <label for="inline-detail-view-id">id</label>
-            <input type="text" id="inline-detail-view-id" x-model="formData.formElements[formData.formElementSelect - 1].id" autocomplete="off" />
-        </div>
-        <div class="form-group vertical">
-            <label for="inline-detail-view-placeholder">placeholder</label>
-            <input type="text" id="inline-detail-view-placeholder" x-model="formData.formElements[formData.formElementSelect - 1].placeholder" autocomplete="off" />
-        </div>
-        <div class="form-group vertical">
-            <label for="inline-detail-view-value">value</label>
-            <input type="text" id="inline-detail-view-value" x-model="formData.formElements[formData.formElementSelect - 1].value" autocomplete="off" />
-        </div>
-        <div class="form-group vertical">
-            <label for="inline-detail-view-min-length">min length</label>
-            <input type="number" id="inline-detail-view-minlength" x-model="formData.formElements[formData.formElementSelect - 1].minlength" autocomplete="off" />
-        </div>
-        <div class="form-group vertical">
-            <label for="inline-detail-view-max-length">max length</label>
-            <input type="number" id="inline-detail-view-maxlength" x-model="formData.formElements[formData.formElementSelect - 1].maxlength" autocomplete="off" />
-        </div>
-        <div class="form-group vertical">
-            <label for="inline-detail-view-pattern">validation regex pattern</label>
-            <input type="text" id="inline-detail-view-pattern" x-model="formData.formElements[formData.formElementSelect - 1].pattern" autocomplete="off" />
-        </div>
-        <div class="form-group vertical">
-            <label for="inline-detail-view-required-true">Is required</label>
-            <input type="checkbox" id="inline-detail-view-required-true" x-model="formData.formElements[formData.formElementSelect - 1].required" value="1" autocomplete="off" />
-            <input type="hidden" id="inline-detail-view-required" x-model="formData.formElements[formData.formElementSelect - 1].required" value="0" />
-        </div>
-        <div class="form-group vertical">
-            <label for="inline-detail-view-readonly-true">Is readonly</label>
-            <input type="checkbox" id="inline-detail-view-readonly-true" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="1" autocomplete="off" />
-            <input type="hidden" id="inline-detail-view-readonly-false" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="0" />
-        </div>
-        <div class="form-group vertical">
-            <label for="inline-detail-disabled-true">Is disabled</label>
-            <input type="checkbox" id="inline-detail-disabled-true" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="1" autocomplete="off" />
-            <input type="hidden" id="inline-detail-disabled-false" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="0" />
+        <x-component-wrapper x-component url="assets/components/elements/attributes/id.html"></x-component-wrapper>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/placeholder.html"></x-component-wrapper>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/value.html"></x-component-wrapper>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/minlength.html"></x-component-wrapper>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/maxlength.html"></x-component-wrapper>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/pattern.html"></x-component-wrapper>
+        <div class="os-layout-fit">
+            <div class="os-check-radio-element">
+                <input type="hidden" id="required-false" x-model="formData.formElements[formData.formElementSelect - 1].required" value="0" />
+                <input type="checkbox" id="required-true" x-model="formData.formElements[formData.formElementSelect - 1].required" value="1" @click="selectOneOnly(formData.formElements[formData.formElementSelect - 1].choices, index)" />
+                <label for="required-true">Is required</label>
+            </div>
+
+            <div class="os-check-radio-element">
+                <input type="hidden" id="readonly-false'" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="0" />
+                <input type="checkbox" id="readonly-true" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="1" @click="selectOneOnly(formData.formElements[formData.formElementSelect - 1].choices, index)" />
+                <label for="readonly-true">Is readonly</label>
+            </div>
+
+            <div class="os-check-radio-element">
+                <input type="hidden" id="disabled-false" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="0" />
+                <input type="checkbox" id="disabled-true" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="1" @click="selectOneOnly(formData.formElements[formData.formElementSelect - 1].choices, index)" />
+                <label for="disabled-true">Is disabled</label>
+            </div>
         </div>
     </div>
 </div>

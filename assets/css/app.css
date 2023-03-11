@@ -9,6 +9,7 @@
 @import "./partials/button.css";
 @import "./partials/select.css";
 @import "./partials/tip.css";
+@import "./partials/tip_element.css";
 
 :root {
   --main-bg-color: #489bf8;
