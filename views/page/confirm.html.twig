@@ -30,7 +30,7 @@
 {% endfor %}
 <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
 {% if has_error %}
-{{ dump(has_error )}}
+{# {{ dump(has_error )}} #}
 <button type="button" onclick="history.back()">Back</button>
 {% else %}
 <button type="button" onclick="history.back()">Back</button>

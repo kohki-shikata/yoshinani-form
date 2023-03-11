@@ -59,10 +59,6 @@ class Confirm extends BuildForm {
         foreach($element as $key => $value) {
           if($key === "name" && isset($val->errors()[$value])) {
             // var_dump($this->formData[$element->name]);
-            // $this->formData[$element->name] = [
-            //   'value' => $this->formData[$element->name],
-            //   'error' =>  $val->errors()[$value][0],
-            // ];
             $this->formData[$element->name] .= '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
           }
         }
@@ -83,6 +79,7 @@ class Confirm extends BuildForm {
     // echo '</pre>';
 
     // print_r($val->validate());
+
     return [$this->formData, in_array(true, $check_errors) ? true : false ];
   }
 
@@ -90,17 +87,17 @@ class Confirm extends BuildForm {
     try {
       session_start();
       $this->csrf->check('my_token', $this->formData['csrf_token']);
-      unset($this->formDataWithError['csrf_token']);
+      unset($this->formData['csrf_token']);
       $template = $this->twig->load('/page/confirm.html.twig');
       $data = [
-        'data' => $this->formDataWithError,
+        'data' => $this->formData,
         'state' => 'confirm',
         'form_settings' => $this->initial_settings,
         'csrf_token' => $this->csrf->generate('new_token'),
         'has_error' => $this->validate()[1],
       ];
 
-      // $this->validate();
+      $this->validate();
 
       return $template->render($data);
 
