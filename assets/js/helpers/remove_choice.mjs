@@ -1,7 +1,5 @@
-const removeChoice = (element, i) => {
-    if (element.choices) {
-        element.choices.splice(i, 1)
-    }
+const removeChoice = (choices, i) => {
+    choices.splice(i, 1)
 }
 
 export default removeChoice

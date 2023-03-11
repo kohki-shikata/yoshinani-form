@@ -1,34 +1,43 @@
-<div class="formElement formMultiSelect" id="select-detail-view" x-show="(formData.formElements.length > 0 && formData.formElements[formData.formElementSelect - 1].isSelect === true) ? true : false">
-    <div class="form-type">
-        <dl>
-            <dt>type:</dt>
-            <dd x-text="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].type : ''"></dd>
-        </dl>
-    </div>
-    <div class="form-group">
-        <label for="select-detail-view-name">name</label>
-        <input type="text" id="select-detail-view-name" x-model="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].name : ''" />
-    </div>
-    <div class="form-group">
-        <label for="select-detail-view-label">label</label>
-        <input type="text" id="select-detail-view-label" x-model="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].label : ''" />
-    </div>
-    <div class="form-group">
-        <label for="select-detail-view-id">id</label>
-        <input type="text" id="select-detail-view-id" x-model="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].id : ''" />
-    </div>
-    <template x-for="(choice, index) in formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].choices : ''">
-      <div>
-        <div class="choice-group">
-          <label :for="'text-choice-' + (index + 1)">text</label>
-          <input type="text" :id="'text-choice-' + (index + 1)" x-model="choice.text"/>
+<div id="select-detail-view" x-show="(formData.formElements[formData.formElementSelect - 1].type === 'select') ? true : false">
+    <div class="formElement formMultiSelect">
+        <div class="form-type">
+            <dl>
+                <dt>type:</dt>
+                <dd x-text="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].type : ''"></dd>
+            </dl>
         </div>
-        <div class="choice-group">
-          <label :for="'value-choice-' + (index + 1)">value</label>
-          <input type="text" :id="'value-choice-' + (index + 1)" x-model="choice.value"/>
+        <div class="form-group">
+            <label for="select-detail-view-name">name</label>
+            <input type="text" id="select-detail-view-name" x-model="formData.formElements[formData.formElementSelect - 1].name" />
         </div>
-        <button type="button" @click="addChoice(element)">Add choice</button>
-        <button type="button" @click="removeChoice(element, index)" x-show="element.choices.length === 1 ? false : true">Remove choice</button>
-      </div>
-    </template>
+        <div class="form-group">
+            <label for="select-detail-view-label">label</label>
+            <input type="text" id="select-detail-view-label" x-model="formData.formElements[formData.formElementSelect - 1].label" />
+        </div>
+        <div class="form-group">
+            <label for="select-detail-view-id">id</label>
+            <input type="text" id="select-detail-view-id" x-model="formData.formElements[formData.formElementSelect - 1].id" />
+        </div>
+        <template x-init="$watch('formData',
+        (newValue, oldValue) => {
+          return (newValue.formElements[formData.formElementSelect - 1].type === 'select' && newValue.formElements[formData.formElementSelect - 1].choices === undefined) ? newValue.formElements[formData.formElementSelect - 1].choices = [{ text: '', value: '', selected: false }] : ''
+        }
+          )" x-if="(formData.formElements[formData.formElementSelect - 1].choices?.length > 0)">
+          <template x-for="(choice, index) in formData.formElements[formData.formElementSelect - 1].choices">
+            <div class="choices-group">
+              <div class="choice-group">
+                <label :for="'text-choice-' + (index + 1)">text</label>
+                <input type="text" :id="'text-choice-' + (index + 1)" x-model="choice.text"/>
+              </div>
+              <div class="choice-group">
+                <label :for="'value-choice-' + (index + 1)">value</label>
+                <input type="text" :id="'value-choice-' + (index + 1)" x-model="choice.value"/>
+              </div>
+              <button type="button" @click="addChoice(formData.formElements[formData.formElementSelect - 1].choices, index)">Add choice</button>
+              <button type="button" @click="removeChoice(formData.formElements[formData.formElementSelect - 1].choices, index)">Remove choice</button>
+            </div>
+            
+          </template>
+        </template>
+    </div>
 </div>
