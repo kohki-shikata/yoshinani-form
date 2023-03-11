@@ -1,20 +1,6 @@
 <div id="inline-detail-view" x-show="(formData.formElements[formData.formElementSelect - 1].type === 'text' || formData.formElements[formData.formElementSelect - 1].type === 'email' || formData.formElements[formData.formElementSelect - 1].type === 'password' || formData.formElements[formData.formElementSelect - 1].type === 'url' || formData.formElements[formData.formElementSelect - 1].type === 'number') ? true : false">
     <style>
         @import "assets/css/app.css";
-        .form-type {
-            margin-bottom: 15px;
-        }
-        
-        .form-type dd {
-            font-size: 120%;
-            font-weight: bold;
-        }
-        
-        .form-group label {
-            font-size: 80%;
-            margin-bottom: .25em;
-        }
-        
         .os-layout-fit {
             gap: 15px;
         }
@@ -29,42 +15,44 @@
         }
     </style>
     <div class="formElement formInline">
-        <div class="form-type">
-            <dl>
-                <div>
-                    <dt>type:</dt>
-                    <dd x-text="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].type : ''"></dd>
-                </div>
-            </dl>
-        </div>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/form_type.html"></x-component-wrapper>
         <div class="os-layout-fit">
             <x-component-wrapper x-component url="assets/components/elements/attributes/name.html"></x-component-wrapper>
             <x-component-wrapper x-component url="assets/components/elements/attributes/label.html"></x-component-wrapper>
         </div>
 
+        <div class="os-layout-fit">
+            <x-component-wrapper x-component url="assets/components/elements/attributes/id.html"></x-component-wrapper>
+            <x-component-wrapper x-component url="assets/components/elements/attributes/size.html"></x-component-wrapper>
+        </div>
+        <div class="os-layout-fit">
+            <x-component-wrapper x-component url="assets/components/elements/attributes/autocomplete.html"></x-component-wrapper>
+            <x-component-wrapper x-component url="assets/components/elements/attributes/inputmode.html"></x-component-wrapper>
+        </div>
 
-        <x-component-wrapper x-component url="assets/components/elements/attributes/id.html"></x-component-wrapper>
         <x-component-wrapper x-component url="assets/components/elements/attributes/placeholder.html"></x-component-wrapper>
         <x-component-wrapper x-component url="assets/components/elements/attributes/value.html"></x-component-wrapper>
-        <x-component-wrapper x-component url="assets/components/elements/attributes/minlength.html"></x-component-wrapper>
-        <x-component-wrapper x-component url="assets/components/elements/attributes/maxlength.html"></x-component-wrapper>
+        <div class="os-layout-fit">
+            <x-component-wrapper x-component url="assets/components/elements/attributes/minlength.html"></x-component-wrapper>
+            <x-component-wrapper x-component url="assets/components/elements/attributes/maxlength.html"></x-component-wrapper>
+        </div>
         <x-component-wrapper x-component url="assets/components/elements/attributes/pattern.html"></x-component-wrapper>
         <div class="os-layout-fit">
             <div class="os-check-radio-element">
                 <input type="hidden" id="required-false" x-model="formData.formElements[formData.formElementSelect - 1].required" value="0" />
-                <input type="checkbox" id="required-true" x-model="formData.formElements[formData.formElementSelect - 1].required" value="1" @click="selectOneOnly(formData.formElements[formData.formElementSelect - 1].choices, index)" />
+                <input type="checkbox" id="required-true" x-model="formData.formElements[formData.formElementSelect - 1].required" value="1" />
                 <label for="required-true">Is required</label>
             </div>
 
             <div class="os-check-radio-element">
                 <input type="hidden" id="readonly-false'" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="0" />
-                <input type="checkbox" id="readonly-true" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="1" @click="selectOneOnly(formData.formElements[formData.formElementSelect - 1].choices, index)" />
+                <input type="checkbox" id="readonly-true" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="1" />
                 <label for="readonly-true">Is readonly</label>
             </div>
 
             <div class="os-check-radio-element">
                 <input type="hidden" id="disabled-false" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="0" />
-                <input type="checkbox" id="disabled-true" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="1" @click="selectOneOnly(formData.formElements[formData.formElementSelect - 1].choices, index)" />
+                <input type="checkbox" id="disabled-true" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="1" />
                 <label for="disabled-true">Is disabled</label>
             </div>
         </div>

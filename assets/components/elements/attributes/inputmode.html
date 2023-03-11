@@ -1,0 +1,25 @@
+<div>
+    <style>
+        @import "assets/css/app.css";
+        .inputmode-select {
+            padding: .5em;
+            font-size: 85%;
+        }
+    </style>
+    <div class="form-group vertical">
+        <label for="detail-view-autocomplete">inputmode</label>
+        <div class="os-select-wrapper">
+            <select id="detail-view-inputmode" class="os-select inputmode-select" x-model="formData.formElements[formData.formElementSelect - 1].inputmode">
+                <option value="" selected>---</option>
+                <option value="none">none</option>
+                <option value="text">text</option>
+                <option value="decimal">decimal</option>
+                <option value="numeric">numeric</option>
+                <option value="tel">tel</option>
+                <option value="search">search</option>
+                <option value="email">email</option>
+                <option value="url">url</option>
+            </select>
+        </div>
+    </div>
+</div>

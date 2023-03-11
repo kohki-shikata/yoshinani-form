@@ -11,13 +11,15 @@ const en = await enData.json()
 // Load variables and constants.
 import formElementTypes from "./constant/form_element_types.mjs"
 import initialSetting from "./constant/initial_setting.mjs"
+import autocompleteList from "./constant/autocomplete_list.mjs"
 
 // Load functions.
 import addElement from "./helpers/add_element.mjs"
 import removeElement from "./helpers/remove_element.mjs"
 import addChoice from "./helpers/add_choise.mjs"
 import removeChoice from "./helpers/remove_choice.mjs"
-import selectOneOnly from "./helpers/select_one_only.mjs";
+import selectOneOnly from "./helpers/select_one_only.mjs"
+import watchChoices from "./helpers/watch_choices.mjs"
 
 document.addEventListener('alpine:init', () => {
     Alpine.data('alpineCodebehind', () => ({
@@ -29,11 +31,13 @@ document.addEventListener('alpine:init', () => {
             initialSetting,
             formElements: []
         },
+        autocompleteList,
         addElement,
         removeElement,
         addChoice,
         removeChoice,
-        selectOneOnly
+        selectOneOnly,
+        watchChoices
     }))
 
     Alpine.store('send', {

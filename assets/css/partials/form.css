@@ -75,6 +75,21 @@ input[type="url"] {
   font-weight: bold;
 }
 
+.form-group:has(*:required) label {
+  position: relative;
+  width: fit-content;
+  max-width: 85%;
+}
+.form-group:has(*:required) label:after {
+  content: "*";
+  display: block;
+  color: red;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -1em;
+}
+
 :lang(ja) .form-group input:required + label:after,
 :lang(ja) .form-group select:required + label:after,
 :lang(ja) .form-group textarea:required + label:after {
