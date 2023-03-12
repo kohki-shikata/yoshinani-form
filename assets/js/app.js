@@ -29,6 +29,11 @@ document.addEventListener('alpine:init', () => {
         setType: 'text',
         formData: {
             initialSetting,
+            dragManage: {
+                dragging: null,
+                dropping: null,
+                timer: null
+            },
             formElements: []
         },
         autocompleteList,
@@ -37,7 +42,45 @@ document.addEventListener('alpine:init', () => {
         addChoice,
         removeChoice,
         selectOneOnly,
-        watchChoices
+        watchChoices,
+        drop() {
+            if (this.formData.dragManage.dragging !== null && this.formData.dragManage.dropping !== null) {
+                if (this.formData.dragManage.dragging < this.formData.dragManage.dropping) {
+                    this.formData.formElements = [...this.formData.formElements.slice(0, this.formData.dragManage.dragging), ...this.formData.formElements.slice(this.formData.dragManage.dragging + 1, this.formData.dragManage.dropping + 1), this.formData.formElements[this.formData.dragManage.dragging], ...this.formData.formElements.slice(this.formData.dragManage.dropping + 1)];
+                } else {
+                    this.formData.formElements = [...this.formData.formElements.slice(0, this.formData.dragManage.dropping), this.formData.formElements[this.formData.dragManage.dragging], ...this.formData.formElements.slice(this.formData.dragManage.dropping, this.formData.dragManage.dragging), ...this.formData.formElements.slice(this.formData.dragManage.dragging + 1)]
+                }
+            }
+            this.formData.dragManage.dropping = null;
+        },
+        dragover() {
+            this.$event.dataTransfer.dropEffect = "move"
+        },
+        dragenter(index) {
+
+            if (index !== this.formData.dragManage.dragging) {
+                this.formData.dragManage.dropping = index
+                console.log('inside condition')
+            }
+        },
+        dragleave(index) {
+            if (this.formData.dragManage.dropping === index) {
+                this.formData.dragManage.dropping = null
+            }
+        },
+        // sort() {
+        //     return {
+        //         list: this.formData.formElements,
+        //         config: {
+        //             animation: 150,
+        //             ghostClass: 'ghost',
+        //             dragClass: 'drag',
+        //         },
+        //         init() {
+        //             Sortable.create(this.$refs.items, this.config)
+        //         }
+        //     }
+        // }
     }))
 
     Alpine.store('send', {

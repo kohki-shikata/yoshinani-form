@@ -17,9 +17,9 @@
             background: #fff4e8;
         }
     </style>
-    <div id="element-screen" x-data="{ adding: false, removing: false }">
-        <div id="element-list" class="grid-col" x-dnd="{nodes: '.draggable', group: 'dnd-elements'}">
-            <template x-for="(element, index) in formData.formElements">
+    <div id="element-screen">
+        <div id="element-list" class="grid-col" @drop.prevent="drop()" @dragover.prevent="dragover()">
+            <template x-for="(element, index) in formData.formElements" :key="index">
                 <x-component-wrapper x-component url="assets/components/elements/tip.html"></x-component-wrapper>
             </template>
             <x-component-wrapper x-component url="assets/components/add_element.html"></x-component-wrapper>

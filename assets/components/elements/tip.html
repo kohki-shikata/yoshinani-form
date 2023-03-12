@@ -1,4 +1,4 @@
-<div class="draggable">
+<div draggable="true" @dragstart="formData.dragManage.dragging = index" @dragend="formData.dragManage.dragging = null">
     <style>
         @import "assets/css/app.css";
         .element-tip {
@@ -51,6 +51,25 @@
             font-size: 80%;
             padding: .5em
         }
+        
+        .element-tip {
+            position: relative;
+        }
+        
+        .label-shadow {
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: hsla(189, 100%, 87%, 0.863);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
     </style>
     <label>
         <div class="element-tip">
@@ -90,6 +109,7 @@
                 <button type="button" class="os-button os-button-negative" @click="removeElement(index, formData)">Remove</button>
                 <button type="button" class="os-button os-button-affirmative" @click="addElement('text', index, formData)">Add</button>
             </div>
+            <p class="label-shadow" x-show.transition="formData.dragManage.dragging !== null" @dragenter.prevent="dragenter(index)" @dragleave="dragleave(index)">Drop here</p>
         </div>
     </label>
 </div>
