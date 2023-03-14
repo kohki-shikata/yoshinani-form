@@ -1,0 +1,7 @@
+<div class="form-group">
+    <template x-if="element.label ? true : false">
+    <label :for="element.id" x-text="element.label"></label>
+  </template>
+    <input :type="element.type" :id="element.id" :name="element.name" :value="element.value" :placeholder="element.placeholder" :inputmode="element.inputmode" :pattern="element.pattern" :size="element.size" :required="element.required" :readonly="element.readonly"
+        :disabled="element.disabled" :min="element.min" :max="element.max" :minlength="element.minlength" :maxlength="element.maxlength" />
+</div>

@@ -68,20 +68,19 @@ document.addEventListener('alpine:init', () => {
                 this.formData.dragManage.dropping = null
             }
         },
-        // sort() {
-        //     return {
-        //         list: this.formData.formElements,
-        //         config: {
-        //             animation: 150,
-        //             ghostClass: 'ghost',
-        //             dragClass: 'drag',
-        //         },
-        //         init() {
-        //             Sortable.create(this.$refs.items, this.config)
-        //         }
-        //     }
-        // }
     }))
+
+    Alpine.store('formView', {
+        template: Twig.twig({
+            data: 'This is hardcoding {{ test }}',
+
+        }),
+        async render() {
+            const template = await (await fetch('../../views/page/input.html.twig')).text()
+            const view = Twig.twig({ allowInlineIncludes: true, path: '../../views/page/input.html.twig' })
+            return view.render({ form: 'form here', csrf_token: 'hogehoge' })
+        }
+    })
 
     Alpine.store('send', {
         response: '',
