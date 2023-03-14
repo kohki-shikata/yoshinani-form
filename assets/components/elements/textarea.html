@@ -1,4 +1,4 @@
-<div class="formElement formTextarea" id="textarea-detail-view" x-show="formData.formElements.length > 0 && formData.formElements[formData.formElementSelect - 1].isTextarea === true">
+<div class="formElement formTextarea" id="textarea-detail-view" x-show="formData.formElements.length > 0 && formData.formElements[formData.formElementSelect - 1].type === 'textarea'">
     <div class="form-type">
         <dl>
             <dt>type:</dt>
@@ -7,11 +7,11 @@
     </div>
     <div class="form-group">
         <label for="textarea-detail-view-name">name</label>
-        <input type="text" id="textarea-detail-view-name" x-model="formData.formElements.length > 0 && formData.formElements[formData.formElementSelect - 1].name" />
+        <input type="text" id="textarea-detail-view-name" x-model="formData.formElements[formData.formElementSelect - 1].name" />
     </div>
     <div class="form-group">
         <label for="textarea-detail-view-label">label</label>
-        <input type="text" id="textarea-detail-view-label" x-model="formData.formElements.length > 0 && formData.formElements[formData.formElementSelect - 1].label" />
+        <input type="text" id="textarea-detail-view-label" x-model="formData.formElements[formData.formElementSelect - 1].label" />
     </div>
     <div class="form-group">
         <label for="textarea-detail-view-id">id</label>
@@ -42,30 +42,30 @@
         <input type="number" id="textarea-detail-view-rows" x-model="formData.formElements[formData.formElementSelect - 1].rows" />
     </div>
     <div class="form-group">
-        <label for="textarea-detail-view-rows">cols</label>
-        <input type="number" id="textarea-detail-view-rows" x-model="formData.formElements[formData.formElementSelect - 1].rows" />
+        <label for="textarea-detail-view-cols">cols</label>
+        <input type="number" id="textarea-detail-view-cols" x-model="formData.formElements[formData.formElementSelect - 1].cols" />
     </div>
     <div class="form-group">
-        <label for="textarea-detail-view-rows">spellcheck</label>
-        <input type="text" id="textarea-detail-view-rows" x-model="formData.formElements[formData.formElementSelect - 1].spellcheck" />
+        <label for="textarea-detail-view-spellcheck">spellcheck</label>
+        <input type="text" id="textarea-detail-view-spellcheck" x-model="formData.formElements[formData.formElementSelect - 1].spellcheck" />
     </div>
     <div class="form-group">
         <label for="textarea-detail-view-wrap">wrap</label>
-        <input type="text" id="textarea-detail-view-rows" x-model="formData.formElements[formData.formElementSelect - 1].wrap" />
+        <input type="text" id="textarea-detail-view-wrap" x-model="formData.formElements[formData.formElementSelect - 1].wrap" />
     </div>
     <div class="form-group">
-        <label for="textarea-detail-view-wrap-true">Is required</label>
+        <label for="textarea-detail-view-required-true">Is required</label>
         <input type="checkbox" id="textarea-detail-view-wrap-true" x-model="formData.formElements[formData.formElementSelect - 1].required" value="1" />
         <input type="hidden" id="textarea-detail-view-wrap-false" x-model="formData.formElements[formData.formElementSelect - 1].required" value="0" />
     </div>
     <div class="form-group">
-        <label for="textarea-detail-view-checkbox">Is readonly</label>
-        <input type="checkbox" id="textarea-detail-view-readonly" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="1" />
-        <input type="hidden" id="tex-area-detail-view-readonly" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="0" />
+        <label for="textarea-detail-view-readonly">Is readonly</label>
+        <input type="checkbox" id="textarea-detail-readonly-true" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="1" />
+        <input type="hidden" id="tex-area-detail-readonly-false" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="0" />
     </div>
     <div class="form-group">
-        <label for="textarea-detail-view-disabled">Is disabled</label>
-        <input type="checkbox" id="textarea-detail-view-disabled" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="1" />
-        <input type="hidden" id="textarea-detail-view-disabled" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="0" />
+        <label for="textarea-detail-view-disabled-true">Is disabled</label>
+        <input type="checkbox" id="textarea-detail-view-disabled-true" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="1" />
+        <input type="hidden" id="textarea-detail-view-disabled-false" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="0" />
     </div>
 </div>

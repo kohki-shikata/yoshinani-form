@@ -1,0 +1,7 @@
+<div class="form-group" x-show="element.type === 'textarea'">
+    <template x-if="element.label">
+  <label :for="element.id" x-text="element.label"></label>
+</template>
+    <textarea :id="element.id" :name="element.name" :placeholder="element.placeholder" :inputmode="element.inputmode" :rows="element.rows" :cols="element.cols" :spellcheck="element.spellcheck" :wrap="element.wrap" :required="element.required ? true : false"
+        :readonly="element.readonly ? true : false" :readonly="element.readonly ? true : false" :disabled="element.disabled ? true : false" :disabled="element.disabled ? true : false" :minlength="element.minlength" :maxlength="element.maxlength" x-text="element.value"></textarea>
+</div>
