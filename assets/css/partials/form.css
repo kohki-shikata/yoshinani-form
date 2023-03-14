@@ -215,6 +215,7 @@ fieldset.toggle-switch input[type="checkbox"]:checked + label:before {
 .os-check-radio-element input[type="radio"],
 .os-check-radio-element input[type="checkbox"] {
   margin-left: .5em;
+  width: 2em;
 }
 
 .os-check-radio-element label {
@@ -228,4 +229,13 @@ fieldset.toggle-switch input[type="checkbox"]:checked + label:before {
 
 .os-check-radio-element:has(*:checked) {
   background-color: #a6fcd4;
+}
+
+.os-layout-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 1fr);
+}
+
+.os-layout-fit .os-check-radio-element {
+  width: auto;
 }

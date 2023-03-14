@@ -45,28 +45,47 @@
     )">
           <div class="option-element">
             <div class="choices-group">
-              <div class="os-layout-fit">
-                <div class="choice-group">
-                  <label :for="'text-choice-' + (index + 1)">text</label>
-                  <input type="text" :id="'text-choice-' + (index + 1)" x-model="choice.text" autocomplete="off" />
-                </div>
-                <div class="choice-group">
-                  <label :for="'value-choice-' + (index + 1)">value</label>
-                  <input type="text" :id="'value-choice-' + (index + 1)" x-model="choice.value" autocomplete="off" />
-                </div>
+              <div class="choice-group">
+                <label :for="'text-choice-' + (index + 1)">text</label>
+                <input type="text" :id="'text-choice-' + (index + 1)" x-model="choice.text" autocomplete="off" />
               </div>
-              <div class="os-check-radio-element">
-                <input type="checkbox" :id="'selected-choice-' + (index + 1) + '-true'" x-model="choice.selected" value="1"  @click="formData.formElements[formData.formElementSelect - 1].type.match(/^(radio|select)$/) ? selectOneOnly(formData.formElements[formData.formElementSelect - 1].type, formData.formElements[formData.formElementSelect - 1].choices, index) : ''" />
-                <label :for="'selected-choice-' + (index + 1) + '-true'">selected</label>
+              <div class="choice-group">
+                <label :for="'value-choice-' + (index + 1)">value</label>
+                <input type="text" :id="'value-choice-' + (index + 1)" x-model="choice.value" autocomplete="off" />
               </div>
-              <input type="hidden" :id="'selected-choice-' + (index + 1) + '-false'" x-model="choice.selected" value="0" />
-            </div>
-            <div class="os-button-group">
-              <button type="button" class="os-button os-button-negative" @click="removeChoice(formData.formElements[formData.formElementSelect - 1].choices, index)">Remove</button>
-              <button type="button" class="os-button os-button-affirmative" @click="addChoice(formData.formElements[formData.formElementSelect - 1].choices, index)">Add</button>
-            </div>
-          </div>
-        </template>
-    </fieldset>
-    </template>
+                <template x-if="formData.formElements[formData.formElementSelect - 1].type === 'select'">
+                  <div class="os-check-radio-element">
+                    <input type="checkbox" :id="'selected-choice-' + (index + 1) + '-true'" x-model="choice.selected" value="1" @click="selectOneOnly(formData.formElements[formData.formElementSelect - 1].type, formData.formElements[formData.formElementSelect - 1].choices, index)" />
+                    <input type="hidden" :id="'selected-choice-' + (index + 1) + '-false'" x-model="choice.selected" value="0" />
+                    <label :for="'selected-choice-' + (index + 1) + '-true'">selected</label>
+                  </div>
+                </template>
+    <template x-if="formData.formElements[formData.formElementSelect - 1].type === 'radio' || formData.formElements[formData.formElementSelect - 1].type === 'checkbox'">
+                  <div class="os-check-radio-element">
+                    <input type="checkbox" :id="'selected-choice-' + (index + 1) + '-true'" x-model="choice.selected" value="1" @click="selectOneOnly(formData.formElements[formData.formElementSelect - 1].type, formData.formElements[formData.formElementSelect - 1].choices, index)" />
+                    <input type="hidden" :id="'selected-choice-' + (index + 1) + '-false'" x-model="choice.selected" value="0" />
+                    <label :for="'selected-choice-' + (index + 1) + '-true'">selected</label>
+                  </div>
+                </template>
+    <div class="os-check-radio-element">
+        <input type="hidden" :id="'readonly-choice-' + (index + 1) + '-false'" x-model="choice.readonly" value="0" />
+        <input type="checkbox" :id="'readonly-choice-' + (index + 1) + '-true'" x-model="choice.readonly" value="1" />
+        <label :for="'readonly-choice-' + (index + 1) + '-true'">Is readonly</label>
+    </div>
+    <div class="os-check-radio-element">
+        <input type="hidden" :id="'disabled-choice-' + (index + 1) + '-false'" x-model="choice.disabled" value="0" />
+        <input type="checkbox" :id="'disabled-choice-' + (index + 1) + '-true'" x-model="choice.disabled" value="1" />
+        <label :for="'disabled-choice-' + (index + 1) + '-true'">Is disabled</label>
+    </div>
+
+
+</div>
+<div class="os-button-group">
+    <button type="button" class="os-button os-button-negative" @click="removeChoice(formData.formElements[formData.formElementSelect - 1].choices, index)">Remove</button>
+    <button type="button" class="os-button os-button-affirmative" @click="addChoice(formData.formElements[formData.formElementSelect - 1].choices, index)">Add</button>
+</div>
+</div>
+</template>
+</fieldset>
+</template>
 </div>
