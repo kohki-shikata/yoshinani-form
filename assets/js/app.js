@@ -34,7 +34,8 @@ document.addEventListener('alpine:init', () => {
                 dropping: null,
                 timer: null
             },
-            formElements: []
+            formElements: [],
+            formElementSelect: 0,
         },
         autocompleteList,
         addElement,

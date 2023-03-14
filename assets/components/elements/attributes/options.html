@@ -26,8 +26,23 @@
       }
       )" x-if="(formData.formElements[formData.formElementSelect - 1].choices?.length > 0)">
       <fieldset>
-          <legend x-if="formData.formElements[formElementSelect - 1].type === 'select'">Options</legend>
-          <template x-for="(choice, index) in formData.formElements[formData.formElementSelect - 1].choices">
+          <template x-if="formData.formElements[formData.formElementSelect - 1].type === 'select'">
+            <legend>Options</legend>
+          </template>
+    <template x-if="formData.formElements[formData.formElementSelect - 1].type === 'checkbox'">
+            <legend>Checkboxes</legend>
+          </template>
+    <template x-if="formData.formElements[formData.formElementSelect - 1].type === 'radio'">
+            <legend>Radio buttons</legend>
+          </template>
+    <template x-for="(choice, index) in formData.formElements[formData.formElementSelect - 1].choices" x-init="$watch('formData.formElements[formData.formElementSelect - 1].type',
+      (newValue, oldValue) => {
+        if(newValue === 'radio' || newValue === 'select') {
+          formData.formElements[formData.formElementSelect - 1].choices.forEach(choice => choice.selected = false)
+        }
+        // if(newValue.type.match(/^(radio|select)$/))
+      }
+    )">
           <div class="option-element">
             <div class="choices-group">
               <div class="os-layout-fit">
@@ -41,7 +56,7 @@
                 </div>
               </div>
               <div class="os-check-radio-element">
-                <input type="checkbox" :id="'selected-choice-' + (index + 1) + '-true'" x-model="choice.selected" value="1"  @click="selectOneOnly(formData.formElements[formData.formElementSelect - 1].choices, index)" />
+                <input type="checkbox" :id="'selected-choice-' + (index + 1) + '-true'" x-model="choice.selected" value="1"  @click="formData.formElements[formData.formElementSelect - 1].type.match(/^(radio|select)$/) ? selectOneOnly(formData.formElements[formData.formElementSelect - 1].type, formData.formElements[formData.formElementSelect - 1].choices, index) : ''" />
                 <label :for="'selected-choice-' + (index + 1) + '-true'">selected</label>
               </div>
               <input type="hidden" :id="'selected-choice-' + (index + 1) + '-false'" x-model="choice.selected" value="0" />

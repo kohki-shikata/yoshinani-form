@@ -1,18 +1,6 @@
 <div id="inline-detail-view" x-show="(formData.formElements[formData.formElementSelect - 1].type === 'text' || formData.formElements[formData.formElementSelect - 1].type === 'email' || formData.formElements[formData.formElementSelect - 1].type === 'password' || formData.formElements[formData.formElementSelect - 1].type === 'url' || formData.formElements[formData.formElementSelect - 1].type === 'number') ? true : false">
     <style>
         @import "assets/css/app.css";
-        .os-layout-fit {
-            gap: 15px;
-        }
-        
-        .os-layout-fit input[type="checkbox"] {
-            margin-right: -.5em;
-        }
-        
-        .os-layout-fit input[type="checkbox"]+label {
-            font-size: 75%;
-            letter-spacing: -.05em;
-        }
     </style>
     <div class="formElement formInline">
         <x-component-wrapper x-component url="assets/components/elements/attributes/form_type.html"></x-component-wrapper>
@@ -37,24 +25,6 @@
             <x-component-wrapper x-component url="assets/components/elements/attributes/maxlength.html"></x-component-wrapper>
         </div>
         <x-component-wrapper x-component url="assets/components/elements/attributes/pattern.html"></x-component-wrapper>
-        <div class="os-layout-fit">
-            <div class="os-check-radio-element">
-                <input type="hidden" id="required-false" x-model="formData.formElements[formData.formElementSelect - 1].required" value="0" />
-                <input type="checkbox" id="required-true" x-model="formData.formElements[formData.formElementSelect - 1].required" value="1" />
-                <label for="required-true">Is required</label>
-            </div>
-
-            <div class="os-check-radio-element">
-                <input type="hidden" id="readonly-false'" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="0" />
-                <input type="checkbox" id="readonly-true" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="1" />
-                <label for="readonly-true">Is readonly</label>
-            </div>
-
-            <div class="os-check-radio-element">
-                <input type="hidden" id="disabled-false" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="0" />
-                <input type="checkbox" id="disabled-true" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="1" />
-                <label for="disabled-true">Is disabled</label>
-            </div>
-        </div>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/three_flags.html"></x-component-wrapper>
     </div>
 </div>

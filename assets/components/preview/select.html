@@ -3,7 +3,7 @@
     <label :for="element.id" x-text="element.title"></label>
   </template>
 
-    <select :name="element.name" :id="element.id">
+    <select :name="element.name" :id="element.id" :required="element.required ? true : false" :readonly="element.readonly ? true : false" :disabled="element.disabled ? true : false">
   <template x-for="choice in element.choices">
   <option
     :value="choice.value"
