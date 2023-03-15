@@ -46,3 +46,17 @@
 .os-button.os-button-affirmative:hover {
   background: #e5ffd3;
 }
+
+.os-button.os-button-secondary {
+  background: #ddf2fd;
+  color: #41566a;
+}
+
+.os-button.os-button-secondary:hover {
+  background: #ebf8ff;
+}
+
+.os-button.center {
+  display: block;
+  margin: 0 auto 30px;
+}

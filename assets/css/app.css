@@ -10,10 +10,17 @@
 @import "./partials/select.css";
 @import "./partials/tip.css";
 @import "./partials/tip_element.css";
+@import "./partials/step_navi.css";
+@import "./partials/table.css";
+@import "./partials/messages.css";
 
 :root {
   --main-bg-color: #489bf8;
   --main-bg-highlight: #6fb2ff;
+}
+
+body {
+  background: #eee;
 }
 
 * {
@@ -57,8 +64,9 @@ legend {
 
 fieldset {
   border: 0;
-  background: #f9f9f9;
+  background: #fefefe;
   padding: .5em 1em;
+  margin-bottom: 30px;
 }
 
 .setting-title {
@@ -72,4 +80,11 @@ fieldset {
   background: #ffda6b;
   padding: .25em .5em;
   margin-left: 1em;
+}
+
+#main {
+  background: #f9f9f9;
+  padding: 70px;
+  max-width: 960px;
+  margin: 70px auto;
 }

@@ -42,7 +42,7 @@ class SendMail extends BuildForm {
     $data = [
       // 'data' => $this->formData,
       'state' => 'complete',
-      // 'form_settings' => $this->initial_settings,
+      'form_settings' => $this->initial_settings,
     ];
     return $template->render($data);
   }

@@ -16,9 +16,7 @@
       {{(disabled ? "disabled" : null) | raw}}
       {{(minlength ? "minlength=\"#{minlength}\"" : null) | raw}}
       {{(maxlength ? "maxlength=\"#{maxlength}\"" : null) | raw}}
-  />
-  {{(value ? value : null) | raw}}
-  </textarea>
+  >{{(value ? value : null) | raw}}</textarea>
   {% if label %}
     <input type="hidden" name="label[{{name}}]" value="{{label}}" />
   {% endif %}

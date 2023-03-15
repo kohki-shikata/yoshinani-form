@@ -1,4 +1,7 @@
 <fieldset x-show="element.type === 'radio' || element.type === 'checkbox'" :id="element.id">
+    <style>
+        @import "assets/css/app.css";
+    </style>
     <template x-if="element.label">
     <legend x-text="element.label"></legend>
   </template>

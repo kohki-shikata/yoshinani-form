@@ -1,6 +1,6 @@
 {% extends '/page/template.html.twig' %}
 {% block content %}
-<h1>確認画面</h1>
+<h1>Confirm</h1>
 {{ include('/partial/step_navigation.html.twig') }}
 {# <pre>
 {{ dump(data) }}
@@ -40,10 +40,12 @@
 <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
 {% if has_error %}
 {# {{ dump(has_error )}} #}
-<button type="button" onclick="history.back()">Back</button>
+<button type="button" onclick="history.back()" class="os-button center os-button-secondary">Back</button>
 {% else %}
-<button type="button" onclick="history.back()">Back</button>
-<button type="submit">送信</button>
+<div class="os-layout-fit narrow">
+  <button type="button" onclick="history.back()" class="os-button os-button-secondary">Back</button>
+  <button type="submit" class="os-button">Send</button>
+</div>
 {% endif %}
 </form>
 {% endblock %}

@@ -1,20 +1,20 @@
 {% if form_settings.stepNavigation %}
-<nav id="yoshinani-step">
-  <ol id="yoshinani-step-list">
+<nav class="os-step">
+  <ol class="os-step-list">
     {% if state == "input" %}
-      <li id="yoshinani-step-input" class="yoshinani-current">Input</li>
-      <li id="yoshinani-step-confirm" class="yoshinani-notyet">Confirm</li>
-      <li id="yoshinani-step-complete" class="yoshinani-notyet">Complete</li>
+      <li id="os-step-input" class="os-current">Input</li>
+      <li id="os-step-confirm" class="os-notyet">Confirm</li>
+      <li id="os-step-complete" class="os-notyet">Complete</li>
     {% endif %}
     {% if state == "confirm" %}
-      <li id="yoshinani-step-input" class="yoshinani-finished">Input</li>
-      <li id="yoshinani-step-confirm" class="yoshinani-current">Confirm</li>
-      <li id="yoshinani-step-complete" class="yoshinani-notyet">Complete</li>
+      <li id="os-step-input" class="os-finished">Input</li>
+      <li id="os-step-confirm" class="os-current">Confirm</li>
+      <li id="os-step-complete" class="os-notyet">Complete</li>
     {% endif %}
     {% if state == "complete" %}
-      <li id="yoshinani-step-input" class="yoshinani-finished">Input</li>
-      <li id="yoshinani-step-confirm" class="yoshinani-finished">Confirm</li>
-      <li id="yoshinani-step-complete" class="yoshinani-current">Complete</li>
+      <li id="os-step-input" class="os-finished">Input</li>
+      <li id="os-step-confirm" class="os-finished">Confirm</li>
+      <li id="os-step-complete" class="os-current">Complete</li>
     {% endif %}
   </ol>
 </nav>

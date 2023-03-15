@@ -28,17 +28,7 @@
             <x-component-wrapper x-component url="assets/components/elements/element_detail.html"></x-component-wrapper>
         </div>
         <div id="preview" class="grid-col">
-            <template x-for="element in formData.formElements">
-                <div>
-                    <x-component-wrapper x-component url="assets/components/preview/inline.html"></x-component-wrapper>
-                    <x-component-wrapper x-component url="assets/components/preview/check_radio.html"></x-component-wrapper>
-                    <x-component-wrapper x-component url="assets/components/preview/select.html"></x-component-wrapper>
-                    <x-component-wrapper x-component url="assets/components/preview/textarea.html"></x-component-wrapper>
-                    <x-component-wrapper x-component url="assets/components/preview/hidden.html"></x-component-wrapper>
-                </div>
-                
-            </template>
-            <x-component-wrapper x-component url="assets/components/debug.html"></x-component-wrapper>
+            <x-component-wrapper x-component url="assets/components/preview_inner.html"></x-component-wrapper>
         </div>
     </div>
 </div>

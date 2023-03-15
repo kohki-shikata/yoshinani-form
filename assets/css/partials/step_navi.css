@@ -1,0 +1,57 @@
+.os-step {
+  margin-bottom: 50px;
+}
+.os-step-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(3em,1fr));
+  gap: 20px;
+  padding-left: 0;
+}
+
+.os-step-list * {
+  clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%);
+  overflow: visible;
+}
+
+.os-step-list *:last-child {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.os-step-list > * {
+  background: #ddd;
+  text-align: center;
+  padding: 1em 2em;
+  font-size: 85%;
+}
+
+.os-step-list .os-current {
+  background-color: var(--main-bg-color);
+  color: #fff;
+}
+
+.os-step-list .os-notyet {
+  color: #ddd;
+  background: #ddd;
+  position: relative;
+}
+
+.os-step-list .os-notyet:after {
+  content: '';
+  display: block;
+  background: #f9f9f9;
+  position: absolute;
+  z-index: -1;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%);
+}
+
+.os-step-list .os-notyet:last-child:after {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.os-finished {
+  text-decoration: line-through;
+}

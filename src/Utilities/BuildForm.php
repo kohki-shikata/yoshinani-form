@@ -73,6 +73,7 @@ class BuildForm {
       $data = [
         'type' => $type,
         'title' => $data->label,
+        'required' => $data->required,
         'name' => $data->name,
         'id' => $data->id,
         'choices' => $data->choices,

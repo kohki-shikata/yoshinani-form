@@ -1,4 +1,7 @@
 <div class="form-group" x-show="element.type.match(/^(text|number|email|url|password)$/) ? true : false">
+    <style>
+        @import "assets/css/app.css";
+    </style>
     <template x-if="element.label ? true : false">
     <label :for="element.id" x-text="element.label"></label>
   </template>

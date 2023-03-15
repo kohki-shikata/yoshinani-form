@@ -8,3 +8,8 @@
 .os-layout-fit > *:first-child {
   margin-bottom: 0;
 }
+
+.os-layout-fit.narrow {
+  max-width: 50%;
+  margin: 0 auto;
+}

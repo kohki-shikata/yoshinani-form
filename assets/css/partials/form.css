@@ -1,7 +1,7 @@
 .form-group {
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: minmax(4em,10em) 2fr;
   margin-bottom: 15px;
   align-items: center;
 }
@@ -39,10 +39,12 @@ input[type="email"],
 input[type="password"],
 input[type="tel"],
 input[type="number"],
-input[type="url"] {
+input[type="url"],
+textarea {
   border: 1px solid #ddd;
   font-size: 115%;
-  padding: .25em .5em;
+  padding: .125em .25em;
+  width: fit-content;
 }
 
 :lang(ja) input + label,
@@ -189,6 +191,15 @@ fieldset.toggle-switch input[type="checkbox"]:checked + label:before {
 :lang(ja) fieldset.toggle-switch input[type="checkbox"]:checked + label:before {
   color: #204e20;
   content: "有効"
+}
+
+fieldset:has(.os-check-radio-element) {
+  display: flex;
+  flex-flow: row;
+}
+
+fieldset:has(.os-check-radio-element) .os-check-radio-element {
+  margin-right: 1em;
 }
 
 .os-check-radio-element {

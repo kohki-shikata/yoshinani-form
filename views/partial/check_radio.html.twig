@@ -11,6 +11,9 @@
     {{(choice.value ? "value=\"#{choice.value}\"" : null) | raw}}
     {{(name ? "name=\"#{name}\"" : null) | raw}}
     {{ choice.selected ? "checked" : null}}
+    {% if loop.index == 1 and required %}
+    required
+    {% endif %}
   />
   
   
