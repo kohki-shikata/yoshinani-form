@@ -70,15 +70,24 @@ class Confirm extends BuildForm {
     return in_array(true, $check_errors) ? true : false;
   }
 
+  public function label_override() {
+    foreach($this->formData as $key => $value) {
+      
+    }
+  }
+
   public function render() {
     try {
       session_start();
       $this->csrf->check('my_token', $this->formData['csrf_token']);
       unset($this->formData['csrf_token']);
       $template = $this->twig->load('/page/confirm.html.twig');
+      $labels = $this->formData['label'];
+      unset($this->formData['label']);
       $data = [
         'data' => $this->formData,
         'state' => 'confirm',
+        'labels' => isset($labels) ? $labels : null,
         'form_settings' => $this->initial_settings,
         'csrf_token' => $this->csrf->generate('new_token'),
         'has_error' => $this->error_flag(),

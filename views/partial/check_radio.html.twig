@@ -1,6 +1,6 @@
 <fieldset id="{{id}}">
-  {% if label %}
-  <legend>{{label}}</legend>
+  {% if title %}
+  <legend>{{title}}</legend>
   {% endif %}
 
   {% for choice in choices %}
@@ -17,7 +17,7 @@
   <label for="{{ choice.value }}-{{ loop.index }}">{{ choice.text }}</label>
   </div>
   {% endfor %}
-  {# {% if title %}
+  {% if title %}
   <input type="hidden" name="label[{{name}}]" value="{{title}}" />
-  {% endif %} #}
+  {% endif %}
 </fieldset>
