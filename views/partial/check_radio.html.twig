@@ -4,17 +4,20 @@
   {% endif %}
 
   {% for choice in choices %}
-  <label>
+  <div class="os-check-radio-element">
   <input
     type="{{type}}"
+    id="{{ choice.value }}-{{ loop.index }}"
     {{(choice.value ? "value=\"#{choice.value}\"" : null) | raw}}
     {{(name ? "name=\"#{name}\"" : null) | raw}}
-    {{ checked ? "checked" : null}}
+    {{ choice.selected ? "checked" : null}}
   />
-  {{ choice.label }}
-  </label>
+  
+  
+  <label for="{{ choice.value }}-{{ loop.index }}">{{ choice.text }}</label>
+  </div>
   {% endfor %}
-  {# {% if title %}
+  {% if title %}
   <input type="hidden" name="label[{{name}}]" value="{{title}}" />
-  {% endif %} #}
+  {% endif %}
 </fieldset>

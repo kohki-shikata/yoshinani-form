@@ -1,0 +1,18 @@
+<fieldset x-show="element.type === 'radio' || element.type === 'checkbox'" :id="element.id">
+    <template x-if="element.label">
+    <legend x-text="element.label"></legend>
+  </template>
+
+    <template x-for="(choice, index) in element.choices">
+  <div class="os-check-radio-element">
+  <input
+    :type="element.type"
+    :id="choice.value + '-' + index"
+    :value="choice.value"
+    :name="element.type === 'checkbox' ? element.name + '[]' : element.name"
+    :checked="choice.selected ? true : false"
+  />
+  <label :for="choice.value + '-' + index" x-text="choice.text"></label>
+  </div>
+  </template>
+</fieldset>

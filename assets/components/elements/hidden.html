@@ -1,0 +1,20 @@
+<div class="formElement formInline" id="hidden-detail-view" x-show="formData.formElements.length > 0 && formData.formElements[formData.formElementSelect - 1].isHidden === true">
+    <div class="form-type">
+        <dl>
+            <dt>type:</dt>
+            <dd x-text="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].type : ''"></dd>
+        </dl>
+    </div>
+    <div class="form-group">
+        <label for="hidden-detail-view-name">name</label>
+        <input type="text" id="hidden-detail-view-id" x-model="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].name : ''" />
+    </div>
+    <div class="form-group">
+        <label for="hidden-detail-view-id">id</label>
+        <input type="text" id="hidden-detail-view-id" x-model="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].id : ''" />
+    </div>
+    <div class="form-group">
+        <label for="hidden-detail-view-value">value</label>
+        <input type="text" id="hidden-detail-view-value" x-model="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].value : ''" />
+    </div>
+</div>

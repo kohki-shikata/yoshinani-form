@@ -1,0 +1,38 @@
+<div>
+    <style>
+        @import "assets/css/app.css";
+        #gHeader {
+            padding: 10px 20px;
+            background-color: #555;
+            display: grid;
+            grid-template-columns: 15vw 20vw 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        #gHeader-title {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+    </style>
+    <header id="gHeader">
+        <h1 id="gHeader-title">Form generator</h1>
+        <div id="lang-switch" class="switch-group">
+            <h2 class="switch-title" x-text="langSet[langCode]['Language']"></h2>
+            <ul class="switch-group-wrapper">
+                <li class="switch">
+                    <input type="radio" value="ja" x-model="langCode" id="lang-ja" />
+                    <label for="lang-ja">日本語</label>
+                </li>
+                <li class="switch">
+                    <input type="radio" value="en" x-model="langCode" id="lang-en" checked />
+                    <label for="lang-en">English</label>
+                </li>
+            </ul>
+        </div>
+        <x-component-wrapper x-component url="assets/components/navigation.html"></x-component-wrapper>
+    </header>
+
+
+</div>

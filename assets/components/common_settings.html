@@ -1,0 +1,121 @@
+<div>
+    <x-component-wrapper x-component url="assets/components/style.html"></x-component-wrapper>
+    <style>
+        @import "assets/css/app.css";
+        .layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        #smtp-setting {
+            margin-top: 20px;
+        }
+        
+        .form-table {
+            margin-bottom: 30px;
+        }
+        
+        #formInitialSetting {
+            padding: 50px;
+        }
+    </style>
+    <div id="formInitialSetting">
+        <h2 class="setting-title">General Settings:</h2>
+        <div class="layout">
+            <fieldset>
+                <legend>Sending method</legend>
+                <nav>
+                    <ul class="switch-group-wrapper smtp">
+                        <li class="switch">
+                            <input type="radio" value="smtp" x-model="sendMethod" id="sending-method-smtp" checked />
+                            <label for="sending-method-smtp">SMTP<span class="tip" data-lang-key="recommended" x-text="langSet[langCode]['highlyRecommended']">highly recomended</span></label>
+                        </li>
+                        <li class="switch">
+                            <input type="radio" value="function" x-model="sendMethod" id="sending-method-function" />
+                            <label for="sending-method-function">PHP mail()</label>
+                        </li>
+                    </ul>
+                </nav>
+                <template x-if="sendMethod === 'smtp'">
+                    <div>
+                        <div id="smtp-setting" class="form-table">
+                            <div class="form-group">
+                                <input type="text" name="smtp-host" id="smtp-host" required x-model="formData.initialSetting.smtpHost" required />
+                                <label for="smtp-host">SMTP Host</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="smtp-username" id="smtp-username" required x-model="formData.initialSetting.smtpUsername" required />
+                                <label for="smtp-username">SMTP Username</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="smtp-password" id="smtp-password" required x-model="formData.initialSetting.smtpPassword" required />
+                                <label for="smtp-password">SMTP Password</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="smtp-port" id="smtp-port" required x-model="formData.initialSetting.smtpPort" min="1" max="65536" required />
+                                <label for="smtp-port">SMTP Port</label>
+                            </div>
+                        </div>
+                        <fieldset id="is-smtp-auth" class="toggle-switch">
+                            <legend>
+                                <span>Use SMTP Auth</span>
+                            </legend>
+                            <div class="form-group">
+                                <input type="hidden" value="0" name="is-smtp-auth" />
+                                <input type="checkbox" value="1" id="smtp-auth-toggle" name="is-smtp-auth" x-model="formData.initialSetting.smtpAuth" />
+                                <label for="smtp-auth-toggle"></label>
+                        </div>
+                        </fieldset>
+                        <fieldset id="is-smtp-encryption" class="toggle-switch">
+                            <legend>
+                                <span>Use SMTP Encryption</span>
+                            </legend>
+                            <div class="form-group">
+                                <input type="hidden" value="0" name="is-smtp-encryption" />
+                                <input type="checkbox" value="1" name="is-smtp-encryption" id="smtp-encryption-toggle" x-model="formData.initialSetting.smtpEncryption" />
+                                <label for="smtp-encryption-toggle"></label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </template>
+            </fieldset>
+            <fieldset>
+                <legend>Recipient settings</legend>
+                <div class="form-group">
+                    <label for="recipient-address">Recipient mail address</label>
+                    <input type="email" name="recipient-address" id="recipient-address" required x-model="formData.initialSetting.recipientAddress" />
+                </div>
+                <div class="form-group">
+                    <label for="recipient">Recipient name</label>
+                    <input type="text" name="recipient-name" id="recipient-name" x-model="formData.initialSetting.recipientName" />
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Miscellaneous</legend>
+                <fieldset class="toggle-switch">
+                    <legend>
+                        <span>Send mail to input user</span>
+                    </legend>
+                    <div class="form-group">
+                        <input type="hidden" value="0" name="is-auto-reply" />
+                        <input type="checkbox" value="1" id="auto-reply" name="is-auto-reply" x-model="formData.initialSetting.autoreply" />
+                        <label for="auto-reply"></label>
+                    </div>
+                </fieldset>
+
+                <fieldset id="step-navigation" class="toggle-switch">
+                    <legend>
+                        <span>
+                        Step navigation
+                    </span>
+                    </legend>
+                    <div class="form-group">
+                        <input type="hidden" value="0" name="step-navigation" />
+                        <input type="checkbox" value="1" id="step-navi" name="step-navigation" x-model="formData.initialSetting.stepNavigation" />
+                        <label for="step-navi"></label>
+                    </div>
+                </fieldset>
+        </div>
+    </div>
+</div>

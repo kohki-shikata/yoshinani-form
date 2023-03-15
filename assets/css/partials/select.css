@@ -1,0 +1,22 @@
+.os-select-wrap {
+  display: block;
+  position: relative;
+}
+.os-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid #ddd;
+  padding: 1em 2em 1em 1em;
+  position: relative;
+  width: 100%;
+}
+
+.os-select-wrap:after {
+  content: "▼";
+  color: #999;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scaleY(50%);
+  right: 1em;
+}

@@ -1,0 +1,15 @@
+<div id="select-detail-view" x-show="formData.formElements[formData.formElementSelect - 1].type.match(/^select$/) ? true : false">
+    <style>
+        @import "assets/css/app.css";
+    </style>
+    <div class="formElement formMultiSelect">
+        <x-component-wrapper x-component url="assets/components/elements/attributes/form_type.html"></x-component-wrapper>
+        <div class="os-layout-fit">
+            <x-component-wrapper x-component url="assets/components/elements/attributes/name.html"></x-component-wrapper>
+            <x-component-wrapper x-component url="assets/components/elements/attributes/label.html"></x-component-wrapper>
+        </div>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/id.html"></x-component-wrapper>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/three_flags.html"></x-component-wrapper>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/options.html"></x-component-wrapper>
+    </div>
+</div>
