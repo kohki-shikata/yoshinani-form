@@ -32,6 +32,11 @@
 {% for key, item in data %}
 <input type="hidden" name="{{ key }}" value="{{ item }}" />
 {% endfor %}
+
+{% for key, label in labels %}
+<input type="hidden" name="label[{{key}}]" value="{{ label }}" />
+{% endfor %}
+
 <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
 {% if has_error %}
 {# {{ dump(has_error )}} #}

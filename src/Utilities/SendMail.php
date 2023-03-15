@@ -82,9 +82,12 @@ class SendMail extends BuildForm {
         
         // Build text
         $main_recipient_template = $this->twig->load('/mail/recipient.twig');
+        $labels = $this->formData['label'];
+        unset($this->formData['label']);
         $data = [
           'recipient_name' => $_ENV['RECIPIENT_NAME'] ? $_ENV['RECIPIENT_NAME'] : null,
           'data' => $this->formData,
+          'labels' => $labels,
         ];
   
         // var_dump($main_recipient_template->render($data));
