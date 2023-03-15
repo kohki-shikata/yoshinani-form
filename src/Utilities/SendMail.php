@@ -78,7 +78,12 @@ class SendMail extends BuildForm {
         
         // Content settings
         $this->mail->isHTML(true); // Use HTML mail or not.
-        $this->mail->Subject = mb_encode_mimeheader('The mail subject'); // The subject for the mail.
+        if($this->initial_settings->recipientMailSubject) {
+          $this->mail->Subject = mb_encode_mimeheader($this->initial_settings->recipientMailSubject); // The subject for the mail.
+        } else {
+          $this->mail->Subject = mb_encode_mimeheader('Contact is inbound.'); // The subject for the mail.
+        }
+        
         
         // Build text
         $main_recipient_template = $this->twig->load('/mail/recipient.twig');
