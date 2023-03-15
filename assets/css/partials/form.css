@@ -202,6 +202,21 @@ fieldset:has(.os-check-radio-element) .os-check-radio-element {
   margin-right: 1em;
 }
 
+fieldset:has(*[required]) legend {
+  position: relative;
+  padding-right: 1.5em;
+}
+
+fieldset:has(*[required]) legend:after {
+  content: "*";
+  display: block;
+  color: red;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: .5em;
+}
+
 .os-check-radio-element {
   display: flex;
   justify-content: center;
