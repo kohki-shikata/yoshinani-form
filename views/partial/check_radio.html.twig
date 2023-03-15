@@ -9,7 +9,11 @@
     type="{{type}}"
     id="{{ choice.value }}-{{ loop.index }}"
     {{(choice.value ? "value=\"#{choice.value}\"" : null) | raw}}
+    {% if type == "checkbox" %}
+    {{(name ? "name=\"#{name}[]\"" : null) | raw}}
+    {% else %}
     {{(name ? "name=\"#{name}\"" : null) | raw}}
+    {% endif %}
     {{ choice.selected ? "checked" : null}}
     {% if loop.index == 1 and required %}
     required
@@ -20,6 +24,13 @@
   <label for="{{ choice.value }}-{{ loop.index }}">{{ choice.text }}</label>
   </div>
   {% endfor %}
+  
+  {% if type == "checkbox" %}
+  <input type="hidden" {{(name ? "name=\"#{name}[]\"" : null) | raw}} value="" />
+  {% else %}
+  <input type="hidden" {{(name ? "name=\"#{name}\"" : null) | raw}} value="" />
+  {% endif %}
+
   {% if title %}
   <input type="hidden" name="label[{{name}}]" value="{{title}}" />
   {% endif %}
