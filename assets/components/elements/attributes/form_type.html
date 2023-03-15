@@ -1,0 +1,26 @@
+<div>
+    <style>
+        @import "assets/css/app.css";
+        .form-type {
+            margin-bottom: 15px;
+        }
+        
+        .form-type dd {
+            font-size: 120%;
+            font-weight: bold;
+        }
+        
+        .form-group label {
+            font-size: 80%;
+            margin-bottom: .25em;
+        }
+    </style>
+    <div class="form-type">
+        <dl>
+            <div>
+                <dt>type:</dt>
+                <dd x-text="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].type : ''"></dd>
+            </div>
+        </dl>
+    </div>
+</div>

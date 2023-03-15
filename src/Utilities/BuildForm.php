@@ -72,7 +72,7 @@ class BuildForm {
       $template = $this->twig->load('/partial/check_radio.html.twig');
       $data = [
         'type' => $type,
-        'title' => $data->title,
+        'title' => $data->label,
         'name' => $data->name,
         'id' => $data->id,
         'choices' => $data->choices,
@@ -104,19 +104,19 @@ class BuildForm {
         'type' => $type,
         'label' => $data->label,
         'name' => $data->name,
-        'id' => $data->id,
-        'inputmode' => $data->inputmode,
-        'value' => $data->value,
-        'rows' => $data->rows,
-        'cols' => $data->cols,
-        'spellcheck' => $data->spellcheck,
-        'wrap' => $data->wrap,
-        'minlength' => $data->minlength,
-        'maxlength' => $data->maxlength,
-        'placeholder' => $data->placeholder,
-        'required' => $data->required,
-        'readonly' => $data->readonly,
-        'disabled' => $data->disabled,
+        'id' => isset($data->id) ? $data->id : null,
+        'inputmode' => isset($data->inputmode) ? $data->inputmode : null,
+        'value' => isset($data->value) ? $data->value : null,
+        'rows' => isset($data->rows) ? $data->rows : null,
+        'cols' => isset($data->cols) ? $data->cols : null,
+        'spellcheck' => isset($data->spellcheck) ? $data->spellcheck : null,
+        'wrap' => isset($data->wrap) ? $data->wrap : null,
+        'minlength' => isset($data->minlength) ? $data->minlength : null,
+        'maxlength' => isset($data->maxlength) ? $data->maxlength : null,
+        'placeholder' => isset($data->placeholder) ? $data->placeholder : null,
+        'required' => isset($data->required) ? $data->required : null,
+        'readonly' => isset($data->readonly) ? $data->readonly : null,
+        'disabled' => isset($data->disabled) ? $data->disabled : null,
       ];
       return $template->render($data);
     }
@@ -168,21 +168,21 @@ function parse_tag($data) {
   }
 
   // Build error messages
-  $error_messages = "";
-  if(isset($data->errorMessages)) {
-    $error_inner_message = "";
-    foreach($data->errorMessages as $m) { 
-      $messageType = isset($m->type) ? $m->type : "";
-      $messageText = isset($m->message) ? $m->message : "";
-      $error_inner_message .= "<li data-error-type=\"{$messageType}\">{$messageText}</li>\n";
-      // print_r($m);
-    }
-    $error_messages = <<<EOF
-    <ul class="error-messages">
-      {$error_inner_message}
-    </ul>
-    EOF;
-  }
+  // $error_messages = "";
+  // if(isset($data->errorMessages)) {
+  //   $error_inner_message = "";
+  //   foreach($data->errorMessages as $m) { 
+  //     $messageType = isset($m->type) ? $m->type : "";
+  //     $messageText = isset($m->message) ? $m->message : "";
+  //     $error_inner_message .= "<li data-error-type=\"{$messageType}\">{$messageText}</li>\n";
+  //     // print_r($m);
+  //   }
+  //   $error_messages = <<<EOF
+  //   <ul class="error-messages">
+  //     {$error_inner_message}
+  //   </ul>
+  //   EOF;
+  // }
 
   // Build up checkbox and radio buttons
   if(isset($data->elements)) {

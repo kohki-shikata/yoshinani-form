@@ -77,10 +77,10 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | Use PHP built-in mail function(not recommended) | coming soon |
 | Use SMTP(recommended) | ✅ |
 | Selective mail function or SMTP | coming soon |
-| Multiple recipient | coming soon [^5] |
+| Multiple recipient | coming 0.4.0 [^5] |
 | Set recipient name | ✅ |
 | Set mail title | WIP |
-| Auto reply to input user | coming soon |
+| Auto reply to input user | coming 0.3.0 |
 | HTML mail | WIP [^6] |
 
 [^5]: Currently, single user can recieve a message.
@@ -109,7 +109,7 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | Feature  | Status |
 | :------------ | :-------------: |
 | CSRF token | ✅ |
-| Avoid duplicate submit | coming soon |
+| Avoid duplicate submit | WIP |
 | Store sensitive data to .env | ✅ |
 | Limit upload filesize | coming soon |
 | Limit file count | coming soon |
@@ -123,8 +123,8 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | Required and optional label | coming soon |
 | Step navigation | ✅ [^9] |
 | Descriptionn field (optional) | coming soon |
-| Assist messages (optional) | coming soon |
-| Error messages (optional) | coming soon |
+| Assist messages (optional) | coming 0.3.0 |
+| Error messages (optional) | coming 0.3.0 |
 | Valid symbol (optional) | coming soon |
 | Text length counter (optional) | coming soon |
 | Text length meter (optional) [^10] | coming soon |
@@ -157,7 +157,7 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | input type tel  | ✅  |
 | input type checkbox  | coming 0.3.0  |
 | input type radio  | ✅  |
-| select | ✅  |
+| select | ✅ [^11]  |
 | textarea | ✅  |
 | input hidden | ✅  |
 | input type datetime-local | coming 0.4.0  |
@@ -169,12 +169,14 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | input range | coming 0.3.0  |
 | fieldset | coming 0.4.0  |
 
+[^11]: Partial support currently. option selected attribute, optgroup, multiple attribute is not implmented yet.
+
 ### Customized element
 | Type  | Status |
 | :------------ | :-------------: |
-| Japanese Address Pattern  | coming soon  |
-| Term of use and agreement  | coming soon  |
-| Embed term of use and agreement  | coming soon  |
+| Japanese Address Pattern  | coming 0.4.0  |
+| Term of use and agreement  | coming 0.4.0  |
+| Embed term of use and agreement  | coming 0.4.0  |
 | Drag and Drop file uploader  | Under consideration |
 | WYSIWYG editor  | Under consideration |
 

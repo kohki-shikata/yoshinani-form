@@ -6,7 +6,11 @@ The inquire is submittid from our corporate site.
 Please check the contents and reply to the customer.
 
 {% for key, item in data %}
+{% if labels %}
+> {{ labels[key] }}
+{% else %}
 > {{ key }}
+{% endif %}
 {{ item }}
 
 {% endfor %}

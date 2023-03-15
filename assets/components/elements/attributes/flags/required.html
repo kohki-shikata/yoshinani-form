@@ -1,0 +1,26 @@
+<div>
+    <style>
+        @import "assets/css/app.css";
+        .os-layout-fit {
+            gap: 15px;
+        }
+        
+        input[type="checkbox"] {
+            margin-right: -.5em;
+        }
+        
+        input[type="checkbox"]+label {
+            font-size: 75%;
+            letter-spacing: -.05em;
+        }
+        
+        .os-check-radio-element {
+            width: auto;
+        }
+    </style>
+    <div class="os-check-radio-element">
+        <input type="hidden" id="required-false" x-model="formData.formElements[formData.formElementSelect - 1].required" value="0" />
+        <input type="checkbox" id="required-true" x-model="formData.formElements[formData.formElementSelect - 1].required" value="1" />
+        <label for="required-true">Is required</label>
+    </div>
+</div>

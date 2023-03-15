@@ -1,0 +1,10 @@
+.os-tip {
+  display: inline-block;
+  background: #fcfcfc;
+  color: #888;
+  font-size: 75%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: .5em 1em;
+  text-align: center;
+}

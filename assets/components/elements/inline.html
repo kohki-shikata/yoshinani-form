@@ -1,0 +1,30 @@
+<div id="inline-detail-view" x-show="(formData.formElements[formData.formElementSelect - 1].type === 'text' || formData.formElements[formData.formElementSelect - 1].type === 'email' || formData.formElements[formData.formElementSelect - 1].type === 'password' || formData.formElements[formData.formElementSelect - 1].type === 'url' || formData.formElements[formData.formElementSelect - 1].type === 'number') ? true : false">
+    <style>
+        @import "assets/css/app.css";
+    </style>
+    <div class="formElement formInline">
+        <x-component-wrapper x-component url="assets/components/elements/attributes/form_type.html"></x-component-wrapper>
+        <div class="os-layout-fit">
+            <x-component-wrapper x-component url="assets/components/elements/attributes/name.html"></x-component-wrapper>
+            <x-component-wrapper x-component url="assets/components/elements/attributes/label.html"></x-component-wrapper>
+        </div>
+
+        <div class="os-layout-fit">
+            <x-component-wrapper x-component url="assets/components/elements/attributes/id.html"></x-component-wrapper>
+            <x-component-wrapper x-component url="assets/components/elements/attributes/size.html"></x-component-wrapper>
+        </div>
+        <div class="os-layout-fit">
+            <x-component-wrapper x-component url="assets/components/elements/attributes/autocomplete.html"></x-component-wrapper>
+            <x-component-wrapper x-component url="assets/components/elements/attributes/inputmode.html"></x-component-wrapper>
+        </div>
+
+        <x-component-wrapper x-component url="assets/components/elements/attributes/placeholder.html"></x-component-wrapper>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/value.html"></x-component-wrapper>
+        <div class="os-layout-fit">
+            <x-component-wrapper x-component url="assets/components/elements/attributes/minlength.html"></x-component-wrapper>
+            <x-component-wrapper x-component url="assets/components/elements/attributes/maxlength.html"></x-component-wrapper>
+        </div>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/pattern.html"></x-component-wrapper>
+        <x-component-wrapper x-component url="assets/components/elements/attributes/three_flags.html"></x-component-wrapper>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div>
+    <style>
+        @import "assets/css/app.css";
+        input[type="checkbox"] {
+            margin-right: -.5em;
+        }
+        
+        input[type="checkbox"]+label {
+            font-size: 75%;
+            letter-spacing: -.05em;
+        }
+    </style>
+    <div class="os-check-radio-element">
+        <input type="hidden" id="readonly-false'" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="0" />
+        <input type="checkbox" id="readonly-true" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="1" />
+        <label for="readonly-true">Is readonly</label>
+    </div>
+</div>

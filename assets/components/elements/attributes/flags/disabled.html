@@ -1,0 +1,22 @@
+<div>
+    <style>
+        @import "assets/css/app.css";
+        [type="checkbox"] {
+            margin-right: -.5em;
+        }
+        
+        input[type="checkbox"]+label {
+            font-size: 75%;
+            letter-spacing: -.05em;
+        }
+        
+        .os-check-radio-element {
+            width: auto;
+        }
+    </style>
+    <div class="os-check-radio-element">
+        <input type="hidden" id="disabled-false" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="0" />
+        <input type="checkbox" id="disabled-true" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="1" />
+        <label for="disabled-true">Is disabled</label>
+    </div>
+</div>

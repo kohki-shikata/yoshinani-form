@@ -1,0 +1,10 @@
+.os-layout-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.os-layout-fit > *:first-child {
+  margin-bottom: 0;
+}

@@ -15,7 +15,7 @@ class Confirm extends BuildForm {
   public function __construct() {
     parent::__construct();
     $this->formData = $_POST;
-    $this->formData = $this->validate()[0];
+    $this->formData = $this->validate($this->formData);
     
     $this->loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../../views');
     $this->twig = new \Twig\Environment($this->loader, [
@@ -24,20 +24,14 @@ class Confirm extends BuildForm {
     $this->twig->addExtension(new \Twig\Extension\DebugExtension());
   }
 
-  public function validate() {
+  public function validate($val_data) {
     Validator::lang('ja');
 
-    $val = new Validator($this->formData);
-
-    // var_dump($this->formData);
-    // echo '<pre>';
-    // var_dump($this->form_elements);
-    // echo '</pre>';
+    $val = new Validator($val_data);
 
     foreach($this->form_elements as $element) {
       foreach($element as $key => $value) {
         if($key === "required" && $value === true) {
-          // print_r([$key, $value]);
           $val->rule('required', $element->name)->message('{field} is required.');
         }
         if($key === "type" && $value === "email") {
@@ -50,7 +44,7 @@ class Confirm extends BuildForm {
           $val->rule('lengthMin', $element->name, $value)->message("Please write at least {$value} characters.");
         }
         if($key === "pattern" && $value) {
-          $val->rule('regex', $element->name, "/{$value}/")->message("Invalid syntax.");;
+          $val->rule('regex', $element->name, "/" . $value . "/")->message("Invalid syntax.");
         }
       }
     }
@@ -58,49 +52,46 @@ class Confirm extends BuildForm {
       foreach($this->form_elements as $element) {
         foreach($element as $key => $value) {
           if($key === "name" && isset($val->errors()[$value])) {
-            // var_dump($this->formData[$element->name]);
-            // $this->formData[$element->name] = [
-            //   'value' => $this->formData[$element->name],
-            //   'error' =>  $val->errors()[$value][0],
-            // ];
-            $this->formData[$element->name] .= '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
+            $val_data[$element->name] .= '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
           }
         }
       }
     }
-    // echo '<pre>';
-    // var_dump($this->formData);
-    // echo '</pre>';
 
+    return $val_data;
+  }
+
+  public function error_flag() {
     $check_errors = [];
     foreach($this->formData as $key => $value) {
       $flag = preg_match('/"error-message"/', $value);
       array_push($check_errors, $flag);
     }
+    return in_array(true, $check_errors) ? true : false;
+  }
 
-    // echo '<pre>';
-    // var_dump($check_errors);
-    // echo '</pre>';
-
-    // print_r($val->validate());
-    return [$this->formData, in_array(true, $check_errors) ? true : false ];
+  public function label_override() {
+    foreach($this->formData as $key => $value) {
+      
+    }
   }
 
   public function render() {
     try {
       session_start();
       $this->csrf->check('my_token', $this->formData['csrf_token']);
-      unset($this->formDataWithError['csrf_token']);
+      unset($this->formData['csrf_token']);
       $template = $this->twig->load('/page/confirm.html.twig');
+      $labels = $this->formData['label'];
+      unset($this->formData['label']);
       $data = [
-        'data' => $this->formDataWithError,
+        'data' => $this->formData,
         'state' => 'confirm',
+        'labels' => isset($labels) ? $labels : null,
         'form_settings' => $this->initial_settings,
         'csrf_token' => $this->csrf->generate('new_token'),
-        'has_error' => $this->validate()[1],
+        'has_error' => $this->error_flag(),
       ];
-
-      // $this->validate();
 
       return $template->render($data);
 
