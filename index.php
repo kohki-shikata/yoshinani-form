@@ -28,6 +28,7 @@ $router->post('/confirm', function() {
   // Initialize confirm screen
   $confirm = new \App\Utilities\Confirm;
 
+  // $confirm->label_override();
   echo $confirm->render();
 
 });

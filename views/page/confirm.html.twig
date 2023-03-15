@@ -11,7 +11,11 @@
   <tbody>
     {% for key, item in data %}
     <tr>
+      {% if labels %}
+      <th>{{ labels[key] }}</th>
+      {% else %}
       <th>{{ key }}</th>
+      {% endif %}
       {% if item.error %}
       <td>
         {{ item.value }}

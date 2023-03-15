@@ -25,7 +25,7 @@
         return (newValue.formElements[formData.formElementSelect - 1].type === 'select' && newValue.formElements[formData.formElementSelect - 1].choices === undefined) ? newValue.formElements[formData.formElementSelect - 1].choices = [{ text: '', value: '', selected: false }] : ''
       }
       )" x-if="(formData.formElements[formData.formElementSelect - 1].choices?.length > 0)">
-      <fieldset>
+      <fieldset @drop.prevent="drop()" @dragover.prevent="dragover()">
           <template x-if="formData.formElements[formData.formElementSelect - 1].type === 'select'">
             <legend>Options</legend>
           </template>
@@ -43,7 +43,7 @@
         // if(newValue.type.match(/^(radio|select)$/))
       }
     )">
-          <div class="option-element">
+          <div class="option-element" @dragstart="formData.dragManage.dragging = index" @dragend="formData.dragManage.dragging = null">
             <div class="choices-group">
               <div class="choice-group">
                 <label :for="'text-choice-' + (index + 1)">text</label>
