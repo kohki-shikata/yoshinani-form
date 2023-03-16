@@ -63,7 +63,6 @@ Alpine.store('app', {
     selectOneOnly,
     watchChoices,
     dropElements() {
-        console.log('drop')
         if (this.formData.dragManage.dragging !== null && this.formData.dragManage.dropping !== null) {
             if (this.formData.dragManage.dragging < this.formData.dragManage.dropping) {
                 this.formData.formElements = [...this.formData.formElements.slice(0, this.formData.dragManage.dragging), ...this.formData.formElements.slice(this.formData.dragManage.dragging + 1, this.formData.dragManage.dropping + 1), this.formData.formElements[this.formData.dragManage.dragging], ...this.formData.formElements.slice(this.formData.dragManage.dropping + 1)];

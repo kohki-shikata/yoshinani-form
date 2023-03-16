@@ -54,6 +54,7 @@
     <template x-if="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type === 'radio'">
               <legend>Radio buttons</legend>
             </template>
+
     <div @drop.prevent="$store.app.optionsSort()" @dragover.prevent="$event.dataTransfer.dropEffect = 'move'">
         <template x-for="(choice, index) in $store.app.formData.formElements[$store.app.formData.formElementSelect - 1].choices" x-init="$watch('$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type',
         (newValue, oldValue) => {
