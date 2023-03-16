@@ -60,3 +60,8 @@
   display: block;
   margin: 0 auto 30px;
 }
+
+.os-button:disabled {
+  background: #ddd;
+  color: #999;
+} 

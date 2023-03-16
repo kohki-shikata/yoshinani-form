@@ -24,12 +24,6 @@
   <label for="{{ choice.value }}-{{ loop.index }}">{{ choice.text }}</label>
   </div>
   {% endfor %}
-  
-  {% if type == "checkbox" %}
-  <input type="hidden" {{(name ? "name=\"#{name}[]\"" : null) | raw}} value="" />
-  {% else %}
-  <input type="hidden" {{(name ? "name=\"#{name}\"" : null) | raw}} value="" />
-  {% endif %}
 
   {% if title %}
   <input type="hidden" name="label[{{name}}]" value="{{title}}" />

@@ -62,6 +62,7 @@ class Confirm extends BuildForm {
               $val_data[$element->name] = $glued_array;
               $val_data[$element->name] .= '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
             } else {
+              $val_data[$element->name] = '';
               $val_data[$element->name] .= '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
             }
         }
