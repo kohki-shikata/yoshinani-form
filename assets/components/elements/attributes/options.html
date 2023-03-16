@@ -39,7 +39,7 @@
             left: 0;
         }
     </style>
-    <template x-init="$watch('formData',
+    <template x-init="$watch('$store.app.formData',
       (newValue, oldValue) => {
         return (newValue.formElements[$store.app.formData.formElementSelect - 1].type === 'select' && newValue.formElements[$store.app.formData.formElementSelect - 1].choices === undefined) ? newValue.formElements[$store.app.formData.formElementSelect - 1].choices = [{ text: '', value: '', selected: false }] : ''
       }
@@ -54,7 +54,7 @@
     <template x-if="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type === 'radio'">
               <legend>Radio buttons</legend>
             </template>
-    <div x-ref="items">
+    <div @drop.prevent="$store.app.optionsSort()" @dropover.prevent="$event.dataTransfer.dropEffect = 'move'">
         <template x-for="(choice, index) in $store.app.formData.formElements[$store.app.formData.formElementSelect - 1].choices" x-init="$watch('$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type',
         (newValue, oldValue) => {
           if(newValue === 'radio' || newValue === 'select') {
@@ -63,8 +63,7 @@
           // if(newValue.type.match(/^(radio|select)$/))
         }
       )">
-      
-          <div class="option-element">
+          <div class="option-element" @dragstart="$store.app.optionsOldIndex = index" @dragend="$store.app.optionsOldIndex = null" draggable="true">
               <div class="choices-group">
                   <div class="choice-group">
                       <label :for="'text-choice-' + (index + 1)">text</label>
@@ -100,9 +99,10 @@
         </div>
     </div>
     <div class="os-button-group">
-        <button type="button" class="os-button os-button-negative" @click="removeChoice($store.app.formData.formElements[$store.app.formData.formElementSelect - 1].choices, index)">Remove</button>
-        <button type="button" class="os-button os-button-affirmative" @click="addChoice($store.app.formData.formElements[$store.app.formData.formElementSelect - 1].choices, index)">Add</button>
+        <button type="button" class="os-button os-button-negative" @click="$store.app.removeChoice($store.app.formData.formElements[$store.app.formData.formElementSelect - 1].choices, index)">Remove</button>
+        <button type="button" class="os-button os-button-affirmative" @click="$store.app.addChoice($store.app.formData.formElements[$store.app.formData.formElementSelect - 1].choices, index)">Add</button>
     </div>
+    <p class="label-shadow" x-show.transition="$store.app.optionsOldIndex !== null" @dragenter.prevent="index !== $store.app.oldIndex ? $store.app.newIndex = index : ''" @dragleave="index !== $store.app.optionsOldIndex ? $store.app.optionsNewIndex = index : ''">Drop here</p>
 </div>
 </div>
 </template>
