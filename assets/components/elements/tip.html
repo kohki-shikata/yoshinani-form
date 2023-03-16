@@ -109,7 +109,7 @@
                 <button type="button" class="os-button os-button-negative" @click="$store.app.removeElement(index, $store.app.formData)">Remove</button>
                 <button type="button" class="os-button os-button-affirmative" @click="$store.app.addElement('text', index, $store.app.formData)">Add</button>
             </div>
-            <p class="label-shadow" x-show.transition="formData.dragManage.dragging !== null" @dragenter.prevent="$store.app.dragenter(index)" @dragleave="$store.app.dragleave(index)">Drop here</p>
+            <p class="label-shadow" x-show.transition="$store.app.formData.dragManage.dragging !== null" @dragenter.prevent="$store.app.dragenter(index)" @dragleave="$store.app.dragleave(index)">Drop here</p>
         </div>
     </label>
 </div>
