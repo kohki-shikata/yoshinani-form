@@ -4,7 +4,7 @@
     </style>
     <div class="form-group vertical">
         <label for="detail-view-autocomplete">autocomplete</label>
-        <input type="text" id="detail-view-autocomplete" x-model="formData.formElements[formData.formElementSelect - 1].autocomplete" list="detail-view-autocomplete-list" />
+        <input type="text" id="detail-view-autocomplete" x-model="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].autocomplete" list="detail-view-autocomplete-list" />
         <datalist id="detail-view-autocomplete-list">
           <option value="on">on</option>
           <option value="off">off</option>

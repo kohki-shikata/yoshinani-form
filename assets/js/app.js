@@ -22,82 +22,6 @@ import selectOneOnly from "./helpers/select_one_only.mjs"
 import watchChoices from "./helpers/watch_choices.mjs"
 
 document.addEventListener('alpine:init', () => {
-    Alpine.data('alpineCodebehind', () => ({
-        inputScreenSwitch: 'general',
-        sendMethod: 'smtp',
-        types: formElementTypes,
-        setType: 'text',
-        formData: {
-            initialSetting,
-            dragManage: {
-                dragging: null,
-                dropping: null,
-                timer: null
-            },
-            formElements: [],
-            formElementSelect: 0,
-        },
-        autocompleteList,
-        addElement,
-        removeElement,
-        addChoice,
-        removeChoice,
-        selectOneOnly,
-        watchChoices,
-        drop() {
-            if (this.formData.dragManage.dragging !== null && this.formData.dragManage.dropping !== null) {
-                if (this.formData.dragManage.dragging < this.formData.dragManage.dropping) {
-                    this.formData.formElements = [...this.formData.formElements.slice(0, this.formData.dragManage.dragging), ...this.formData.formElements.slice(this.formData.dragManage.dragging + 1, this.formData.dragManage.dropping + 1), this.formData.formElements[this.formData.dragManage.dragging], ...this.formData.formElements.slice(this.formData.dragManage.dropping + 1)];
-                } else {
-                    this.formData.formElements = [...this.formData.formElements.slice(0, this.formData.dragManage.dropping), this.formData.formElements[this.formData.dragManage.dragging], ...this.formData.formElements.slice(this.formData.dragManage.dropping, this.formData.dragManage.dragging), ...this.formData.formElements.slice(this.formData.dragManage.dragging + 1)]
-                }
-            }
-            this.formData.dragManage.dropping = null;
-        },
-        dragover() {
-            this.$event.dataTransfer.dropEffect = "move"
-        },
-        dragenter(index) {
-
-            if (index !== this.formData.dragManage.dragging) {
-                this.formData.dragManage.dropping = index
-                console.log('inside condition')
-            }
-        },
-        dragleave(index) {
-            if (this.formData.dragManage.dropping === index) {
-                this.formData.dragManage.dropping = null
-            }
-        },
-    }))
-
-    Alpine.store('formView', {
-        template: Twig.twig({
-            data: 'This is hardcoding {{ test }}',
-
-        }),
-        async render() {
-            const template = await (await fetch('../../views/page/input.html.twig')).text()
-            const view = Twig.twig({ allowInlineIncludes: true, path: '../../views/page/input.html.twig' })
-            return view.render({ form: 'form here', csrf_token: 'hogehoge' })
-        }
-    })
-
-    Alpine.store('send', {
-        response: '',
-        async postData(data) {
-            const resData = await fetch('./create_form.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            const res = await resData.json()
-            console.log(res)
-            this.response = res
-        }
-    })
 
     // i18n
     Alpine.data('lang', () => ({
@@ -115,5 +39,110 @@ document.addEventListener('alpine:init', () => {
         }
     }))
 })
+
+Alpine.store('app', {
+    inputScreenSwitch: 'general',
+    sendMethod: 'smtp',
+    types: formElementTypes,
+    setType: 'text',
+    formData: {
+        initialSetting,
+        formElements: [],
+        formElementSelect: 0,
+        dragManage: {
+            dragging: null,
+            dropping: null,
+            timer: null
+        },
+    },
+    autocompleteList,
+    addElement,
+    removeElement,
+    addChoice,
+    removeChoice,
+    selectOneOnly,
+    watchChoices,
+    dropElements() {
+        if (this.formData.dragManage.dragging !== null && this.formData.dragManage.dropping !== null) {
+            if (this.formData.dragManage.dragging < this.formData.dragManage.dropping) {
+                this.formData.formElements = [...this.formData.formElements.slice(0, this.formData.dragManage.dragging), ...this.formData.formElements.slice(this.formData.dragManage.dragging + 1, this.formData.dragManage.dropping + 1), this.formData.formElements[this.formData.dragManage.dragging], ...this.formData.formElements.slice(this.formData.dragManage.dropping + 1)];
+            } else {
+                this.formData.formElements = [...this.formData.formElements.slice(0, this.formData.dragManage.dropping), this.formData.formElements[this.formData.dragManage.dragging], ...this.formData.formElements.slice(this.formData.dragManage.dropping, this.formData.dragManage.dragging), ...this.formData.formElements.slice(this.formData.dragManage.dragging + 1)]
+            }
+        }
+        this.formData.dragManage.dropping = null;
+    },
+    dragover() {
+        this.$event.dataTransfer.dropEffect = "move"
+    },
+    dragenter(index) {
+
+        if (index !== this.formData.dragManage.dragging) {
+            this.formData.dragManage.dropping = index
+            console.log('inside condition')
+        }
+    },
+    dragleave(index) {
+        if (this.formData.dragManage.dropping === index) {
+            this.formData.dragManage.dropping = null
+        }
+    },
+    optionsOldIndex: null,
+    optionsNewIndex: null,
+    optionsSort() {
+        console.log('drop')
+        if (this.optionsOldIndex < this.optionsNewIndex) {
+            this.formData.formElements[this.formData.formElementSelect - 1].choices = [
+                ...this.formData.formElements[this.formData.formElementSelect - 1].choices.slice(0, this.optionsOldIndex),
+                ...this.formData.formElements[this.formData.formElementSelect - 1].choices.slice(this.optionsOldIndex + 1, this.optionsNewIndex + 1),
+                this.formData.formElements[this.formData.formElementSelect - 1].choices[this.optionsOldIndex],
+                ...this.formData.formElements[this.formData.formElementSelect - 1].choices.slice(this.optionsNewIndex + 1)
+            ];
+        } else {
+            this.formData.formElements[this.formData.formElementSelect - 1].choices = [
+                ...this.formData.formElements[this.formData.formElementSelect - 1].choices.slice(0, this.optionsNewIndex),
+                this.formData.formElements[this.formData.formElementSelect - 1].choices[this.optionsOldIndex],
+                ...this.formData.formElements[this.formData.formElementSelect - 1].choices.slice(this.optionsNewIndex, this.optionsOldIndex),
+                ...this.formData.formElements[this.formData.formElementSelect - 1].choices.slice(this.optionsOldIndex + 1)
+            ]
+        }
+    },
+})
+
+Alpine.store('formView', {
+    template: Twig.twig({
+        data: 'This is hardcoding {{ test }}',
+
+    }),
+    async render() {
+        const template = await (await fetch('../../views/page/input.html.twig')).text()
+        const view = Twig.twig({ allowInlineIncludes: true, path: '../../views/page/input.html.twig' })
+        return view.render({ form: 'form here', csrf_token: 'hogehoge' })
+    }
+})
+
+Alpine.store('optionsSort', {
+    list: () => Alpine.effect(() => Alpine.store('app').formData.formElements[Alpine.store('app').formData.formElementSelect - 1].choices),
+    oldIndex: null,
+    newIndex: null,
+
+})
+
+Alpine.store('send', {
+    response: '',
+    async postData(data) {
+        const resData = await fetch('./create_form.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        const res = await resData.json()
+        console.log(res)
+        this.response = res
+    }
+})
+
 Alpine.plugin(component)
 Alpine.start()

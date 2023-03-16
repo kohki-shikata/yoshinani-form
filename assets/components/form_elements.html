@@ -18,7 +18,7 @@
         }
     </style>
     <div id="element-screen">
-        <div id="element-list" class="grid-col" @drop.prevent="drop()" @dragover.prevent="dragover()">
+        <div id="element-list" class="grid-col" @drop.prevent="$store.app.dropElements()" @dragover.prevent="$event.dataTransfer.dropEffect = 'move'">
             <template x-for="(element, index) in formData.formElements" :key="index">
                 <x-component-wrapper x-component url="assets/components/elements/tip.html"></x-component-wrapper>
             </template>

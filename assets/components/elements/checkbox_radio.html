@@ -1,4 +1,4 @@
-<div id="checkbox_radio-detail-view" x-show="formData.formElements[formData.formElementSelect - 1].type.match(/^(radio|checkbox)$/) ? true : false">
+<div id="checkbox_radio-detail-view" x-show="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type === 'radio' || $store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type === 'checkbox'">
     <style>
         @import "assets/css/app.css";
     </style>

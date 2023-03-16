@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div x-data="alpineCodebehind">
+    <div x-data="$store.app">
         <x-component-wrapper x-component url="assets/components/header.html"></x-component-wrapper>
         <form id="form-creator" action="./create_form.php" method="POST" @submit.prevent="$store.send.postData(formData)">
             <template x-if="inputScreenSwitch === 'general'">
@@ -36,6 +36,7 @@
         <x-component-wrapper x-component url="assets/components/debug.html"></x-component-wrapper>
     </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
 </body>
 
 </html>

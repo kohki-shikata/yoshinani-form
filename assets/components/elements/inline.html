@@ -1,4 +1,4 @@
-<div id="inline-detail-view" x-show="(formData.formElements[formData.formElementSelect - 1].type === 'text' || formData.formElements[formData.formElementSelect - 1].type === 'email' || formData.formElements[formData.formElementSelect - 1].type === 'password' || formData.formElements[formData.formElementSelect - 1].type === 'url' || formData.formElements[formData.formElementSelect - 1].type === 'number') ? true : false">
+<div id="inline-detail-view" x-show="($store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type === 'text' || $store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type === 'email' || $store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type === 'password' || $store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type === 'url' || $store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type === 'number') ? true : false">
     <style>
         @import "assets/css/app.css";
     </style>
