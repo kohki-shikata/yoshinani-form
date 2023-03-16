@@ -4,13 +4,13 @@
     </style>
     <div id="addElement">
         <div class="os-select-wrap">
-            <select x-model="setType" class="os-select">
-            <template x-for="type in types">
+            <select x-model="$store.app.setType" class="os-select">
+            <template x-for="type in $store.app.types">
               <option x-text="type.text" :value="type.value" :selected="type.selected === true"></option>
             </template>
           </select>
         </div>
-        <button type="button" @click="addElement(setType, 0, formData)" class="os-button">Add element</button>
+        <button type="button" @click="$store.app.addElement(setType, 0, formData)" class="os-button">Add element</button>
 
     </div>
 </div>

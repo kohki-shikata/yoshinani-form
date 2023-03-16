@@ -15,8 +15,8 @@
         }
     </style>
     <div class="os-check-radio-element">
-        <input type="hidden" id="disabled-false" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="0" />
-        <input type="checkbox" id="disabled-true" x-model="formData.formElements[formData.formElementSelect - 1].disabled" value="1" />
+        <input type="hidden" id="disabled-false" x-model="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].disabled" value="0" />
+        <input type="checkbox" id="disabled-true" x-model="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].disabled" value="1" />
         <label for="disabled-true">Is disabled</label>
     </div>
 </div>

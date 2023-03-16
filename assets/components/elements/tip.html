@@ -1,4 +1,4 @@
-<div draggable="true" @dragstart="formData.dragManage.dragging = index" @dragend="formData.dragManage.dragging = null">
+<div draggable="true" @dragstart="$store.app.formData.dragManage.dragging = index" @dragend="$store.app.formData.dragManage.dragging = null">
     <style>
         @import "assets/css/app.css";
         .element-tip {
@@ -75,7 +75,7 @@
         <div class="element-tip">
             <div class="element-tip-content">
                 <div class="meta">
-                    <input type="radio" :value="index + 1" name="tip-select" x-model="formData.formElementSelect" />
+                    <input type="radio" :value="index + 1" name="tip-select" x-model="$store.app.formData.formElementSelect" />
                     <p class="element-number" x-text="'#' + (index + 1)"></p>
                 </div>
                 <dl>
@@ -106,10 +106,10 @@
                 </dl>
             </div>
             <div class="os-button-group">
-                <button type="button" class="os-button os-button-negative" @click="removeElement(index, formData)">Remove</button>
-                <button type="button" class="os-button os-button-affirmative" @click="addElement('text', index, formData)">Add</button>
+                <button type="button" class="os-button os-button-negative" @click="$store.app.removeElement(index, $store.app.formData)">Remove</button>
+                <button type="button" class="os-button os-button-affirmative" @click="$store.app.addElement('text', index, $store.app.formData)">Add</button>
             </div>
-            <p class="label-shadow" x-show.transition="formData.dragManage.dragging !== null" @dragenter.prevent="dragenter(index)" @dragleave="dragleave(index)">Drop here</p>
+            <p class="label-shadow" x-show.transition="formData.dragManage.dragging !== null" @dragenter.prevent="$store.app.dragenter(index)" @dragleave="$store.app.dragleave(index)">Drop here</p>
         </div>
     </label>
 </div>

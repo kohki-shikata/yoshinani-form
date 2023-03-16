@@ -22,20 +22,20 @@ import selectOneOnly from "./helpers/select_one_only.mjs"
 import watchChoices from "./helpers/watch_choices.mjs"
 
 document.addEventListener('alpine:init', () => {
-    Alpine.data('alpineCodebehind', () => ({
+    Alpine.store('app', {
         inputScreenSwitch: 'general',
         sendMethod: 'smtp',
         types: formElementTypes,
         setType: 'text',
         formData: {
             initialSetting,
+            formElements: [],
+            formElementSelect: 0,
             dragManage: {
                 dragging: null,
                 dropping: null,
                 timer: null
             },
-            formElements: [],
-            formElementSelect: 0,
         },
         autocompleteList,
         addElement,
@@ -44,7 +44,7 @@ document.addEventListener('alpine:init', () => {
         removeChoice,
         selectOneOnly,
         watchChoices,
-        drop() {
+        dropElements() {
             if (this.formData.dragManage.dragging !== null && this.formData.dragManage.dropping !== null) {
                 if (this.formData.dragManage.dragging < this.formData.dragManage.dropping) {
                     this.formData.formElements = [...this.formData.formElements.slice(0, this.formData.dragManage.dragging), ...this.formData.formElements.slice(this.formData.dragManage.dragging + 1, this.formData.dragManage.dropping + 1), this.formData.formElements[this.formData.dragManage.dragging], ...this.formData.formElements.slice(this.formData.dragManage.dropping + 1)];
@@ -69,7 +69,7 @@ document.addEventListener('alpine:init', () => {
                 this.formData.dragManage.dropping = null
             }
         },
-    }))
+    })
 
     Alpine.store('formView', {
         template: Twig.twig({
@@ -81,6 +81,32 @@ document.addEventListener('alpine:init', () => {
             const view = Twig.twig({ allowInlineIncludes: true, path: '../../views/page/input.html.twig' })
             return view.render({ form: 'form here', csrf_token: 'hogehoge' })
         }
+    })
+
+    Alpine.store('optionsSort', {
+        list: ['osaka', 'kyoto', 'kobe', 'nara', 'wakayama'],
+        oldIndex: null,
+        newIndex: null,
+        dropEffect() {
+            this.$event.dataTransfer.dropEffect = 'move'
+        },
+        sort() {
+            if (this.oldIndex < this.newIndex) {
+                this.list = [
+                    ...this.list.slice(0, this.oldIndex),
+                    ...this.list.slice(this.oldIndex + 1, this.newIndex + 1),
+                    this.list[this.oldIndex],
+                    ...this.list.slice(this.newIndex + 1)
+                ];
+            } else {
+                this.list = [
+                    ...this.list.slice(0, this.newIndex),
+                    this.list[this.oldIndex],
+                    ...this.list.slice(this.newIndex, this.oldIndex),
+                    ...this.list.slice(this.oldIndex + 1)
+                ]
+            }
+        },
     })
 
     Alpine.store('send', {

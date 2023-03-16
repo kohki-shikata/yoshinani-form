@@ -3,7 +3,7 @@
         @import "assets/css/app.css";
     </style>
     <div>
-        <template x-if="formData.formElements.length > 0 ? true : false">
+        <template x-if="$store.app.formData.formElements.length > 0 ? true : false">
             <div>
                 <x-component-wrapper x-component url="assets/components/elements/inline.html"></x-component-wrapper>
                 <x-component-wrapper x-component url="assets/components/elements/select.html"></x-component-wrapper>

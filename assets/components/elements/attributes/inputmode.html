@@ -9,7 +9,7 @@
     <div class="form-group vertical">
         <label for="detail-view-autocomplete">inputmode</label>
         <div class="os-select-wrapper">
-            <select id="detail-view-inputmode" class="os-select inputmode-select" x-model="formData.formElements[formData.formElementSelect - 1].inputmode">
+            <select id="detail-view-inputmode" class="os-select inputmode-select" x-model="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].inputmode">
                 <option value="" selected>---</option>
                 <option value="none">none</option>
                 <option value="text">text</option>

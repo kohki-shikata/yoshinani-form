@@ -44,7 +44,7 @@ textarea {
   border: 1px solid #ddd;
   font-size: 115%;
   padding: .125em .25em;
-  width: fit-content;
+  width: 100%;
 }
 
 :lang(ja) input + label,
@@ -193,10 +193,10 @@ fieldset.toggle-switch input[type="checkbox"]:checked + label:before {
   content: "有効"
 }
 
-fieldset:has(.os-check-radio-element) {
+/* fieldset:has(.os-check-radio-element) {
   display: flex;
   flex-flow: row;
-}
+} */
 
 fieldset:has(.os-check-radio-element) .os-check-radio-element {
   margin-right: 1em;

@@ -11,8 +11,8 @@
         }
     </style>
     <div class="os-check-radio-element">
-        <input type="hidden" id="readonly-false'" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="0" />
-        <input type="checkbox" id="readonly-true" x-model="formData.formElements[formData.formElementSelect - 1].readonly" value="1" />
+        <input type="hidden" id="readonly-false'" x-model="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].readonly" value="0" />
+        <input type="checkbox" id="readonly-true" x-model="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].readonly" value="1" />
         <label for="readonly-true">Is readonly</label>
     </div>
 </div>

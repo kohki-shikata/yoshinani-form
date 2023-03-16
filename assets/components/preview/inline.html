@@ -1,4 +1,4 @@
-<div class="form-group" x-show="element.type.match(/^(text|number|email|url|password)$/) ? true : false">
+<div class="form-group" x-show="element.type === 'text' || element.type === 'number' || element.type === 'email' || element.type === 'url' | element.type === 'password'">
     <style>
         @import "assets/css/app.css";
     </style>
