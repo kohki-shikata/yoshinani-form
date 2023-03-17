@@ -55,6 +55,7 @@ Alpine.store('app', {
             timer: null
         },
     },
+    price: 0,
     autocompleteList,
     addElement,
     removeElement,
@@ -107,6 +108,31 @@ Alpine.store('app', {
             ]
         }
     },
+    calcPrice() {
+        let price = 0
+        const unitPrice = 500;
+        this.$watch('formData.formElements', (newValue, oldValue) => {
+            const singleCount = this.formData.formElements.filter(element => {
+                return (element.type !== 'select' || element.type !== 'checkbox' || element.type !== 'radio')
+            }).length
+
+            const multipleCount = this.formData.formElements.filter(element => {
+                return (element.type === 'select' || element.type === 'checkbox' || element.type === 'radio')
+            }).map(element => element.choices).map(choices => Math.floor(choices.length / 10) + ((choices.length % 10) ? 1 : 0)).reduce((a, b) => { return a + b }, 0)
+            console.log(multipleCount)
+
+            const count = singleCount + multipleCount
+
+            if (count > 0 && count <= 5) {
+                this.price = 0
+            } else if (count > 5 && count <= 10) {
+                this.price = 5000
+            } else {
+                this.price = unitPrice * count
+            }
+
+        })
+    }
 })
 
 Alpine.store('formView', {
