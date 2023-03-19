@@ -24,9 +24,6 @@ class BuildForm {
       'debug' => true,
     ]);
     $this->twig->addExtension(new \Twig\Extension\DebugExtension());
-    @session_start();
-    // $_SESSION = [];
-    $this->twig->addGlobal('session', $_SESSION);
     $session_provider = new \EasyCSRF\NativeSessionProvider();
     $this->csrf = new \EasyCSRF\EasyCSRF($session_provider);
     $this->screen_setting = $form_data_array->screenSetting;
