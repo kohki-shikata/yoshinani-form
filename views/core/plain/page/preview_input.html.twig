@@ -1,0 +1,10 @@
+{% extends '/page/preview.html.twig' %}
+{% block content %}
+<h1>Contact form</h1>
+{{ include('/partial/step_navigation.html.twig') }}
+<form action="./confirm" method="POST">
+{{ form | raw }}
+<input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
+<button type="submit" class="os-button center">確認</button>
+</form>
+{% endblock %}

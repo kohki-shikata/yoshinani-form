@@ -1,0 +1,9 @@
+<div>
+    <style>
+        @import "assets/css/app.css";
+    </style>
+    <div>
+        <div x-html="previewRendered"></div>
+        <button type="button" class="os-button" @click="$store.app.getRenderedPreview()">Get Preview</button>
+    </div>
+</div>

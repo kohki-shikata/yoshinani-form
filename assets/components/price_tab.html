@@ -1,0 +1,23 @@
+<div>
+    <style>
+        @import "assets/css/app.css";
+        #price-tab {
+            width: 45vw;
+            height: 12.5vh;
+            background: #fff;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            border-radius: 50px 0 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <div id="price-tab" x-init="calcPrice() ">
+        <dl>
+            <dt>price:</dt>
+            <dd x-text="'¥' + price"></dd>
+        </dl>
+    </div>
+</div>

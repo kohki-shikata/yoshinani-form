@@ -15,7 +15,7 @@
 <body>
     <div x-data="$store.app">
         <x-component-wrapper x-component url="assets/components/header.html"></x-component-wrapper>
-        <form id="form-creator" action="./create_form.php" method="POST" @submit.prevent="$store.send.postData(formData)">
+        <form id="form-creator" action="./create_form.php" method="POST" @change="$store.app.getRenderedPreview()" @submit.prevent="$store.send.postData(formData)">
             <template x-if="inputScreenSwitch === 'general'">
               <x-component-wrapper x-component url="assets/components/common_settings.html"></x-component-wrapper>
             </template>
@@ -34,6 +34,7 @@
             </template>
         </form>
         <x-component-wrapper x-component url="assets/components/debug.html"></x-component-wrapper>
+        <x-component-wrapper x-component url="assets/components/price_tab.html"></x-component-wrapper>
     </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
