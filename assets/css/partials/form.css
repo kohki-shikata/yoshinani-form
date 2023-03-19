@@ -47,6 +47,16 @@ textarea {
   width: 100%;
 }
 
+input[type="text"][size],
+input[type="email"][size],
+input[type="password"][size],
+input[type="tel"][size],
+input[type="number"][size],
+input[type="url"][size],
+textarea[cols] {
+  width: fit-content;
+}
+
 :lang(ja) input + label,
 :lang(ja) select + label,
 :lang(ja) textarea + label {
