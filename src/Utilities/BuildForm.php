@@ -108,10 +108,10 @@ class BuildForm {
       $template = $this->twig->load('/partial/select.html.twig');
       $data = [
         'type' => $type,
-        'label' => $data->label,
-        'name' => $data->name,
-        'id' => $data->id,
-        'choices' => $data->choices,
+        'label' => isset($data->label) ? $data->label : $data['label'],
+        'name' => isset($data->name) ? $data->name : $data['name'],
+        'id' => isset($data->id) ? $data->id : $data['id'],
+        'choices' => isset($data->choices) ? $data->choices : $data['choices'],
       ];
       return $template->render($data);
     }
