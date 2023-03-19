@@ -49,14 +49,26 @@ class Confirm extends BuildForm {
       }
     }
     if(!$val->validate()) {
+      // var_dump($val_data);
       foreach($this->form_elements as $element) {
         foreach($element as $key => $value) {
           if($key === "name" && isset($val->errors()[$value])) {
-            $val_data[$element->name] .= '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
-          }
+            if(gettype(isset($val_data[$element->name])) === 'array') {
+              $glued_array;
+              foreach($val_data[$element->name] as $item) {
+                global $glued_array;
+                $glued_array = implode(',', $item);
+              }
+              $val_data[$element->name] = $glued_array;
+              $val_data[$element->name] .= '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
+            } else {
+              $val_data[$element->name] = '';
+              $val_data[$element->name] .= '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
+            }
         }
       }
     }
+  }
 
     return $val_data;
   }
@@ -64,8 +76,10 @@ class Confirm extends BuildForm {
   public function error_flag() {
     $check_errors = [];
     foreach($this->formData as $key => $value) {
-      $flag = preg_match('/"error-message"/', $value);
-      array_push($check_errors, $flag);
+      if(gettype($value) === 'string') {
+        $flag = preg_match('/"error-message"/', $value);
+        array_push($check_errors, $flag);
+      }
     }
     return in_array(true, $check_errors) ? true : false;
   }
@@ -84,8 +98,24 @@ class Confirm extends BuildForm {
       $template = $this->twig->load('/page/confirm.html.twig');
       $labels = $this->formData['label'];
       unset($this->formData['label']);
+
+      // Multiple select value array to string.
+      $formData = array();
+      foreach($this->formData as $key => $value) {
+        global $formData;
+        if(gettype($value) === 'array') {
+          $value = implode(',', $value);
+        }
+        if(empty($value)) {
+          $value = '(Not input)';
+        }
+        $formData[$key] = $value;
+      }
+
+      // var_dump($formData);
+
       $data = [
-        'data' => $this->formData,
+        'data' => $formData,
         'state' => 'confirm',
         'labels' => isset($labels) ? $labels : null,
         'form_settings' => $this->initial_settings,

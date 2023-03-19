@@ -1,4 +1,4 @@
-<div id="select-detail-view" x-show="formData.formElements[formData.formElementSelect - 1].type.match(/^select$/) ? true : false">
+<div id="select-detail-view" x-show="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type === 'select'">
     <style>
         @import "assets/css/app.css";
     </style>

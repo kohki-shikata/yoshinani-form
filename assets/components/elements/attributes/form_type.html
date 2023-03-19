@@ -19,7 +19,7 @@
         <dl>
             <div>
                 <dt>type:</dt>
-                <dd x-text="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].type : ''"></dd>
+                <dd x-text="$store.app.formData.formElements.length > 0 ? $store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type : ''"></dd>
             </div>
         </dl>
     </div>

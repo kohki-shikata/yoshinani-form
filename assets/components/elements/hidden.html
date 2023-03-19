@@ -1,18 +1,9 @@
-<div class="formElement formInline" id="hidden-detail-view" x-show="formData.formElements.length > 0 && formData.formElements[formData.formElementSelect - 1].type === 'hidden'">
+<div class="formElement formInline" id="hidden-detail-view" x-show="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].type === 'hidden'">
     <style>
         @import "assets/css/app.css";
     </style>
     <x-component-wrapper x-component url="assets/components/elements/attributes/form_type.html"></x-component-wrapper>
-    <div class="form-group vertical">
-        <label for="hidden-detail-view-name">name</label>
-        <input type="text" id="hidden-detail-view-id" x-model="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].name : ''" required />
-    </div>
-    <div class="form-group vertical">
-        <label for="hidden-detail-view-id">id</label>
-        <input type="text" id="hidden-detail-view-id" x-model="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].id : ''" />
-    </div>
-    <div class="form-group vertical">
-        <label for="hidden-detail-view-value">value</label>
-        <input type="text" id="hidden-detail-view-value" x-model="formData.formElements.length > 0 ? formData.formElements[formData.formElementSelect - 1].value : ''" />
-    </div>
+    <x-component-wrapper x-component url="assets/components/elements/attributes/name.html"></x-component-wrapper>
+    <x-component-wrapper x-component url="assets/components/elements/attributes/label.html"></x-component-wrapper>
+    <x-component-wrapper x-component url="assets/components/elements/attributes/id.html"></x-component-wrapper>
 </div>

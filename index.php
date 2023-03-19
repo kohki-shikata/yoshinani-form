@@ -43,5 +43,20 @@ $router->get('/complete', function() {
   echo $mail->render_complete();
 });
 
+$router->post('/api/preview', function() {
+  $preview = new \App\Utilities\Preview;
+  echo $preview->render();
+});
+
+$router->get('/test/views_path', function() {
+  $bf = new \App\Utilities\BuildForm;
+  echo $bf->views_path();
+});
+
+$router->get('/test/views_path/{theme_name}', function($theme_name) {
+  $bf = new \App\Utilities\BuildForm;
+  echo $bf->views_path($theme_name);
+});
+
 // Run Router
 $router->run();
