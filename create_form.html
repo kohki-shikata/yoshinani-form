@@ -15,7 +15,7 @@
 <body>
     <div x-data="$store.app">
         <x-component-wrapper x-component url="assets/components/header.html"></x-component-wrapper>
-        <form id="form-creator" action="./create_form.php" method="POST" @change="$store.app.getRenderedPreview()" @submit.prevent="$store.send.postData(formData)">
+        <form id="form-creator" action="./create_form.php" method="POST" x-init="elementObserve" @submit.prevent="$store.send.postData(formData)">
             <template x-if="inputScreenSwitch === 'general'">
               <x-component-wrapper x-component url="assets/components/common_settings.html"></x-component-wrapper>
             </template>

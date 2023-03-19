@@ -42,7 +42,7 @@ class Preview extends BuildForm {
       exit;
     }
 
-    $template = $this->twig->load('/page/input.html.twig');
+    $template = $this->twig->load('/page/preview_input.html.twig');
     $data = [
       'data' => $postData['formData'],
       'state' => 'input',

@@ -65,6 +65,11 @@ Alpine.store('app', {
     removeChoice,
     selectOneOnly,
     watchChoices,
+    elementObserve() {
+        this.$watch('formData', (newValue, oldValue) => {
+            this.getRenderedPreview()
+        })
+    },
     async getRenderedPreview() {
         const preview = await (await fetch('/api/preview', {
                 header: {
