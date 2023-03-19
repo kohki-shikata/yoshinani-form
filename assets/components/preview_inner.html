@@ -2,13 +2,26 @@
     <style>
         @import "assets/css/app.css";
     </style>
-    <template x-for="element in formData.formElements">
-      <div>
-          <x-component-wrapper x-component url="assets/components/preview/inline.html"></x-component-wrapper>
-          <x-component-wrapper x-component url="assets/components/preview/check_radio.html"></x-component-wrapper>
-          <x-component-wrapper x-component url="assets/components/preview/select.html"></x-component-wrapper>
-          <x-component-wrapper x-component url="assets/components/preview/textarea.html"></x-component-wrapper>
-          <x-component-wrapper x-component url="assets/components/preview/hidden.html"></x-component-wrapper>
-      </div>
-    </template>
+    <div>
+        <!-- <ul class="switch-group-wrapper">
+            <li class="switch"><input type="radio" name="previewMode" value="realtime" x-model="$store.app.previewMode" id="switch-preview-realtime" checked /><label for="switch-preview-realtime">Realtime</label></li>
+            <li class="switch"><input type="radio" name="previewMode" value="rendered" x-model="$store.app.previewMode" id="switch-preview-rendered" /><label for="switch-preview-rendered">Rendered</label></li>
+        </ul> -->
+        <!-- <template x-if="$store.app.previewMode === 'realtime'">
+            <template x-for="element in formData.formElements">
+                <div>
+                    <x-component-wrapper x-component url="assets/components/preview/inline.html"></x-component-wrapper>
+                    <x-component-wrapper x-component url="assets/components/preview/check_radio.html"></x-component-wrapper>
+                    <x-component-wrapper x-component url="assets/components/preview/select.html"></x-component-wrapper>
+                    <x-component-wrapper x-component url="assets/components/preview/textarea.html"></x-component-wrapper>
+                    <x-component-wrapper x-component url="assets/components/preview/hidden.html"></x-component-wrapper>
+                </div>
+            </template>
+        </template> -->
+        <!-- <template x-if="$store.app.previewMode === 'rendered'"> -->
+        <!-- <template> -->
+        <x-component-wrapper x-component url="assets/components/preview_rendered.html"></x-component-wrapper>
+        <!-- </template> -->
+
+    </div>
 </div>

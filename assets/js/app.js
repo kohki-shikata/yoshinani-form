@@ -45,6 +45,7 @@ Alpine.store('app', {
     sendMethod: 'smtp',
     types: formElementTypes,
     setType: 'text',
+    previewMode: 'realtime',
     formData: {
         initialSetting,
         formElements: [],
@@ -55,6 +56,7 @@ Alpine.store('app', {
             timer: null
         },
     },
+    previewRendered: '',
     price: 0,
     autocompleteList,
     addElement,
@@ -63,6 +65,25 @@ Alpine.store('app', {
     removeChoice,
     selectOneOnly,
     watchChoices,
+    async getRenderedPreview() {
+        const preview = await (await fetch('/api/preview', {
+                header: {
+                    'Content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    formData: this.$store.app.formData
+                }),
+                method: 'POST',
+            })).text()
+            // console.log(preview)
+        this.$store.app.previewRendered = preview
+    },
+    async loadSettings() {
+        const settings = await (await fetch('../../form_data.json')).json()
+        console.log(settings)
+        this.$store.app.initialSetting = settings.initialSetting
+        this.$store.app.formData.formElements = settings.formElements
+    },
     dropElements() {
         if (this.formData.dragManage.dragging !== null && this.formData.dragManage.dropping !== null) {
             if (this.formData.dragManage.dragging < this.formData.dragManage.dropping) {
