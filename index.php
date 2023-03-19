@@ -43,5 +43,10 @@ $router->get('/complete', function() {
   echo $mail->render_complete();
 });
 
+$router->post('/api/preview', function() {
+  $preview = new \App\Utilities\Preview;
+  echo $preview->render();
+});
+
 // Run Router
 $router->run();

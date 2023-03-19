@@ -33,27 +33,27 @@ class BuildForm {
   }
 
   public function inline_text_box($data) {
-    $type = $data->type;
+    $type = isset($data->type) ? $data->type : $data['type'];
     if($type === 'text' || $type === 'number' || $type === 'password' || $type === 'email' || $type === 'url') {
       $template = $this->twig->load('/partial/inline_text.html.twig');
       $data = [
         'type' => $type,
-        'label' => $data->label,
-        'name' => $data->name,
-        'id' => $data->id,
-        'value' => $data->value,
-        'placeholder' => $data->placeholder,
-        'pattern' => $data->pattern,
-        'required' => $data->required,
-        'readonly' => $data->readonly,
-        'disabled' => $data->disabled,
+        'label' => isset($data->label) ? $data->label : $data['label'],
+        'name' => isset($data->name) ? $data->name : $data['name'],
+        'id' => isset($data->id) ? $data->id : $data['id'],
+        'value' => isset($data->value) ? $data->value : $data['value'],
+        'placeholder' => isset($data->placeholder) ? $data->placeholder : $data['placeholder'],
+        'pattern' => isset($data->pattern) ? $data->pattern : $data['pattern'],
+        'required' => isset($data->required) ? $data->required : $data['required'],
+        'readonly' => isset($data->readonly) ? $data->readonly : $data['readonly'],
+        'disabled' => isset($data->disabled) ? $data->disabled : $data['disabled'],
       ];
       return $template->render($data);
     }
   }
 
   public function hidden($data) {
-    $type = $data->type;
+    $type = isset($data->type) ? $data->type : $data['type'];
     if($type === 'hidden') {
       $template = $this->twig->load('/partial/hidden.html.twig');
       $data = [
@@ -67,7 +67,7 @@ class BuildForm {
   }
 
   public function check_radio($data) {
-    $type = $data->type;
+    $type = isset($data->type) ? $data->type : $data['type'];
     if($type === 'checkbox' || $type === 'radio') {
       $template = $this->twig->load('/partial/check_radio.html.twig');
       $data = [
@@ -83,7 +83,7 @@ class BuildForm {
   }
 
   public function select($data) {
-    $type = $data->type;
+    $type = isset($data->type) ? $data->type : $data['type'];
     if($type === 'select') {
       $template = $this->twig->load('/partial/select.html.twig');
       $data = [
@@ -98,7 +98,7 @@ class BuildForm {
   }
 
   public function textarea($data) {
-    $type = $data->type;
+    $type = isset($data->type) ? $data->type : $data['type'];
     if($type === 'textarea') {
       $template = $this->twig->load('/partial/textarea.html.twig');
       $data = [
