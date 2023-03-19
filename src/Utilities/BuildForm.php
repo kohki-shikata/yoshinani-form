@@ -17,7 +17,7 @@ class BuildForm {
     $form_data_array = json_decode($form_data);
     $this->initial_settings = $form_data_array->initialSetting;
     $this->form_elements = $form_data_array->formElements;
-    $this->loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../../views');
+    $this->loader = new \Twig\Loader\FilesystemLoader($this->views_path());
     $this->twig = new \Twig\Environment($this->loader);
     $session_provider = new \EasyCSRF\NativeSessionProvider();
     $this->csrf = new \EasyCSRF\EasyCSRF($session_provider);
@@ -30,6 +30,24 @@ class BuildForm {
     
     return $token;
 
+  }
+
+  public function views_path($theme_name = null) {
+    $views_path = __DIR__ . '/../../views';
+    if($theme_name !== null) {
+      $users_path = $views_path . '/user/' . $theme_name;
+      if(file_exists($users_path)) {
+        return $users_path;
+      } else {
+        if($theme_name === 'plain' || $theme_name === 'bootstrap5') {
+          $core_path = $views_path . '/core/' . $theme_name;
+          return $core_path;
+        } else {
+          die('Invalid views name');
+        }
+      }
+    }
+      return $views_path . '/core/plain';
   }
 
   public function inline_text_box($data) {
