@@ -14,9 +14,9 @@
 @import "./partials/table.css";
 @import "./partials/messages.css";
 
-html {
+/* html {
   overflow: hidden;
-}
+} */
 
 :root {
   --main-bg-color: #489bf8;
