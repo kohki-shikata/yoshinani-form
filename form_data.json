@@ -137,7 +137,7 @@
             "type": "select",
             "name": "meeting-time",
             "id": "meeting-time",
-            "title": "面会希望時間帯",
+            "label": "面会希望時間帯",
             "choices": [{
                     "text": "平日午前",
                     "value": "businessday-am",
@@ -160,6 +160,8 @@
                 }
             ],
             "required": false,
+            "readonly": false,
+            "disabled": false,
             "isMultiple": true
         },
         {
