@@ -224,7 +224,7 @@ class BuildForm {
       $template = $this->twig->load('/partial/select.html.twig');
       $data = [
         'type' => $type,
-        'label' => isset($data->label) ? $data->label : $data['label'],
+        'title' => isset($data->label) ? $data->label : $data['title'],
         'name' => isset($data->name) ? $data->name : $data['name'],
         'id' => isset($data->id) ? $data->id : $data['id'],
         'choices' => isset($data->choices) ? $data->choices : $data['choices'],
