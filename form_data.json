@@ -134,6 +134,37 @@
             "isMultiSelect": true
         },
         {
+            "type": "select",
+            "name": "meeting-time",
+            "id": "meeting-time",
+            "label": "面会希望時間帯",
+            "choices": [{
+                    "text": "平日午前",
+                    "value": "businessday-am",
+                    "selected": false
+                },
+                {
+                    "text": "平日午後",
+                    "value": "businessday-pm",
+                    "selected": false
+                },
+                {
+                    "text": "平日夜間",
+                    "value": "businessday-night",
+                    "selected": false
+                },
+                {
+                    "text": "土日祝日",
+                    "value": "holiday",
+                    "selected": false
+                }
+            ],
+            "required": false,
+            "readonly": false,
+            "disabled": false,
+            "isMultiple": true
+        },
+        {
             "type": "textarea",
             "inputmode": "text",
             "value": "",

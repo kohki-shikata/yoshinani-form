@@ -86,7 +86,9 @@ const addElement = (type, currentIndex, formData) => {
                 selected: false,
             }],
             required: false,
-            isSelect: true,
+            readonly: false,
+            disabled: false,
+            isMultiple: false,
         })
         formData.formElementSelect = currentIndex + 1
     } else if (hidden.test(type)) {

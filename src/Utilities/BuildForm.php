@@ -228,6 +228,10 @@ class BuildForm {
         'name' => isset($data->name) ? $data->name : $data['name'],
         'id' => isset($data->id) ? $data->id : $data['id'],
         'choices' => isset($data->choices) ? $data->choices : $data['choices'],
+        'isMultiple' => isset($data->isMultiple) ? $data->isMultiple : $data['isMultiple'],
+        'required' => isset($data->required) ? $data->required : $data['required'],
+        'readonly' => isset($data->readonly) ? $data->readonly : $data['readonly'],
+        'disabled' => isset($data->disabled) ? $data->disabled : $data['disabled'],
       ];
       return $template->render($data);
     }

@@ -1,0 +1,22 @@
+<div>
+    <style>
+        @import "assets/css/app.css";
+        [type="checkbox"] {
+            margin-right: -.5em;
+        }
+        
+        input[type="checkbox"]+label {
+            font-size: 75%;
+            letter-spacing: -.05em;
+        }
+        
+        .os-check-radio-element {
+            width: auto;
+        }
+    </style>
+    <div class="os-check-radio-element">
+        <input type="hidden" id="multiple-false" x-model="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].isMultiple" value="0" />
+        <input type="checkbox" id="multiple-true" x-model="$store.app.formData.formElements[$store.app.formData.formElementSelect - 1].isMultiple" value="1" />
+        <label for="multiple-true">Is multiple</label>
+    </div>
+</div>
