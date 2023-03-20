@@ -28,6 +28,9 @@ class Preview extends BuildForm {
   }
 
   public function render() {
+
+    // Check whitelist of hosts
+    $this->check_host();
     
     try {
       $postData = json_decode(file_get_contents("php://input"), true, 512, JSON_THROW_ON_ERROR);

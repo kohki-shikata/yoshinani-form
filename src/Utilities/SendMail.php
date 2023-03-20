@@ -54,6 +54,8 @@ class SendMail extends BuildForm {
   }
 
   public function sendMail() {
+    // check host
+    $this->check_host();
     try {
       session_start();
       if($this->screen_setting === 'confirm') {

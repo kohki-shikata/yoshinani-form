@@ -33,10 +33,18 @@ class Confirm extends BuildForm {
 
   public function render() {
     try {
+      // Check host whitelist
+      $this->check_host();
+
+      // Session stuff
       session_start();
       $this->csrf->check('my_token', $this->formData['csrf_token']);
       unset($this->formData['csrf_token']);
+
+      // Initiate template
       $template = $this->twig->load('/page/confirm.html.twig');
+      
+      // Initiate labels if they exist
       $labels = $this->formData['label'];
       unset($this->formData['label']);
 
