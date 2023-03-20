@@ -30,6 +30,22 @@ class BuildForm {
     $this->screen_setting = $form_data_array->screenSetting;
   }
 
+  public function array_to_string($data) {
+      // Multiple select value array to string.
+      $formData = array();
+      foreach($data as $key => $value) {
+        global $formData;
+        if(gettype($value) === 'array') {
+          $value = implode(',', $value);
+        }
+        if(empty($value)) {
+          $value = '(Not input)';
+        }
+        $formData[$key] = $value;
+      }
+      return $formData;
+  }
+
   public function check_host() {
     if(!isset($_SERVER['HTTP_REFERER'])) {
       die('Coundn\'t get Refferer');

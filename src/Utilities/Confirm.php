@@ -48,23 +48,13 @@ class Confirm extends BuildForm {
       $labels = $this->formData['label'];
       unset($this->formData['label']);
 
-      // Multiple select value array to string.
-      $formData = array();
-      foreach($this->formData as $key => $value) {
-        global $formData;
-        if(gettype($value) === 'array') {
-          $value = implode(',', $value);
-        }
-        if(empty($value)) {
-          $value = '(Not input)';
-        }
-        $formData[$key] = $value;
-      }
+      // Input Array data to String
+      $stringified_data = $this->array_to_string($this->formData);
 
       // var_dump($formData);
 
       $data = [
-        'data' => $formData,
+        'data' => $stringified_data,
         'state' => 'confirm',
         'labels' => isset($labels) ? $labels : null,
         'form_settings' => $this->initial_settings,
