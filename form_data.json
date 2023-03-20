@@ -6,7 +6,7 @@
         "stepNavigation": true,
         "formElementSelect": 0,
         "recipientMailSubject": "お問い合わせがありました",
-        "defined_hosts": ["example.com"]
+        "defined_hosts": ["localhost"]
     },
     "screenSetting": "confirm",
     "dragManage": {
