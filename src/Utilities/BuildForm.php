@@ -31,6 +31,7 @@ class BuildForm {
   }
 
   public function check_host() {
+
     $host = parse_url($_SERVER['HTTP_REFERER'])['host'];
     
     $defined_hosts = isset($this->initial_settings->defined_hosts) ? $this->initial_settings->defined_hosts : [];
@@ -45,6 +46,7 @@ class BuildForm {
       var_dump($i);
       var_dump(count($defined_hosts));
     }
+
   }
 
   public function validate($val_data, $type = 'confirm') {
