@@ -8,7 +8,6 @@
         "recipientMailSubject": "お問い合わせがありました",
         "defined_hosts": ["localhost"]
     },
-    "screenSetting": "complete",
     "screenSetting": "confirm",
     "dragManage": {
         "dragging": null,
