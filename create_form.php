@@ -33,7 +33,7 @@ try {
   unset($data['initialSetting']['recipientAddress']);
   unset($data['initialSetting']['recipientName']);
 
-  $json = json_encode($data);
+  $json = json_encode($data, JSON_UNESCAPED_UNICODE);
 
   // echo '<pre>';
   // echo $json->formElements;
