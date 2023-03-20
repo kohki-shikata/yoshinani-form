@@ -13,6 +13,7 @@ class BuildForm {
   private $loader;
   protected $twig;
   protected $csrf;
+  protected $screen_setting;
 
   function __construct() {
     $form_data = file_get_contents(__DIR__ . '/../../form_data.json');
@@ -47,6 +48,7 @@ class BuildForm {
         // var_dump($i);
         // var_dump(count($defined_hosts));
       }
+
   }
 
   public function validate($val_data, $type = 'confirm') {
