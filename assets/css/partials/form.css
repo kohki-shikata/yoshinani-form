@@ -57,6 +57,17 @@ textarea[cols] {
   width: fit-content;
 }
 
+input[type="text"]:invalid:required,
+input[type="email"]:invalid:required,
+input[type="password"]:invalid:required,
+input[type="tel"]:invalid:required,
+input[type="number"]:invalid:required, 
+textarea:invalid:required,
+select:invalid:required,
+fieldset:has(*:invalid:required) {
+  border: 1px solid red;
+}
+
 :lang(ja) input + label,
 :lang(ja) select + label,
 :lang(ja) textarea + label {
