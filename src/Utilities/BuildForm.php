@@ -4,6 +4,8 @@ namespace App\Utilities;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
+use Valitron\Validator as Validator;
+
 class BuildForm {
   
   protected $initial_settings;
@@ -11,6 +13,7 @@ class BuildForm {
   private $loader;
   protected $twig;
   protected $csrf;
+  protected $screen_setting;
 
   function __construct() {
     $form_data = file_get_contents(__DIR__ . '/../../form_data.json');
@@ -18,14 +21,125 @@ class BuildForm {
     $this->initial_settings = $form_data_array->initialSetting;
     $this->form_elements = $form_data_array->formElements;
     $this->loader = new \Twig\Loader\FilesystemLoader($this->views_path());
-    $this->twig = new \Twig\Environment($this->loader);
+    $this->twig = new \Twig\Environment($this->loader, [
+      'debug' => true,
+    ]);
+    $this->twig->addExtension(new \Twig\Extension\DebugExtension());
     $session_provider = new \EasyCSRF\NativeSessionProvider();
     $this->csrf = new \EasyCSRF\EasyCSRF($session_provider);
+    $this->screen_setting = $form_data_array->screenSetting;
+  }
+
+  public function check_host() {
+    $host = parse_url($_SERVER['HTTP_REFERER'])['host'];
+    
+    $defined_hosts = isset($this->initial_settings->defined_hosts) ? $this->initial_settings->defined_hosts : [];
+    $i = 0;
+    foreach($defined_hosts as $df) {
+      if(!stristr($host, $df)) {
+        $i++;
+      }
+      if($i === count($defined_hosts)) {
+        die('Not allowed host.');
+      }
+      var_dump($i);
+      var_dump(count($defined_hosts));
+    }
+  }
+
+  public function validate($val_data, $type = 'confirm') {
+    $_SESSION = [];
+    Validator::lang('ja');
+
+    $val = new Validator($val_data);
+
+    foreach($this->form_elements as $element) {
+      foreach($element as $key => $value) {
+        if($key === "required" && $value === true) {
+          $val->rule('required', $element->name)->message('{field} is required.');
+        }
+        if($key === "type" && $value === "email") {
+          $val->rule('email', $element->name)->message('{field} value is not collect address pattern.');
+        }
+        if($key === "maxlength" && $value) {
+          $val->rule('lengthMax', $element->name, $value)->message("Please write within {$value} characters.");
+        }
+        if($key === "minlength" && $value) {
+          $val->rule('lengthMin', $element->name, $value)->message("Please write at least {$value} characters.");
+        }
+        if($key === "pattern" && $value) {
+          $val->rule('regex', $element->name, "/" . $value . "/")->message("Invalid syntax.");
+        }
+      }
+    }
+    if(!$val->validate()) {
+      if($type === 'confirm') {
+        // var_dump($val_data);
+        foreach($this->form_elements as $element) {
+          foreach($element as $key => $value) {
+            if($key === "name" && isset($val->errors()[$value])) {
+              if(gettype(isset($val_data[$element->name])) === 'array') {
+                $glued_array;
+                foreach($val_data[$element->name] as $item) {
+                  global $glued_array;
+                  $glued_array = implode(',', $item);
+                }
+                $val_data[$element->name] = $glued_array;
+                $val_data[$element->name] .= '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
+              } else {
+                $val_data[$element->name] = '';
+                $val_data[$element->name] .= '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
+              }
+            }
+          }
+        }
+      } else {
+        foreach($this->form_elements as $element) {
+          foreach($element as $key => $value) {
+            if($key === "name" && isset($val->errors()[$value])) {
+              if(gettype(isset($val_data[$element->name])) === 'array') {
+                // $glued_array;
+                // foreach($val_data[$element->name] as $item) {
+                //   global $glued_array;
+                //   $glued_array = implode(',', $item);
+                // }
+                // $val_data[$element->name] = $glued_array;
+                $val_data[$element->name] = '';
+                $val_data[$element->name] = '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
+              } else {
+                $val_data[$element->name] = '';
+                $val_data[$element->name] = '<p class="error-message">' . $val->errors()[$value][0] . '</p>';
+              }
+            }
+          }
+        }
+
+        $_SESSION['flash']['message'] = $val_data;
+
+        header('Location: /');
+        var_dump($val_data);
+        exit;
+        // var_dump($val->errors());
+      }
+    }
+
+    return $val_data;
+  }
+
+  public function error_flag() {
+    $check_errors = [];
+    foreach($this->formData as $key => $value) {
+      if(gettype($value) === 'string') {
+        $flag = preg_match('/"error-message"/', $value);
+        array_push($check_errors, $flag);
+      }
+    }
+    return in_array(true, $check_errors) ? true : false;
   }
 
   public function output_csrf_token() {
 
-    session_start();
+    // session_start();
     $token = $this->csrf->generate('my_token');
     
     return $token;
@@ -96,7 +210,7 @@ class BuildForm {
         'required' => isset($data->required) ? $data->required: $data['required'],
         'name' => isset($data->name) ? $data->name : $data['name'],
         'id' => isset($data->id) ? $data->id : $data['id'],
-        'choices' => isset($data->choices) ? $data->choice : $data['choices'],
+        'choices' => isset($data->choices) ? $data->choices : $data['choices'],
       ];
       return $template->render($data);
     }

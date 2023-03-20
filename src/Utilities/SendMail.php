@@ -28,7 +28,12 @@ class SendMail extends BuildForm {
 
   public function __construct() {
     parent::__construct();
-    $this->formData = $_POST; // TODO: Need validation.
+    if($this->screen_setting === 'confirm') {
+      $this->formData = $this->validate($_POST, 'confirm');
+    } else {
+      $this->formData = $this->validate($_POST, 'not_confirm');
+    }
+    
     
     $this->mail = new PHPMailer(true);
 
@@ -42,6 +47,7 @@ class SendMail extends BuildForm {
     $data = [
       // 'data' => $this->formData,
       'state' => 'complete',
+      'screen_setting' => $this->screen_setting,
       'form_settings' => $this->initial_settings,
     ];
     return $template->render($data);
@@ -50,7 +56,12 @@ class SendMail extends BuildForm {
   public function sendMail() {
     try {
       session_start();
-      $this->csrf->check('new_token', $this->formData['csrf_token']);
+      if($this->screen_setting === 'confirm') {
+        $this->csrf->check('new_token', $this->formData['csrf_token']);
+      } else {
+        $this->csrf->check('my_token', $this->formData['csrf_token']);
+      }
+      
       unset($this->formData['csrf_token']);
       try {
         // Mail server settings
@@ -101,6 +112,7 @@ class SendMail extends BuildForm {
       
         // echo $body;
         $this->mail->send(); // Send this message!
+        session_destroy();
       
         // redirect to complete screen
         header("Location:/complete");

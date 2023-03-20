@@ -2,9 +2,10 @@
 {% block content %}
 <h1>Contact form</h1>
 {{ include('/partial/step_navigation.html.twig') }}
-<form action="./confirm" method="POST">
+<form action="{{action}}" method="POST">
+{{ dump(session.flash.message) }}
 {{ form | raw }}
 <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
-<button type="submit" class="os-button center">確認</button>
+<button type="submit" class="os-button center">{{ button_label }}</button>
 </form>
 {% endblock %}

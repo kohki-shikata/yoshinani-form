@@ -1,21 +1,36 @@
 {% if form_settings.stepNavigation %}
-<nav class="os-step">
-  <ol class="os-step-list">
-    {% if state == "input" %}
-      <li id="os-step-input" class="os-current">Input</li>
-      <li id="os-step-confirm" class="os-notyet">Confirm</li>
-      <li id="os-step-complete" class="os-notyet">Complete</li>
-    {% endif %}
-    {% if state == "confirm" %}
-      <li id="os-step-input" class="os-finished">Input</li>
-      <li id="os-step-confirm" class="os-current">Confirm</li>
-      <li id="os-step-complete" class="os-notyet">Complete</li>
-    {% endif %}
-    {% if state == "complete" %}
-      <li id="os-step-input" class="os-finished">Input</li>
-      <li id="os-step-confirm" class="os-finished">Confirm</li>
-      <li id="os-step-complete" class="os-current">Complete</li>
-    {% endif %}
-  </ol>
-</nav>
+  {% if screen_setting == 'confirm' %}
+  <nav class="os-step">
+    <ol class="os-step-list">
+      {% if state == "input" %}
+        <li id="os-step-input" class="os-current">Input</li>
+        <li id="os-step-confirm" class="os-notyet">Confirm</li>
+        <li id="os-step-complete" class="os-notyet">Complete</li>
+      {% endif %}
+      {% if state == "confirm" %}
+        <li id="os-step-input" class="os-finished">Input</li>
+        <li id="os-step-confirm" class="os-current">Confirm</li>
+        <li id="os-step-complete" class="os-notyet">Complete</li>
+      {% endif %}
+      {% if state == "complete" %}
+        <li id="os-step-input" class="os-finished">Input</li>
+        <li id="os-step-confirm" class="os-finished">Confirm</li>
+        <li id="os-step-complete" class="os-current">Complete</li>
+      {% endif %}
+    </ol>
+  </nav>
+  {% elseif screen_setting == 'complete' %}
+  <nav class="os-step">
+    <ol class="os-step-list">
+      {% if state == "input" %}
+        <li id="os-step-input" class="os-current">Input</li>
+        <li id="os-step-complete" class="os-notyet">Complete</li>
+      {% endif %}
+      {% if state == "complete" %}
+        <li id="os-step-input" class="os-finished">Input</li>
+        <li id="os-step-complete" class="os-current">Complete</li>
+      {% endif %}
+    </ol>
+  </nav>
+  {% endif %}
 {% endif %}

@@ -77,10 +77,10 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | Use PHP built-in mail function(not recommended) | coming soon |
 | Use SMTP(recommended) | ✅ |
 | Selective mail function or SMTP | coming soon |
-| Multiple recipient | coming 0.4.0 [^5] |
+| Multiple recipient | coming soon [^5] |
 | Set recipient name | ✅ |
 | Set mail title | WIP |
-| Auto reply to input user | coming 0.3.0 |
+| Auto reply to input user | coming soon |
 | HTML mail | WIP [^6] |
 
 [^5]: Currently, single user can recieve a message.
@@ -97,7 +97,7 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | Simple HTML and CSS markup | ✅ |
 | Bootstrap 5 | coming soon |
 
-[^7]: Editable template function is already implemented. It will be updated to overridable default template. Always user can back to default template.
+[^7]: Editable template function and overriding logic is already implemented, but fronend is not yet. Always user can back to default template.
 
 ### Conditions
 | Feature  | Status |
@@ -123,8 +123,8 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | Required and optional label | coming soon |
 | Step navigation | ✅ [^9] |
 | Descriptionn field (optional) | coming soon |
-| Assist messages (optional) | coming 0.3.0 |
-| Error messages (optional) | coming 0.3.0 |
+| Assist messages (optional) | coming soon |
+| Error messages (optional) | coming soon |
 | Valid symbol (optional) | coming soon |
 | Text length counter (optional) | coming soon |
 | Text length meter (optional) [^10] | coming soon |
@@ -155,7 +155,7 @@ YOSHINANI Form is developed with PHP and Composer. No use specific framework, bu
 | input type url  | ✅  |
 | input type password  | ✅  |
 | input type tel  | ✅  |
-| input type checkbox  | coming 0.3.0  |
+| input type checkbox  | ✅ |
 | input type radio  | ✅  |
 | select | ✅ [^11]  |
 | textarea | ✅  |
