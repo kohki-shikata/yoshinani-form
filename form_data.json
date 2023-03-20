@@ -5,9 +5,11 @@
         "autoreply": false,
         "stepNavigation": true,
         "formElementSelect": 0,
-        "recipientMailSubject": "お問い合わせがありました"
+        "recipientMailSubject": "お問い合わせがありました",
+        "defined_hosts": ["example.com"]
     },
     "screenSetting": "complete",
+    "screenSetting": "confirm",
     "dragManage": {
         "dragging": null,
         "dropping": null,

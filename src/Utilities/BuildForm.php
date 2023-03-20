@@ -13,6 +13,7 @@ class BuildForm {
   private $loader;
   protected $twig;
   protected $csrf;
+  protected $screen_setting;
 
   function __construct() {
     $form_data = file_get_contents(__DIR__ . '/../../form_data.json');
@@ -24,12 +25,28 @@ class BuildForm {
       'debug' => true,
     ]);
     $this->twig->addExtension(new \Twig\Extension\DebugExtension());
-    @session_start();
-    // $_SESSION = [];
-    $this->twig->addGlobal('session', $_SESSION);
     $session_provider = new \EasyCSRF\NativeSessionProvider();
     $this->csrf = new \EasyCSRF\EasyCSRF($session_provider);
     $this->screen_setting = $form_data_array->screenSetting;
+  }
+
+  public function check_host() {
+
+    $host = parse_url($_SERVER['HTTP_REFERER'])['host'];
+    
+    $defined_hosts = isset($this->initial_settings->defined_hosts) ? $this->initial_settings->defined_hosts : [];
+    $i = 0;
+    foreach($defined_hosts as $df) {
+      if(!stristr($host, $df)) {
+        $i++;
+      }
+      if($i === count($defined_hosts)) {
+        die('Not allowed host.');
+      }
+      var_dump($i);
+      var_dump(count($defined_hosts));
+    }
+
   }
 
   public function validate($val_data, $type = 'confirm') {

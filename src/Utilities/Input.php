@@ -13,6 +13,9 @@ class Input extends BuildForm {
   public function __construct() {
     $this->formData = $_POST;
     parent::__construct();
+    @session_start();
+    $_SESSION = [];
+    $this->twig->addGlobal('session', $_SESSION);
   }
 
   public function output_action() {
