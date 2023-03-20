@@ -51,6 +51,10 @@ class Preview extends BuildForm {
       'state' => 'input',
       // 'csrf_token' => $this->output_csrf_token(),
       'form_settings' => $postData['formData']['initialSetting'],
+<<<<<<< Updated upstream
+=======
+      'screen_setting' =>  $this->screen_setting,
+>>>>>>> Stashed changes
       'form' => $this->preview_loop_out($postData['formData']['formElements']),
       // 'form' => $this->loop_out(),
     ];
@@ -58,6 +62,10 @@ class Preview extends BuildForm {
     header("HTTP/1.1 200 OK");
     header("Content-Type: text/html; charset=utf-8");
     // var_dump($this->preview_loop_out($postData['formData']['formElements']));
+<<<<<<< Updated upstream
+=======
+    // var_dump($this->screen_setting);
+>>>>>>> Stashed changes
     return $template->render($data);
   }
 
