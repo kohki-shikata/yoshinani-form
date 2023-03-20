@@ -3,7 +3,7 @@
   <label for="{{id}}">{{title}}</label>
   {% endif %}
 
-  <select {{(name ? "name=\"#{name}\"" : null) | raw}} {{( id ? "id=\"#{id}\"" : null) | raw}}>
+  <select {{(name ? "name=\"#{name}\"" : null) | raw}} {{( id ? "id=\"#{id}\"" : null) | raw}} {{(isMultiple == true ? "multiple" : null) | raw}}>
   {% for choice in choices %}
   <option
     {{(choice.value ? "value=\"#{choice.value}\"" : null) | raw}}
