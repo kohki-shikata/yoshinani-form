@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
     "initialSetting": {
         "smtpAuth": true,
@@ -186,3 +187,6 @@
     ],
     "formElementSelect": "6"
 }
+=======
+{"initialSetting":{"smtpAuth":true,"smtpEncryption":false,"autoreply":false,"stepNavigation":true,"formElementSelect":0,"recipientMailSubject":"お問い合わせがありました"},"formElements":[{"type":"text","name":"name","label":"お名前","id":"name","placeholder":"例）山田 太郎","value":"","size":"30","inputmode":"text","minlength":"","maxlength":"50","pattern":"","required":true,"readonly":false,"disabled":false,"isInline":true,"autocomplete":"name"},{"type":"text","name":"furigana","label":"フリガナ","id":"furigana","placeholder":"例）ヤマダタロウ","value":"","size":"30","inputmode":"text","minlength":"","maxlength":"","pattern":"^[ァ-ー]+$","required":true,"readonly":false,"disabled":false,"isInline":true,"autocomplete":"on"},{"type":"email","name":"email","label":"メールアドレス","id":"email","placeholder":"例）yamada@example.com","value":"","size":"30","inputmode":"email","minlength":"","maxlength":"50","pattern":"","required":true,"readonly":false,"disabled":false,"isInline":true,"autocomplete":"email"},{"type":"textarea","inputmode":"","placeholder":"メッセージをお書きください。","value":"","minlength":"","maxlength":"50","spellcheck":"","wrap":"","required":true,"readonly":false,"disabled":false,"isTextarea":true,"name":"message","label":"お問い合わせ本文","id":"message","rows":"15","cols":"45"}],"formElementSelect":1,"dragManage":{"dragging":null,"dropping":null,"timer":null},"screenSetting":"input"}
+>>>>>>> Stashed changes

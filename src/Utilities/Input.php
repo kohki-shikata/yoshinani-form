@@ -21,7 +21,7 @@ class Input extends BuildForm {
   public function output_action() {
     $setting = $this->screen_setting;
     if($setting === 'input') {
-      return '';
+      return '/send';
     } elseif($setting === 'confirm') {
       return '/confirm';
     } elseif($setting === 'complete') {

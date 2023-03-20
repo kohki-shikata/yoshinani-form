@@ -46,6 +46,7 @@ Alpine.store('app', {
     types: formElementTypes,
     setType: 'text',
     previewMode: 'realtime',
+    screenSetting: 'confirm',
     formData: {
         initialSetting,
         formElements: [],
