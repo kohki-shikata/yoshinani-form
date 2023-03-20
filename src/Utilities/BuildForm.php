@@ -29,6 +29,32 @@ class BuildForm {
     $this->screen_setting = $form_data_array->screenSetting;
   }
 
+  public function check_host() {
+    try {
+      if(!isset($_SERVER['HTTP_REFERER'])) {
+        die('Coundn\'t get Refferer');
+      }
+      $host = parse_url($_SERVER['HTTP_REFERER'])['host'];
+      
+      $defined_hosts = isset($this->initial_settings->defined_hosts) ? $this->initial_settings->defined_hosts : [];
+      $i = 0;
+      foreach($defined_hosts as $df) {
+        if(!stristr($host, $df)) {
+          $i++;
+        }
+        if($i === count($defined_hosts)) {
+          die('Not allowed host.');
+        }
+        var_dump($i);
+        var_dump(count($defined_hosts));
+      }
+      throw new Exception('An error occured');
+    } catch(Exception $e) {
+      echo $e->getMessage();
+    }
+    
+  }
+
   public function validate($val_data, $type = 'confirm') {
     $_SESSION = [];
     Validator::lang('ja');
